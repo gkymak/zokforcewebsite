@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeForms();
     initializeMobileMenu();
     initializeAnimations();
+    initializeFloatingChatbot();
 });
 
 // Navigation functionality
@@ -208,19 +209,24 @@ function initializeForms() {
         });
     }
     
-    // Newsletter form
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', handleNewsletterSignup);
-    }
+
     
     // Form validation
     initializeFormValidation();
 }
 
+// Track form submission to prevent duplicates
+let isSubmitting = false;
+
 // Handle contact form submission
 function handleContactForm(event) {
     event.preventDefault();
+    
+    // Prevent duplicate submissions
+    if (isSubmitting) {
+        console.log('Form submission already in progress, ignoring duplicate request');
+        return;
+    }
     
     const form = event.target;
     const formData = new FormData(form);
@@ -241,56 +247,81 @@ function handleContactForm(event) {
         return;
     }
     
-    // Simulate form submission
+    // Set submission flag and disable form
+    isSubmitting = true;
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     
     submitButton.disabled = true;
     submitButton.textContent = 'Sending...';
     
-    // Simulate API call delay
-    setTimeout(() => {
-        // In a real application, you would send the data to your server
-        console.log('Contact form submitted:', data);
-        
-        showNotification('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
-        form.reset();
-        
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-    }, 2000);
+    // Format the message for Dify API
+    let formattedMessage = `Full Name: ${data.name}, Email: ${data.email}`;
+    if (data.company && data.company.trim()) {
+        formattedMessage += `, Company: ${data.company}`;
+    }
+    if (data.service && data.service.trim()) {
+        const serviceLabels = {
+            'ai-strategy': 'AI Strategy & Consulting',
+            'llm-integration': 'LLM Integration',
+            'chatbots': 'Smart Chatbots & Digital Humans',
+            'automation': 'Process Automation',
+            'analytics': 'Data Analytics & Insights',
+            'digital-twin': 'Digital Twin Solutions'
+        };
+        formattedMessage += `, Service Interest: ${serviceLabels[data.service] || data.service}`;
+    }
+    formattedMessage += `, Message: ${data.message}`;
+    
+    // Send to Dify API
+    sendToDifyAPI(formattedMessage)
+        .then(response => {
+            console.log('Dify API response:', response);
+            showNotification('Thank you for your message! Your inquiry has been sent to our AI assistant.', 'success');
+            form.reset();
+        })
+        .catch(error => {
+            console.error('Dify API error:', error);
+            showNotification('Sorry, there was an error sending your message. Please try again or use the chat widget.', 'error');
+        })
+        .finally(() => {
+            // Reset submission state and button
+            isSubmitting = false;
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+        });
 }
 
-// Handle newsletter signup
-function handleNewsletterSignup(event) {
-    event.preventDefault();
+// Function to send message to Dify API
+async function sendToDifyAPI(message) {
+    // Dify API configuration
+    const DIFY_API_URL = 'http://31172269os.zicp.vip:5301/v1/chat-messages';
+    const DIFY_API_KEY = 'app-ALXmHrqK7sbUx0C6AEdTARl5';
+    const DIFY_APP_ID = ''; // Not needed for this endpoint
     
-    const form = event.target;
-    const emailInput = form.querySelector('input[type="email"]');
-    const email = emailInput ? emailInput.value : '';
+    const response = await fetch(DIFY_API_URL, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${DIFY_API_KEY}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            inputs: {},
+            query: message,
+            response_mode: 'blocking', // or 'streaming' if you want real-time responses
+            conversation_id: '', // Leave empty for new conversation
+            user: 'website-contact-form'
+        })
+    });
     
-    if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address.', 'error');
-        return;
+    if (!response.ok) {
+        throw new Error(`Dify API error: ${response.status} ${response.statusText}`);
     }
     
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    
-    submitButton.disabled = true;
-    submitButton.textContent = 'Subscribing...';
-    
-    // Simulate API call
-    setTimeout(() => {
-        console.log('Newsletter signup:', email);
-        
-        showNotification('Thank you for subscribing! You\'ll receive our latest insights.', 'success');
-        form.reset();
-        
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-    }, 1500);
+    return await response.json();
 }
+
+
 
 // Form validation
 function initializeFormValidation() {
@@ -511,11 +542,31 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
+// Floating Chatbot functionality
+function initializeFloatingChatbot() {
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const floatingChatbot = document.getElementById('floating-chatbot');
+    
+    if (chatbotToggle && floatingChatbot) {
+        chatbotToggle.addEventListener('click', function() {
+            floatingChatbot.classList.toggle('open');
+        });
+    }
+    
+    // Close chatbot when clicking outside
+    document.addEventListener('click', function(e) {
+        if (floatingChatbot && floatingChatbot.classList.contains('open')) {
+            if (!floatingChatbot.contains(e.target)) {
+                floatingChatbot.classList.remove('open');
+            }
+        }
+    });
+}
+
 // Global CTA functions (called from HTML)
 window.scrollToContact = scrollToContact;
 window.scrollToSection = scrollToSection;
 window.handleContactForm = handleContactForm;
-window.handleNewsletterSignup = handleNewsletterSignup;
 
 // Add CSS for mobile menu and form fixes
 const additionalStyles = `

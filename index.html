@@ -432,16 +432,7 @@
                     </article>
                 </div>
 
-                <div class="newsletter-signup">
-                    <div class="newsletter-signup__content">
-                        <h3>Stay Informed</h3>
-                        <p>Get the latest AI insights and industry updates delivered to your inbox.</p>
-                        <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
-                            <input type="email" class="form-control" placeholder="Enter your email address" required>
-                            <button type="submit" class="btn btn--primary">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
+
             </div>
         </section>
 
@@ -552,6 +543,23 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Chatbot Widget -->
+    <div id="floating-chatbot" class="floating-chatbot">
+        <div class="chatbot-toggle" id="chatbot-toggle">
+            <span class="chatbot-icon">💬</span>
+            <span class="chatbot-close">×</span>
+        </div>
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-content">
+                <iframe 
+                    src="http://31172269os.zicp.vip:3000/chatbot/IRxfkQLmcnoB1CDi" 
+                    style="width: 100%; height: 100%; border: none;" 
+                    allow="microphone"> 
+                </iframe>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
