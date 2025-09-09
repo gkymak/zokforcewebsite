@@ -4,191 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZOKFORCE - AI Consulting & LLM Integration | Canada</title>
+    <meta name="description" content="Leading AI consultancy in Canada specializing in LLM integration, custom AI solutions, and business transformation. Get your free consultation today.">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Embedded Chatbot Styles */
-        .floating-chatbot {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-            font-family: var(--font-family-base);
-        }
-
-        .chatbot-toggle {
-            width: 64px;
-            height: 64px;
-            background: var(--brand-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(var(--brand-primary-rgb), 0.3);
-            transition: all 0.3s ease;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chatbot-toggle:hover {
-            background: var(--brand-primary-hover);
-            transform: scale(1.05);
-            box-shadow: 0 12px 35px rgba(var(--brand-primary-rgb), 0.4);
-        }
-
-        .chatbot-icon {
-            font-size: 28px;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .chatbot-close {
-            font-size: 24px;
-            color: white;
-            position: absolute;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .floating-chatbot.open .chatbot-icon {
-            opacity: 0;
-            transform: rotate(180deg);
-        }
-
-        .floating-chatbot.open .chatbot-close {
-            opacity: 1;
-            transform: rotate(0deg);
-        }
-
-        /* Chatbot Window */
-        .chatbot-window {
-            position: absolute;
-            bottom: 20px;
-            right: 0;
-            width: 400px;
-            height: 520px;
-            background: var(--color-surface);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--color-card-border);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px) scale(0.95);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .floating-chatbot.open .chatbot-window {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-
-
-        /* Embedded Chat Content */
-        .chat-content {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chat-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: var(--color-background);
-        }
-
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--color-background);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: var(--space-16);
-            transition: opacity 0.3s ease;
-        }
-
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid var(--color-border);
-            border-top: 3px solid var(--brand-primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            color: var(--color-text-secondary);
-            font-size: var(--font-size-sm);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .chatbot-window {
-                width: calc(100vw - 32px);
-                right: -8px;
-                height: 70vh;
-                max-height: 480px;
-            }
-            
-            .floating-chatbot {
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-
-        /* Pulse animation for chat button */
-        .chatbot-toggle::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 50%;
-            background: var(--brand-primary);
-            opacity: 0.3;
-            animation: chatbot-pulse 2s infinite;
-        }
-
-        @keyframes chatbot-pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.1;
-            }
-            100% {
-                transform: scale(1.2);
-                opacity: 0;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Fixed Header -->
     <header class="header">
         <div class="container">
             <div class="header__content">
@@ -203,10 +23,19 @@
                         <li><a href="#about" class="nav__link">About</a></li>
                         <li><a href="#services" class="nav__link">Services</a></li>
                         <li><a href="#case-studies" class="nav__link">Case Studies</a></li>
-                        <li><a href="#insights" class="nav__link">Insights</a></li>
+                        <li><a href="#blog" class="nav__link">Insights</a></li>
                         <li><a href="#contact" class="nav__link">Contact</a></li>
                     </ul>
                 </nav>
+
+                <div class="header__actions">
+                    <button class="btn btn--primary cta-btn" onclick="scrollToContact()">Free Consultation</button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -252,296 +81,423 @@
                     </div>
                 </div>
 
+                <!-- Services Overview -->
+                <div class="services-preview">
+                    <h2 class="section__title">AI Solutions That Drive Results</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-card__icon">🧠</div>
+                            <h3 class="service-card__title">AI Strategy & Consulting</h3>
+                            <p class="service-card__description">Comprehensive AI roadmaps and strategic guidance to transform your business operations.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-card__icon">🤖</div>
+                            <h3 class="service-card__title">LLM Integration</h3>
+                            <p class="service-card__description">Custom large language model implementation for enhanced customer experiences.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-card__icon">💬</div>
+                            <h3 class="service-card__title">Smart Chatbots</h3>
+                            <p class="service-card__description">24/7 intelligent chatbots with emotional recognition and personalized interactions.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-card__icon">⚙️</div>
+                            <h3 class="service-card__title">Process Automation</h3>
+                            <p class="service-card__description">AI-powered workflow automation and intelligent decision support systems.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-card__icon">📊</div>
+                            <h3 class="service-card__title">Data Analytics</h3>
+                            <p class="service-card__description">Advanced analytics and AI-driven business intelligence for data-driven decisions.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-card__icon">🏭</div>
+                            <h3 class="service-card__title">Digital Twin Solutions</h3>
+                            <p class="service-card__description">Industrial digital twins and smart factory implementations with IoT monitoring.</p>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>About ZOKFORCE</h2>
-                <p>Digital excellence, driven by AI for all</p>
-            </div>
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section__title">About ZOKFORCE</h2>
+                    <p class="section__subtitle">Digital excellence, driven by AI for all</p>
+                </div>
 
-            <div class="about__content">
-                <div class="about__text">
-                    <p class="lead">Founded in 2019, ZOKFORCE is a tech-driven company dedicated to AI applications research and development. We specialize in transforming businesses through cutting-edge artificial intelligence solutions.</p>
-                    
-                    <div class="mission-vision">
-                        <div class="mission">
-                            <h3>Our Mission</h3>
-                            <p>To democratize AI technology and make digital excellence accessible to businesses of all sizes, driving innovation and growth across industries.</p>
+                <div class="about__content">
+                    <div class="about__text">
+                        <p class="lead">Founded in 2019, ZOKFORCE is a tech-driven company dedicated to AI applications research and development. We specialize in transforming businesses through cutting-edge artificial intelligence solutions.</p>
+                        
+                        <div class="mission-vision">
+                            <div class="mission">
+                                <h3>Our Mission</h3>
+                                <p>To democratize AI technology and make digital excellence accessible to businesses of all sizes, driving innovation and growth across industries.</p>
+                            </div>
+                        </div>
+
+                        <div class="values">
+                            <h3>Our Core Values</h3>
+                            <div class="values-grid">
+                                <div class="value-item">
+                                    <h4>Customer Success</h4>
+                                    <p>Your success is our priority. We measure our achievements by the tangible results we deliver.</p>
+                                </div>
+                                <div class="value-item">
+                                    <h4>Ethical & Responsible AI</h4>
+                                    <p>We develop AI solutions with transparency, fairness, and user trust at the forefront.</p>
+                                </div>
+                                <div class="value-item">
+                                    <h4>Relentless Innovation</h4>
+                                    <p>We continuously push boundaries to deliver cutting-edge solutions that keep you ahead.</p>
+                                </div>
+                                <div class="value-item">
+                                    <h4>Honesty & Transparency</h4>
+                                    <p>Clear communication and honest partnerships form the foundation of our relationships.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="values">
-                        <h3>Our Core Values</h3>
-                        <div class="values-grid">
-                            <div class="value-item">
-                                <h4>Customer Success</h4>
-                                <p>Your success is our priority. We measure our achievements by the tangible results we deliver.</p>
-                            </div>
-                            <div class="value-item">
-                                <h4>Ethical & Responsible AI</h4>
-                                <p>We develop AI solutions with transparency, fairness, and user trust at the forefront.</p>
-                            </div>
-                            <div class="value-item">
-                                <h4>Relentless Innovation</h4>
-                                <p>We continuously push boundaries to deliver cutting-edge solutions that keep you ahead.</p>
-                            </div>
-                            <div class="value-item">
-                                <h4>Honesty & Transparency</h4>
-                                <p>Clear communication and honest partnerships form the foundation of our relationships.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="capabilities">
-                    <h3>Our Capabilities</h3>
-                    <div class="capabilities-list">
-                        <div class="capability">Emotional Recognition and Personalized Services</div>
-                        <div class="capability">24/7 Service and Efficient Conversation</div>
-                        <div class="capability">Multimodal Interaction Experience</div>
-                        <div class="capability">Virtual Anchors and Content Creation</div>
-                        <div class="capability">Corporate Image Endorsement and Brand Promotion</div>
-                        <div class="capability">Education & Training Solutions</div>
-                        <div class="capability">Process Automated Agents</div>
-                        <div class="capability">Decision Support Agents</div>
-                        <div class="capability">Data Analysis Agents</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>AI Solutions That Drive Results</h2>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-card__icon">🧠</div>
-                    <h3>AI Strategy & Consulting</h3>
-                    <p>Comprehensive AI roadmaps and strategic guidance to transform your business operations.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-card__icon">🤖</div>
-                    <h3>LLM Integration</h3>
-                    <p>Custom large language model implementation for enhanced customer experiences.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-card__icon">💬</div>
-                    <h3>Smart Chatbots</h3>
-                    <p>24/7 intelligent chatbots with emotional recognition and personalized interactions.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-card__icon">⚙️</div>
-                    <h3>Process Automation</h3>
-                    <p>AI-powered workflow automation and intelligent decision support systems.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-card__icon">📊</div>
-                    <h3>Data Analytics</h3>
-                    <p>Advanced analytics and AI-driven business intelligence for data-driven decisions.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-card__icon">🏭</div>
-                    <h3>Digital Twin Solutions</h3>
-                    <p>Industrial digital twins and smart factory implementations with IoT monitoring.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section id="case-studies" class="case-studies">
-        <div class="container">
-            <div class="section-header">
-                <h2>Success Stories</h2>
-                <p>Real results from our AI implementations</p>
-            </div>
-            
-            <div class="case-studies-grid">
-                <div class="case-study">
-                    <div class="case-study__header">
-                        <h3>AI Tourism Assistant</h3>
-                        <p class="case-study__client">Major Tourism Board</p>
-                    </div>
-                    <div class="case-study__content">
-                        <h4>Challenge</h4>
-                        <p>Needed multilingual virtual tour guide and personalized travel recommendations to enhance tourist experience and reduce support costs.</p>
-                        
-                        <h4>Solution</h4>
-                        <p>Implemented AI chatbot with real-time translation capabilities and intelligent itinerary planning system integrated across multiple touchpoints.</p>
-                        
-                        <h4>Results</h4>
-                        <div class="results-metrics">
-                            <div class="metric">
-                                <span class="metric__value">40%</span>
-                                <span class="metric__label">Increase in Tourist Satisfaction</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric__value">25%</span>
-                                <span class="metric__label">Reduction in Support Costs</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="case-study">
-                    <div class="case-study__header">
-                        <h3>Smart Factory Implementation</h3>
-                        <p class="case-study__client">Manufacturing Company</p>
-                    </div>
-                    <div class="case-study__content">
-                        <h4>Challenge</h4>
-                        <p>Required predictive maintenance capabilities and operational efficiency improvements to reduce costly downtime and optimize production.</p>
-                        
-                        <h4>Solution</h4>
-                        <p>Deployed comprehensive digital twin technology with IoT sensors and AI analytics for real-time monitoring and predictive insights.</p>
-                        
-                        <h4>Results</h4>
-                        <div class="results-metrics">
-                            <div class="metric">
-                                <span class="metric__value">30%</span>
-                                <span class="metric__label">Reduction in Downtime</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric__value">20%</span>
-                                <span class="metric__label">Increase in Productivity</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="case-study">
-                    <div class="case-study__header">
-                        <h3>AI-Powered Contract Processing</h3>
-                        <p class="case-study__client">Legal Services Firm</p>
-                    </div>
-                    <div class="case-study__content">
-                        <h4>Challenge</h4>
-                        <p>Manual contract review process was slow, error-prone, and created bottlenecks in client service delivery.</p>
-                        
-                        <h4>Solution</h4>
-                        <p>Built intelligent AI contract bot with OCR capabilities and automated comparison features for rapid, accurate document analysis.</p>
-                        
-                        <h4>Results</h4>
-                        <div class="results-metrics">
-                            <div class="metric">
-                                <span class="metric__value">75%</span>
-                                <span class="metric__label">Faster Contract Processing</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric__value">90%</span>
-                                <span class="metric__label">Reduction in Errors</span>
-                            </div>
+                    <div class="capabilities">
+                        <h3>Our Capabilities</h3>
+                        <div class="capabilities-list">
+                            <div class="capability">Emotional Recognition and Personalized Services</div>
+                            <div class="capability">24/7 Service and Efficient Conversation</div>
+                            <div class="capability">Multimodal Interaction Experience</div>
+                            <div class="capability">Virtual Anchors and Content Creation</div>
+                            <div class="capability">Corporate Image Endorsement and Brand Promotion</div>
+                            <div class="capability">Education & Training Solutions</div>
+                            <div class="capability">Process Automated Agents</div>
+                            <div class="capability">Decision Support Agents</div>
+                            <div class="capability">Data Analysis Agents</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Blog/Insights Section -->
-    <section id="insights" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Latest Insights</h2>
-                <p>Thought leadership and industry expertise</p>
-            </div>
+        <!-- Services Section -->
+        <section id="services" class="section section--alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section__title">Our Services</h2>
+                    <p class="section__subtitle">Comprehensive AI solutions tailored to your business needs</p>
+                </div>
 
-            <div class="blog-grid">
-                <article class="blog-post">
-                    <div class="blog-post__meta">
-                        <span class="blog-post__category">AI Strategy</span>
-                        <time class="blog-post__date">March 15, 2024</time>
+                <div class="services-detailed">
+                    <div class="service-detail">
+                        <div class="service-detail__icon">🧠</div>
+                        <div class="service-detail__content">
+                            <h3>AI Strategy & Consulting</h3>
+                            <p>Comprehensive AI roadmaps and strategic guidance to transform your business operations and unlock new growth opportunities. We help you identify AI use cases, develop implementation strategies, and create sustainable competitive advantages.</p>
+                            <ul>
+                                <li>AI Readiness Assessment</li>
+                                <li>Strategic Roadmap Development</li>
+                                <li>ROI Analysis & Business Case</li>
+                                <li>Technology Selection & Architecture</li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="blog-post__title">The Future of AI in Business Transformation</h3>
-                    <p class="blog-post__excerpt">Exploring how artificial intelligence is reshaping industries and creating new opportunities for growth and innovation across diverse business sectors.</p>
-                    <a href="#" class="blog-post__link">Read More →</a>
-                </article>
 
-                <article class="blog-post">
-                    <div class="blog-post__meta">
-                        <span class="blog-post__category">Technical Insights</span>
-                        <time class="blog-post__date">March 8, 2024</time>
+                    <div class="service-detail">
+                        <div class="service-detail__icon">🤖</div>
+                        <div class="service-detail__content">
+                            <h3>LLM Integration</h3>
+                            <p>Custom large language model implementation and integration to enhance customer service, content creation, and business processes. We specialize in fine-tuning models for your specific industry and use cases.</p>
+                            <ul>
+                                <li>Custom Model Fine-tuning</li>
+                                <li>API Integration & Deployment</li>
+                                <li>Content Generation Systems</li>
+                                <li>Conversational AI Development</li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="blog-post__title">Implementing Large Language Models: A Practical Guide</h3>
-                    <p class="blog-post__excerpt">Step-by-step approach to successfully integrating LLMs into your business processes for maximum impact and sustainable competitive advantage.</p>
-                    <a href="#" class="blog-post__link">Read More →</a>
-                </article>
 
-                <article class="blog-post">
-                    <div class="blog-post__meta">
-                        <span class="blog-post__category">AI Ethics</span>
-                        <time class="blog-post__date">March 1, 2024</time>
+                    <div class="service-detail">
+                        <div class="service-detail__icon">💬</div>
+                        <div class="service-detail__content">
+                            <h3>Smart Chatbots & Digital Humans</h3>
+                            <p>24/7 intelligent chatbots with emotional recognition, multimodal interaction, and personalized customer experiences. Our solutions reduce support costs while improving customer satisfaction.</p>
+                            <ul>
+                                <li>Conversational AI Development</li>
+                                <li>Emotional Intelligence Integration</li>
+                                <li>Multi-channel Deployment</li>
+                                <li>Advanced Analytics & Insights</li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="blog-post__title">Ethical AI: Building Trust in Automated Systems</h3>
-                    <p class="blog-post__excerpt">Best practices for developing responsible AI solutions that prioritize transparency, fairness, and user trust in an increasingly automated world.</p>
-                    <a href="#" class="blog-post__link">Read More →</a>
-                </article>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get Started Today</h2>
-                <p>Ready to transform your business with AI? Let's discuss your project.</p>
-            </div>
-            
-            <div class="contact__content">
-                <div class="contact__info">
-                    <h3>Contact Information</h3>
-                    <div class="contact__item">
-                        <strong>Email:</strong> service@zokforce.com
+                    <div class="service-detail">
+                        <div class="service-detail__icon">⚙️</div>
+                        <div class="service-detail__content">
+                            <h3>Process Automation</h3>
+                            <p>AI-powered workflow automation, document processing, and intelligent decision support systems. Streamline operations, reduce errors, and free up your team for strategic work.</p>
+                            <ul>
+                                <li>Intelligent Document Processing</li>
+                                <li>Workflow Automation</li>
+                                <li>Decision Support Systems</li>
+                                <li>Quality Assurance & Monitoring</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="contact__item">
-                        <strong>Phone:</strong> +1 (437) 808-2160
+
+                    <div class="service-detail">
+                        <div class="service-detail__icon">📊</div>
+                        <div class="service-detail__content">
+                            <h3>Data Analytics & Insights</h3>
+                            <p>Advanced analytics, predictive modeling, and AI-driven business intelligence for data-driven decisions. Turn your data into actionable insights and competitive advantages.</p>
+                            <ul>
+                                <li>Predictive Analytics</li>
+                                <li>Business Intelligence Dashboards</li>
+                                <li>Machine Learning Models</li>
+                                <li>Real-time Data Processing</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="contact__item">
-                        <strong>Location:</strong> Toronto, Canada
+
+                    <div class="service-detail">
+                        <div class="service-detail__icon">🏭</div>
+                        <div class="service-detail__content">
+                            <h3>Digital Twin Solutions</h3>
+                            <p>Industrial digital twins, smart factory implementations, and IoT-enabled monitoring systems. Optimize operations, predict maintenance needs, and improve efficiency.</p>
+                            <ul>
+                                <li>Industrial IoT Integration</li>
+                                <li>Digital Twin Modeling</li>
+                                <li>Predictive Maintenance</li>
+                                <li>Performance Optimization</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                
-                <form class="contact__form" id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+
+                <div class="industries">
+                    <h3>Industries We Serve</h3>
+                    <div class="industries-list">
+                        <span class="industry">Tourism & Hospitality</span>
+                        <span class="industry">Financial Services</span>
+                        <span class="industry">Manufacturing</span>
+                        <span class="industry">Healthcare</span>
+                        <span class="industry">Retail & E-commerce</span>
+                        <span class="industry">Energy & Utilities</span>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" class="form-control">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
-                </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section__title">Success Stories</h2>
+                    <p class="section__subtitle">Real results from our AI implementations</p>
+                </div>
+
+                <div class="case-studies-grid">
+                    <div class="case-study">
+                        <div class="case-study__header">
+                            <h3>AI Tourism Assistant</h3>
+                            <span class="case-study__client">Major Tourism Board</span>
+                        </div>
+                        <div class="case-study__content">
+                            <div class="challenge">
+                                <h4>Challenge</h4>
+                                <p>Needed multilingual virtual tour guide and personalized travel recommendations to enhance tourist experience and reduce support costs.</p>
+                            </div>
+                            <div class="solution">
+                                <h4>Solution</h4>
+                                <p>Implemented AI chatbot with real-time translation capabilities and intelligent itinerary planning system integrated across multiple touchpoints.</p>
+                            </div>
+                            <div class="results">
+                                <h4>Results</h4>
+                                <div class="results-metrics">
+                                    <div class="metric">
+                                        <span class="metric__value">40%</span>
+                                        <span class="metric__label">Increase in Tourist Satisfaction</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric__value">25%</span>
+                                        <span class="metric__label">Reduction in Support Costs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-study">
+                        <div class="case-study__header">
+                            <h3>Smart Factory Implementation</h3>
+                            <span class="case-study__client">Manufacturing Company</span>
+                        </div>
+                        <div class="case-study__content">
+                            <div class="challenge">
+                                <h4>Challenge</h4>
+                                <p>Required predictive maintenance capabilities and operational efficiency improvements to reduce costly downtime and optimize production.</p>
+                            </div>
+                            <div class="solution">
+                                <h4>Solution</h4>
+                                <p>Deployed comprehensive digital twin technology with IoT sensors and AI analytics for real-time monitoring and predictive insights.</p>
+                            </div>
+                            <div class="results">
+                                <h4>Results</h4>
+                                <div class="results-metrics">
+                                    <div class="metric">
+                                        <span class="metric__value">30%</span>
+                                        <span class="metric__label">Reduction in Downtime</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric__value">20%</span>
+                                        <span class="metric__label">Increase in Productivity</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-study">
+                        <div class="case-study__header">
+                            <h3>AI-Powered Contract Processing</h3>
+                            <span class="case-study__client">Legal Services Firm</span>
+                        </div>
+                        <div class="case-study__content">
+                            <div class="challenge">
+                                <h4>Challenge</h4>
+                                <p>Manual contract review process was slow, error-prone, and created bottlenecks in client service delivery.</p>
+                            </div>
+                            <div class="solution">
+                                <h4>Solution</h4>
+                                <p>Built intelligent AI contract bot with OCR capabilities and automated comparison features for rapid, accurate document analysis.</p>
+                            </div>
+                            <div class="results">
+                                <h4>Results</h4>
+                                <div class="results-metrics">
+                                    <div class="metric">
+                                        <span class="metric__value">75%</span>
+                                        <span class="metric__label">Faster Contract Processing</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric__value">90%</span>
+                                        <span class="metric__label">Reduction in Errors</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog/Insights Section -->
+        <section id="blog" class="section section--alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section__title">Latest Insights</h2>
+                    <p class="section__subtitle">Thought leadership and industry expertise</p>
+                </div>
+
+                <div class="blog-grid">
+                    <article class="blog-post">
+                        <div class="blog-post__meta">
+                            <span class="blog-post__category">AI Strategy</span>
+                            <time class="blog-post__date">March 15, 2024</time>
+                        </div>
+                        <h3 class="blog-post__title">The Future of AI in Business Transformation</h3>
+                        <p class="blog-post__excerpt">Exploring how artificial intelligence is reshaping industries and creating new opportunities for growth and innovation across diverse business sectors.</p>
+                        <a href="#" class="blog-post__link">Read More →</a>
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-post__meta">
+                            <span class="blog-post__category">Technical Insights</span>
+                            <time class="blog-post__date">March 8, 2024</time>
+                        </div>
+                        <h3 class="blog-post__title">Implementing Large Language Models: A Practical Guide</h3>
+                        <p class="blog-post__excerpt">Step-by-step approach to successfully integrating LLMs into your business processes for maximum impact and sustainable competitive advantage.</p>
+                        <a href="#" class="blog-post__link">Read More →</a>
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-post__meta">
+                            <span class="blog-post__category">AI Ethics</span>
+                            <time class="blog-post__date">March 1, 2024</time>
+                        </div>
+                        <h3 class="blog-post__title">Ethical AI: Building Trust in Automated Systems</h3>
+                        <p class="blog-post__excerpt">Best practices for developing responsible AI solutions that prioritize transparency, fairness, and user trust in an increasingly automated world.</p>
+                        <a href="#" class="blog-post__link">Read More →</a>
+                    </article>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section__title">Get Started Today</h2>
+                    <p class="section__subtitle">Ready to transform your business with AI? Let's discuss your needs.</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h4>Email</h4>
+                            <p><a href="mailto:service@zokforce.com">service@zokforce.com</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+14378081260">+1 (437) 808-2160</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Location</h4>
+                            <p>Toronto, ON, Canada</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Business Hours</h4>
+                            <p>Mon-Fri 9:00 AM - 6:00 PM EST</p>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" onsubmit="handleContactForm(event)">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name *</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company" class="form-label">Company</label>
+                            <input type="text" id="company" name="company" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="service" class="form-label">Service Interest</label>
+                            <select id="service" name="service" class="form-control">
+                                <option value="">Select a service</option>
+                                <option value="ai-strategy">AI Strategy & Consulting</option>
+                                <option value="llm-integration">LLM Integration</option>
+                                <option value="chatbots">Smart Chatbots & Digital Humans</option>
+                                <option value="automation">Process Automation</option>
+                                <option value="analytics">Data Analytics & Insights</option>
+                                <option value="digital-twin">Digital Twin Solutions</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us about your project or AI needs..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -549,156 +505,62 @@
         <div class="container">
             <div class="footer__content">
                 <div class="footer__brand">
-                    <h3>ZOKFORCE</h3>
-                    <p>Transforming businesses through AI excellence</p>
+                    <h3 class="logo">ZOKFORCE</h3>
+                    <p>Digital excellence, driven by AI for all</p>
                 </div>
-                
                 <div class="footer__links">
-                    <div class="footer__column">
+                    <div class="footer__section">
                         <h4>Services</h4>
-                        <a href="#services">AI Strategy</a>
-                        <a href="#services">LLM Integration</a>
-                        <a href="#services">Smart Chatbots</a>
+                        <ul>
+                            <li><a href="#services">AI Strategy</a></li>
+                            <li><a href="#services">LLM Integration</a></li>
+                            <li><a href="#services">Smart Chatbots</a></li>
+                            <li><a href="#services">Process Automation</a></li>
+                        </ul>
                     </div>
-                    
-                    <div class="footer__column">
+                    <div class="footer__section">
                         <h4>Company</h4>
-                        <a href="#about">About Us</a>
-                        <a href="#case-studies">Case Studies</a>
-                        <a href="#contact">Contact</a>
+                        <ul>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#case-studies">Case Studies</a></li>
+                            <li><a href="#blog">Insights</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__section">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="mailto:service@zokforce.com">Email</a></li>
+                            <li><a href="tel:+14378082160">Phone</a></li>
+                            <li><a href="#" target="_blank">LinkedIn</a></li>
+                            <li><a href="#" target="_blank">Twitter</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            
             <div class="footer__bottom">
-                <p>&copy; 2025 ZOKFORCE. All rights reserved.</p>
+                <p>&copy; 2025 ZOKFORCE. All rights reserved. | Canada</p>
             </div>
         </div>
     </footer>
 
-    <!-- Embedded Chatbot -->
-    <div class="floating-chatbot" id="floating-chatbot">
-        <button class="chatbot-toggle" id="chatbot-toggle">
+    <!-- Floating Chatbot Widget -->
+    <div id="floating-chatbot" class="floating-chatbot">
+        <div class="chatbot-toggle" id="chatbot-toggle">
             <span class="chatbot-icon">💬</span>
             <span class="chatbot-close">×</span>
-        </button>
-        
+        </div>
         <div class="chatbot-window" id="chatbot-window">
-            <!-- Chat Content -->
-            <div class="chat-content">
-                <div class="loading-overlay" id="loading-overlay">
-                    <div class="loading-spinner"></div>
-                    <div class="loading-text">Loading AI Assistant...</div>
-                </div>
+            <div class="chatbot-content">
                 <iframe 
-                    class="chat-iframe" 
-                    id="chat-iframe"
-                    src="https://3ct1hk172269.vicp.fun/embed/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRJZCI6ImNtZXdzMTc5aDAwMDFzN3U1cGxqa25sODYiLCJhZ2VudElkIjoiY21mNHRxdnhmMDAwOTI2ZndqZDU5cGFsaCIsInR5cGUiOiJlbWJlZCIsImV4cCI6MTc4ODk2MTIwMSwiaWF0IjoxNzU3NDI1MjAxfQ.xDosPKO3WuNK8x77QeiK5KhMTnDnNMKvcQ5ob2ZOKfs"
-                    allow="microphone; camera"
-                    loading="lazy">
+                    src="https://3ct1hk172269.vicp.fun/embed/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRJZCI6ImNtZXdzMTc5aDAwMDFzN3U1cGxqa25sODYiLCJhZ2VudElkIjoiY21mNHRxdnhmMDAwOTI2ZndqZDU5cGFsaCIsInR5cGUiOiJlbWJlZCIsImV4cCI6MTc4ODk2MTIwMSwiaWF0IjoxNzU3NDI1MjAxfQ.xDosPKO3WuNK8x77QeiK5KhMTnDnNMKvcQ5ob2ZOKfs" 
+                    style="width: 100%; height: 100%; border: none;" 
+                    allow="microphone"> 
                 </iframe>
             </div>
         </div>
     </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // Scroll to section function
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                const header = document.querySelector('.header');
-                const headerHeight = header ? header.offsetHeight : 80;
-                const targetPosition = section.offsetTop - headerHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Scroll to contact section
-        function scrollToContact() {
-            scrollToSection('contact');
-        }
-
-        // Make functions globally available
-        window.scrollToSection = scrollToSection;
-        window.scrollToContact = scrollToContact;
-        
-        // Contact form handling
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! This is a demo - in the real implementation, this would send your message.');
-        });
-
-        // Embedded Chatbot Integration Script
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Embedded chatbot script loaded');
-            const chatbotToggle = document.getElementById('chatbot-toggle');
-            const floatingChatbot = document.getElementById('floating-chatbot');
-            const chatIframe = document.getElementById('chat-iframe');
-            const loadingOverlay = document.getElementById('loading-overlay');
-            
-            console.log('Chatbot elements:', { chatbotToggle, floatingChatbot, chatIframe, loadingOverlay });
-            
-            // Toggle chatbot
-            if (chatbotToggle && floatingChatbot) {
-                chatbotToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('Chatbot toggle clicked');
-                    floatingChatbot.classList.toggle('open');
-                    console.log('Chatbot open state:', floatingChatbot.classList.contains('open'));
-                });
-            } else {
-                console.error('Chatbot toggle elements not found');
-            }
-
-            // Close chatbot when clicking outside
-            document.addEventListener('click', function(e) {
-                if (floatingChatbot.classList.contains('open')) {
-                    if (!floatingChatbot.contains(e.target)) {
-                        floatingChatbot.classList.remove('open');
-                    }
-                }
-            });
-
-            // Handle iframe loading
-            if (chatIframe && loadingOverlay) {
-                chatIframe.addEventListener('load', function() {
-                    console.log('Chat iframe loaded');
-                    setTimeout(() => {
-                        loadingOverlay.classList.add('hidden');
-                    }, 1000); // Small delay to ensure smooth transition
-                });
-
-                chatIframe.addEventListener('error', function() {
-                    console.error('Chat iframe failed to load');
-                    loadingOverlay.innerHTML = `
-                        <div style="text-align: center; color: var(--color-text-secondary);">
-                            <div style="font-size: 24px; margin-bottom: 8px;">⚠️</div>
-                            <div>Unable to load chat</div>
-                            <div style="font-size: 12px; margin-top: 4px;">Please try again later</div>
-                        </div>
-                    `;
-                });
-            }
-        });
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
