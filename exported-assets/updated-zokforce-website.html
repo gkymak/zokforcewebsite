@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOKFORCE - AI Consulting & LLM Integration | Toronto</title>
+    <meta name="description" content="Leading AI consultancy in Toronto specializing in LLM integration, custom AI solutions, and business transformation. Get your free consultation today.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <h1 class="logo">ZOKFORCE</h1>
+                    <span class="tagline">Lead in Tech, Deliver Excellence</span>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li><a href="#home" class="nav__link active">Home</a></li>
+                        <li><a href="#about" class="nav__link">About</a></li>
+                        <li><a href="#services" class="nav__link">Services</a></li>
+                        <li><a href="#case-studies" class="nav__link">Case Studies</a></li>
+                        <li><a href="#blog" class="nav__link">Insights</a></li>
+                        <li><a href="#contact" class="nav__link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header__actions">
+                    <button class="btn btn--primary cta-btn" onclick="scrollToContact()">Free Consultation</button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section hero">
+            <div class="container">
+                <div class="hero__content">
+                    <div class="hero__text">
+                        <h1 class="hero__title">Transform Your Business with Strategic AI Solutions</h1>
+                        <p class="hero__subtitle">Leading AI consultancy helping Toronto businesses leverage cutting-edge technology for competitive advantage and operational excellence.</p>
+                        <div class="hero__actions">
+                            <button class="btn btn--primary btn--large" onclick="scrollToContact()">Get Free Consultation</button>
+                            <button class="btn btn--secondary btn--large" onclick="scrollToSection('services')">Explore Services</button>
+                        </div>
+                    </div>
+                    <div class="hero__visual">
+                        <div class="hero__graphic">
+                            <div class="floating-element floating-element--1"></div>
+                            <div class="floating-element floating-element--2"></div>
+                            <div class="floating-element floating-element--3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">AI Solutions that Drive Results</h2>
+                    <p class="section__subtitle">Comprehensive AI services designed to transform your business operations and unlock new growth opportunities</p>
+                </div>
+                
+                <div class="services__grid">
+                    <div class="service-card">
+                        <div class="service-card__icon">
+                            <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/a15dab46-6d50-4335-829d-d3924fadd40d.png" alt="AI Strategy & Consulting" class="service-icon">
+                        </div>
+                        <h3 class="service-card__title">AI Strategy & Consulting</h3>
+                        <p class="service-card__description">Comprehensive AI roadmaps and strategic guidance to transform your business operations and unlock new growth opportunities.</p>
+                        <a href="#" class="service-card__link">Learn More →</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card__icon">
+                            <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/5c717a4d-8d95-43ef-be40-8bac064ce018.png" alt="LLM Integration" class="service-icon">
+                        </div>
+                        <h3 class="service-card__title">LLM Integration</h3>
+                        <p class="service-card__description">Custom large language model implementation and integration to enhance customer service, content creation, and business processes.</p>
+                        <a href="#" class="service-card__link">Learn More →</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card__icon">
+                            <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/5ea90c8e-6374-4f8d-8811-c623d554dbd2.png" alt="Smart Chatbots" class="service-icon">
+                        </div>
+                        <h3 class="service-card__title">Smart Chatbots & Digital Humans</h3>
+                        <p class="service-card__description">24/7 intelligent chatbots with emotional recognition, multimodal interaction, and personalized customer experiences.</p>
+                        <a href="#" class="service-card__link">Learn More →</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card__icon">
+                            <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/ddbd95d9-71ed-4f51-b344-7a4dc141b783.png" alt="Process Automation" class="service-icon">
+                        </div>
+                        <h3 class="service-card__title">Process Automation</h3>
+                        <p class="service-card__description">AI-powered workflow automation, document processing, and intelligent decision support systems.</p>
+                        <a href="#" class="service-card__link">Learn More →</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card__icon">
+                            <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e723785d-5916-40d9-bfb7-c6953a635a2b.png" alt="Data Analytics" class="service-icon">
+                        </div>
+                        <h3 class="service-card__title">Data Analytics & Insights</h3>
+                        <p class="service-card__description">Advanced analytics, predictive modeling, and AI-driven business intelligence for data-driven decisions.</p>
+                        <a href="#" class="service-card__link">Learn More →</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card__icon">
+                            <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/4839fe54-a01d-47d2-b5a6-5dcc42e4bbba.png" alt="Digital Twin Solutions" class="service-icon">
+                        </div>
+                        <h3 class="service-card__title">Digital Twin Solutions</h3>
+                        <p class="service-card__description">Industrial digital twins, smart factory implementations, and IoT-enabled monitoring systems.</p>
+                        <a href="#" class="service-card__link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="about__content">
+                    <div class="about__text">
+                        <h2 class="section__title">About ZOKFORCE</h2>
+                        <p class="about__intro">Founded in 2019, ZOKFORCE is a tech-driven company dedicated to the research and development of AI applications. Our mission is to deliver digital excellence, driven by AI for all.</p>
+                        
+                        <div class="about__values">
+                            <div class="value-item">
+                                <h4>Customer Success</h4>
+                                <p>We prioritize our clients' success and work tirelessly to exceed expectations.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Ethical & Responsible AI</h4>
+                                <p>We develop AI solutions with transparency, fairness, and accountability at the core.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Relentless Innovation</h4>
+                                <p>We stay at the forefront of technological advancement and continuous improvement.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Honesty & Transparency</h4>
+                                <p>We maintain open communication and honest partnerships with all stakeholders.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__stats">
+                        <div class="stat-item">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Years of Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="section case-studies">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Success Stories</h2>
+                    <p class="section__subtitle">Real results from our AI transformation projects</p>
+                </div>
+                
+                <div class="case-studies__grid">
+                    <div class="case-study-card">
+                        <div class="case-study__header">
+                            <h3>AI Tourism Assistant</h3>
+                            <div class="case-study__client">Major Tourism Board</div>
+                        </div>
+                        <div class="case-study__challenge">
+                            <h4>Challenge</h4>
+                            <p>Needed multilingual virtual tour guide and personalized travel recommendations</p>
+                        </div>
+                        <div class="case-study__solution">
+                            <h4>Solution</h4>
+                            <p>Implemented AI chatbot with real-time translation and itinerary planning</p>
+                        </div>
+                        <div class="case-study__results">
+                            <div class="result-metric">
+                                <span class="metric-value">40%</span>
+                                <span class="metric-label">Increase in tourist satisfaction</span>
+                            </div>
+                            <div class="result-metric">
+                                <span class="metric-value">25%</span>
+                                <span class="metric-label">Reduction in support costs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-study-card">
+                        <div class="case-study__header">
+                            <h3>Smart Factory Implementation</h3>
+                            <div class="case-study__client">Manufacturing Company</div>
+                        </div>
+                        <div class="case-study__challenge">
+                            <h4>Challenge</h4>
+                            <p>Required predictive maintenance and operational efficiency improvements</p>
+                        </div>
+                        <div class="case-study__solution">
+                            <h4>Solution</h4>
+                            <p>Deployed digital twin technology with IoT sensors and AI analytics</p>
+                        </div>
+                        <div class="case-study__results">
+                            <div class="result-metric">
+                                <span class="metric-value">30%</span>
+                                <span class="metric-label">Reduction in downtime</span>
+                            </div>
+                            <div class="result-metric">
+                                <span class="metric-value">20%</span>
+                                <span class="metric-label">Increase in productivity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-study-card">
+                        <div class="case-study__header">
+                            <h3>AI Contract Processing</h3>
+                            <div class="case-study__client">Legal Services Firm</div>
+                        </div>
+                        <div class="case-study__challenge">
+                            <h4>Challenge</h4>
+                            <p>Manual contract review process was slow and error-prone</p>
+                        </div>
+                        <div class="case-study__solution">
+                            <h4>Solution</h4>
+                            <p>Built AI contract bot with OCR and intelligent comparison features</p>
+                        </div>
+                        <div class="case-study__results">
+                            <div class="result-metric">
+                                <span class="metric-value">75%</span>
+                                <span class="metric-label">Faster contract processing</span>
+                            </div>
+                            <div class="result-metric">
+                                <span class="metric-value">90%</span>
+                                <span class="metric-label">Reduction in errors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section blog">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Latest Insights</h2>
+                    <p class="section__subtitle">Stay updated with the latest trends and insights in AI and business transformation</p>
+                </div>
+                
+                <div class="blog__grid">
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <span class="blog-card__category">AI Strategy</span>
+                            <span class="blog-card__date">September 7, 2025</span>
+                        </div>
+                        <h3 class="blog-card__title">The Future of AI in Business Transformation</h3>
+                        <p class="blog-card__excerpt">Exploring how artificial intelligence is reshaping industries and creating new opportunities for growth and innovation in 2025.</p>
+                        <a href="ai-business-transformation-blog-post.html" class="blog-card__link">Read More →</a>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <span class="blog-card__category">Technical Insights</span>
+                            <span class="blog-card__date">March 8, 2024</span>
+                        </div>
+                        <h3 class="blog-card__title">Implementing Large Language Models: A Practical Guide</h3>
+                        <p class="blog-card__excerpt">Step-by-step approach to successfully integrating LLMs into your business processes for maximum impact.</p>
+                        <a href="#" class="blog-card__link">Read More →</a>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <span class="blog-card__category">AI Ethics</span>
+                            <span class="blog-card__date">March 1, 2024</span>
+                        </div>
+                        <h3 class="blog-card__title">Ethical AI: Building Trust in Automated Systems</h3>
+                        <p class="blog-card__excerpt">Best practices for developing responsible AI solutions that prioritize transparency, fairness, and user trust.</p>
+                        <a href="#" class="blog-card__link">Read More →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="contact__content">
+                    <div class="contact__info">
+                        <h2 class="section__title">Ready to Transform Your Business?</h2>
+                        <p class="contact__subtitle">Get in touch with our AI experts to discuss your project and discover how ZOKFORCE can help you achieve your digital transformation goals.</p>
+                        
+                        <div class="contact__details">
+                            <div class="contact-item">
+                                <div class="contact-item__icon">📍</div>
+                                <div class="contact-item__content">
+                                    <h4>Location</h4>
+                                    <p>Toronto, ON, Canada</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-item__icon">📧</div>
+                                <div class="contact-item__content">
+                                    <h4>Email</h4>
+                                    <p>info@zokforce.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-item__icon">📞</div>
+                                <div class="contact-item__content">
+                                    <h4>Phone</h4>
+                                    <p>(416) 555-0123</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-item__icon">🕒</div>
+                                <div class="contact-item__content">
+                                    <h4>Business Hours</h4>
+                                    <p>Mon-Fri 9:00 AM - 6:00 PM EST</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact__form">
+                        <form class="form" id="contact-form">
+                            <h3 class="form__title">Get Free Consultation</h3>
+                            
+                            <div class="form__row">
+                                <div class="form__group">
+                                    <label for="firstName" class="form__label">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" class="form__input" required>
+                                </div>
+                                <div class="form__group">
+                                    <label for="lastName" class="form__label">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" class="form__input" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form__group">
+                                <label for="email" class="form__label">Email Address</label>
+                                <input type="email" id="email" name="email" class="form__input" required>
+                            </div>
+                            
+                            <div class="form__group">
+                                <label for="company" class="form__label">Company Name</label>
+                                <input type="text" id="company" name="company" class="form__input">
+                            </div>
+                            
+                            <div class="form__group">
+                                <label for="service" class="form__label">Service Interest</label>
+                                <select id="service" name="service" class="form__select">
+                                    <option value="">Select a service</option>
+                                    <option value="ai-strategy">AI Strategy & Consulting</option>
+                                    <option value="llm-integration">LLM Integration</option>
+                                    <option value="chatbots">Smart Chatbots</option>
+                                    <option value="automation">Process Automation</option>
+                                    <option value="analytics">Data Analytics</option>
+                                    <option value="digital-twin">Digital Twin Solutions</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form__group">
+                                <label for="message" class="form__label">Message</label>
+                                <textarea id="message" name="message" class="form__textarea" rows="4" placeholder="Tell us about your project and how we can help..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3 class="footer__logo">ZOKFORCE</h3>
+                    <p class="footer__tagline">Lead in Tech, Deliver Excellence</p>
+                    <p class="footer__description">Leading AI consultancy helping businesses transform through innovative technology solutions and strategic guidance.</p>
+                </div>
+                
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Services</h4>
+                        <ul class="footer__list">
+                            <li><a href="#" class="footer__link">AI Strategy & Consulting</a></li>
+                            <li><a href="#" class="footer__link">LLM Integration</a></li>
+                            <li><a href="#" class="footer__link">Smart Chatbots</a></li>
+                            <li><a href="#" class="footer__link">Process Automation</a></li>
+                            <li><a href="#" class="footer__link">Data Analytics</a></li>
+                            <li><a href="#" class="footer__link">Digital Twin Solutions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Company</h4>
+                        <ul class="footer__list">
+                            <li><a href="#about" class="footer__link">About Us</a></li>
+                            <li><a href="#case-studies" class="footer__link">Case Studies</a></li>
+                            <li><a href="#blog" class="footer__link">Blog & Insights</a></li>
+                            <li><a href="#contact" class="footer__link">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Connect</h4>
+                        <ul class="footer__list">
+                            <li><a href="#" class="footer__link">LinkedIn</a></li>
+                            <li><a href="#" class="footer__link">Twitter</a></li>
+                            <li><a href="mailto:info@zokforce.com" class="footer__link">Email</a></li>
+                            <li><a href="tel:+14165550123" class="footer__link">Phone</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <p>&copy; 2025 ZOKFORCE. All rights reserved.</p>
+                </div>
+                <div class="footer__legal">
+                    <a href="#" class="footer__link">Privacy Policy</a>
+                    <a href="#" class="footer__link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
