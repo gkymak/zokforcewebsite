@@ -576,13 +576,41 @@
             height: 200px !important;
         }
         
-        /* Center align service details on mobile */
+        /* Mobile service details layout */
         @media (max-width: 768px) {
             .service-detail {
-                text-align: center !important;
                 justify-items: center !important;
             }
+            
+            /* Center align only service titles on mobile */
+            .service-detail h3 {
+                text-align: center !important;
+            }
+            
+            /* Ensure hero buttons are centered on mobile */
+            .hero__actions {
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            
+            /* Force center alignment for individual buttons */
+            .hero__actions .btn {
+                margin: 0 auto !important;
+            }
         }
+        
+        /* Make contact email and phone links black like other text */
+         .contact-item a {
+             color: var(--color-text-secondary) !important;
+             text-decoration: none !important;
+         }
+         
+         .contact-item a:hover {
+             color: var(--color-text) !important;
+         }
     </style>
     
     <script src="app.js"></script>

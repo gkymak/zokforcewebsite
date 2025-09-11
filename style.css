@@ -1948,7 +1948,6 @@ a:hover {
 
   .service-detail {
     grid-template-columns: 1fr;
-    text-align: center;
   }
 
   .testimonials {
