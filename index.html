@@ -570,10 +570,21 @@
             border-radius: 4px;
         }
         
-        /* Make service detail icons 200px size */
+        /* Make service detail icons show original aspect ratio - wider */
         .service-detail__icon {
             width: 200px !important;
-            height: 200px !important;
+            height: auto !important;
+        }
+        
+        .service-detail__icon img {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        
+        /* Remove background color from service detail icons */
+        .service-detail__icon {
+            background: transparent !important;
         }
         
         /* Mobile service details layout */
