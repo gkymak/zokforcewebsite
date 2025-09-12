@@ -1,10 +1,20 @@
 {
   "name": "zokforcewebsite",
+  "main": "worker.js",
   "compatibility_date": "2025-01-08",
   "assets": {
     "directory": "./"
   },
   "build": {
     "command": ""
-  }
+  },
+  "vars": {
+    "ENVIRONMENT": "production"
+  },
+
+  "secrets": [
+    "DIFY_API_URL",
+    "DIFY_API_KEY",
+    "WEBHOOK_URL"
+  ]
 }

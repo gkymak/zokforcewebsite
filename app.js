@@ -24,12 +24,18 @@ function initializeNavigation() {
     // Handle navigation link clicks
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').replace('#', '');
-            scrollToSection(targetId);
+            const href = this.getAttribute('href');
             
-            // Update active state
-            updateActiveNavLink(this);
+            // Only prevent default for anchor links (starting with #)
+            // Allow normal navigation for external links (containing .html or full URLs)
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.replace('#', '');
+                scrollToSection(targetId);
+                
+                // Update active state
+                updateActiveNavLink(this);
+            }
             
             // Close mobile menu if open
             closeMobileMenu();
@@ -255,34 +261,29 @@ function handleContactForm(event) {
     submitButton.disabled = true;
     submitButton.textContent = 'Sending...';
     
-    // Format the message for Dify API
-    let formattedMessage = `Full Name: ${data.name}, Email: ${data.email}`;
-    if (data.company && data.company.trim()) {
-        formattedMessage += `, Company: ${data.company}`;
-    }
-    if (data.service && data.service.trim()) {
-        const serviceLabels = {
-            'ai-strategy': 'AI Strategy & Consulting',
-            'llm-integration': 'LLM Integration',
-            'chatbots': 'Smart Chatbots & Digital Humans',
-            'automation': 'Process Automation',
-            'analytics': 'Data Analytics & Insights',
-            'digital-twin': 'Digital Twin Solutions'
-        };
-        formattedMessage += `, Service Interest: ${serviceLabels[data.service] || data.service}`;
-    }
-    formattedMessage += `, Message: ${data.message}`;
+    // Prepare form data for API
+    const contactData = {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        company: data.company || '',
+        service: data.service || ''
+    };
     
-    // Send to Dify API
-    sendToDifyAPI(formattedMessage)
+    // Send to Cloudflare Worker API
+    sendToContactAPI(contactData)
         .then(response => {
-            console.log('Dify API response:', response);
-            showNotification('Thank you for your message! Your inquiry has been sent to our AI assistant.', 'success');
+            console.log('Contact API response:', response);
+            showNotification(response.message || 'Thank you for your message! We will get back to you soon.', 'success');
             form.reset();
         })
         .catch(error => {
-            console.error('Dify API error:', error);
-            showNotification('Sorry, there was an error sending your message. Please try again or use the chat widget.', 'error');
+            console.error('Contact API error:', error);
+            // Show specific error message if available
+            const errorMessage = error.message.includes('API error') 
+                ? 'Sorry, there was an error sending your message. Please try again or contact us directly.'
+                : error.message;
+            showNotification(errorMessage, 'error');
         })
         .finally(() => {
             // Reset submission state and button
@@ -292,30 +293,22 @@ function handleContactForm(event) {
         });
 }
 
-// Function to send message to Dify API
-async function sendToDifyAPI(message) {
-    // Dify API configuration
-    const DIFY_API_URL = 'http://31172269os.zicp.vip:5301/v1/chat-messages';
-    const DIFY_API_KEY = 'app-ALXmHrqK7sbUx0C6AEdTARl5';
-    const DIFY_APP_ID = ''; // Not needed for this endpoint
+// Function to send message to Cloudflare Worker API
+async function sendToContactAPI(formData) {
+    // Use relative URL for same-origin requests (Cloudflare Worker)
+    const API_URL = '/api/contact';
     
-    const response = await fetch(DIFY_API_URL, {
+    const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${DIFY_API_KEY}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            inputs: {},
-            query: message,
-            response_mode: 'blocking', // or 'streaming' if you want real-time responses
-            conversation_id: '', // Leave empty for new conversation
-            user: 'website-contact-form'
-        })
+        body: JSON.stringify(formData)
     });
     
     if (!response.ok) {
-        throw new Error(`Dify API error: ${response.status} ${response.statusText}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API error: ${response.status} ${response.statusText}`);
     }
     
     return await response.json();
