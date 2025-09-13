@@ -48,6 +48,20 @@
                 border-bottom: 1px solid var(--color-border);
             }
             
+            /* Adjust header content layout for mobile */
+            .header__content {
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .header__logo {
+                flex: 1;
+            }
+            
+            .header__actions {
+                margin-right: var(--space-8);
+            }
+            
             /* Ensure header has relative positioning for dropdown */
             .header {
                 position: relative;
@@ -240,14 +254,14 @@
         /* Source links styling - SINGLE DEFINITION */
         .quote-source .source-link,
         p.quote-source a.source-link {
-            color: #FFFFFF !important;
+            color: var(--brand-primary) !important;
             text-decoration: underline !important;
-            font-size: var(--font-size-sm);
+            font-size: var(--font-size-base) !important;
         }
         
         .quote-source .source-link:hover,
         p.quote-source a.source-link:hover {
-            color: rgba(255, 255, 255, 0.8) !important;
+            color: var(--brand-primary-hover) !important;
         }
         
         /* Statistics containers */
@@ -991,6 +1005,24 @@
             }
         });
     </script>
+
+    <!-- Floating Chatbot Widget -->
+    <div id="floating-chatbot" class="floating-chatbot">
+        <div class="chatbot-toggle" id="chatbot-toggle">
+            <span class="chatbot-icon">💬</span>
+            <span class="chatbot-close">×</span>
+        </div>
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-content">
+                <iframe 
+                    src="https://3ct1hk172269.vicp.fun/embed/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRJZCI6ImNtZXdzMTc5aDAwMDFzN3U1cGxqa25sODYiLCJhZ2VudElkIjoiY21mNHRxdnhmMDAwOTI2ZndqZDU5cGFsaCIsInR5cGUiOiJlbWJlZCIsImV4cCI6MTc4ODk2MTIwMSwiaWF0IjoxNzU3NDI1MjAxfQ.xDosPKO3WuNK8x77QeiK5KhMTnDnNMKvcQ5ob2ZOKfs" 
+                    style="width: 100%; height: 100%; border: none;" 
+                    allow="microphone"> 
+                </iframe>
+            </div>
+        </div>
+    </div>
+
     <script src="../../app.js"></script>
 </body>
 </html>
