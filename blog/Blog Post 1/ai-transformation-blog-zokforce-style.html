@@ -9,6 +9,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../style.css">
     <style>
+        /* Ensure hamburger menu is visible on white background */
+        .mobile-menu-toggle span {
+            background: #333333 !important;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hide tagline on mobile to make room for hamburger menu */
+        @media (max-width: 768px) {
+            .header__logo .tagline {
+                display: none;
+            }
+            
+            /* Mobile navigation menu - override app.js styles */
+            .nav {
+                display: none !important;
+                position: fixed !important;
+                top: 64px !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: var(--color-surface) !important;
+                box-shadow: var(--shadow-lg) !important;
+                z-index: 10001 !important;
+                transform: none !important;
+            }
+            
+            .nav.active {
+                display: block !important;
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                padding: var(--space-16);
+            }
+            
+            .nav__link {
+                padding: var(--space-12) var(--space-16);
+                border-bottom: 1px solid var(--color-border);
+            }
+            
+            /* Ensure header has relative positioning for dropdown */
+            .header {
+                position: relative;
+            }
+        }
+        
         /* Blog-specific styles extending the main design system */
         .blog-header {
             background: linear-gradient(135deg, rgba(79, 118, 246, 0.8) 0%, rgba(47, 58, 178, 0.8) 100%), url('banner.png');
@@ -533,7 +578,7 @@
                         <li><a href="../../index.html#services" class="nav__link">Services</a></li>
                         <li><a href="../../index.html#about" class="nav__link">About</a></li>
                         <li><a href="../../index.html#case-studies" class="nav__link">Case Studies</a></li>
-                        <li><a href="../../index.html#insights" class="nav__link active">Insights</a></li>
+                        <li><a href="../../index.html#blog" class="nav__link active">Insights</a></li>
                         <li><a href="../../index.html#contact" class="nav__link">Contact</a></li>
                     </ul>
                 </nav>
@@ -881,7 +926,7 @@
                         <ul>
                             <li><a href="../../index.html#about">About Us</a></li>
                             <li><a href="../../index.html#case-studies">Case Studies</a></li>
-                            <li><a href="../../index.html#insights">Insights</a></li>
+                            <li><a href="../../index.html#blog">Insights</a></li>
                             <li><a href="../../index.html#contact">Contact</a></li>
                         </ul>
                     </div>
@@ -902,6 +947,50 @@
         </div>
     </footer>
 
+    <script>
+        // Mobile menu toggle functionality with hamburger animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (mobileMenuToggle && nav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('mobile-menu-toggle--open');
+                    document.body.classList.toggle('menu-open');
+                    
+                    // Animate hamburger menu to X
+                    const spans = mobileMenuToggle.querySelectorAll('span');
+                    spans.forEach((span, index) => {
+                        if (nav.classList.contains('active')) {
+                            if (index === 0) span.style.transform = 'rotate(45deg) translate(6px, 6px)';
+                            if (index === 1) span.style.opacity = '0';
+                            if (index === 2) span.style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                        } else {
+                            span.style.transform = '';
+                            span.style.opacity = '';
+                        }
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!nav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        nav.classList.remove('active');
+                        mobileMenuToggle.classList.remove('mobile-menu-toggle--open');
+                        document.body.classList.remove('menu-open');
+                        
+                        // Reset hamburger animation
+                        const spans = mobileMenuToggle.querySelectorAll('span');
+                        spans.forEach((span) => {
+                            span.style.transform = '';
+                            span.style.opacity = '';
+                        });
+                    }
+                });
+            }
+        });
+    </script>
     <script src="../../app.js"></script>
 </body>
 </html>

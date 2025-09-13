@@ -6,6 +6,76 @@
     <title>ZOKFORCE - AI Consulting & LLM Integration | Canada</title>
     <meta name="description" content="Leading AI consultancy in Canada specializing in LLM integration, custom AI solutions, and business transformation. Get your free consultation today.">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ensure hamburger menu is visible on white background */
+        .mobile-menu-toggle span {
+            background: #333333 !important;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hide tagline on mobile to make room for hamburger menu */
+        @media (max-width: 768px) {
+            .header__logo .tagline {
+                display: none;
+            }
+            
+            /* Mobile navigation menu - override app.js styles */
+                  .nav {
+                      display: none !important;
+                      position: fixed !important;
+                      top: 64px !important;
+                      left: 0 !important;
+                      right: 0 !important;
+                      background: var(--color-surface) !important;
+                      box-shadow: var(--shadow-lg) !important;
+                      z-index: 10001 !important;
+                      transform: none !important;
+                  }
+                
+                .nav__list {
+                    flex-direction: column;
+                    padding: var(--space-16);
+                }
+                
+                .nav__link {
+                     padding: var(--space-12) var(--space-16);
+                     border-bottom: 1px solid var(--color-border);
+                 }
+                 
+                 /* Adjust header content layout for mobile */
+                 .header__content {
+                     justify-content: space-between;
+                     align-items: center;
+                 }
+                 
+                 .header__logo {
+                     flex: 1;
+                 }
+                 
+                 .header__actions {
+                     margin-right: var(--space-8);
+                 }
+                 
+                 /* Ensure header has relative positioning for dropdown */
+                 .header {
+                     position: relative;
+                 }
+            
+            .nav.active {
+                     display: block !important;
+                 }
+            
+            .nav__list {
+                flex-direction: column;
+                padding: var(--space-16);
+            }
+            
+            .nav__link {
+                padding: var(--space-12) var(--space-16);
+                border-bottom: 1px solid var(--color-border);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Fixed Header -->
@@ -430,7 +500,7 @@
                         </div>
                         <h3 class="blog-post__title">Implementing Large Language Models: A Practical Guide</h3>
                         <p class="blog-post__excerpt">Step-by-step approach to successfully integrating LLMs into your business processes for maximum impact and sustainable competitive advantage.</p>
-                        <a href="#" class="blog-post__link">Read More →</a>
+                        <a href="blog/Blog Post 2/implementing-llms-practical-guide-zokforce.html" class="blog-post__link">Read More →</a>
                     </article>
 
                     <article class="blog-post">
@@ -677,6 +747,26 @@
          }
     </style>
     
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (mobileMenuToggle && nav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!nav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
