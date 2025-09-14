@@ -1,0 +1,8 @@
+Model,Developer,Parameters,Context Window,Key Strengths,Pricing (per 1M tokens),MATH Benchmark Score,Coding Benchmark (SWE-bench)
+GPT-5,OpenAI,Unknown (estimated >2T),400K tokens,"Advanced reasoning (94.6% AIME 2025), 74.9% SWE-bench, 26% lower hallucinations","Input: $1.25, Output: $10.00",94.6% (AIME 2025),74.9%
+GPT-4o,OpenAI,~1.8T estimated,128K tokens,"Multimodal capabilities, speed (2x faster than GPT-4), cost-effective","Input: $2.50, Output: $10.00",76.6% (MATH benchmark),Lower than newer models
+Claude 4 Opus,Anthropic,~2T estimated,200K tokens,"Complex reasoning, long-form tasks, safety-focused, extended thinking mode","Input: $15.00, Output: $75.00",Not specifically reported,72.5% (74.5% with extended thinking)
+Claude 4 Sonnet,Anthropic,~200B estimated,200K tokens (1M with extended),"Coding excellence (72.7% SWE-bench), practical software engineering, hybrid reasoning","Input: $3.00, Output: $15.00",Not specifically reported,72.7%
+Gemini 2.5 Pro,Google,~1.5T estimated,1M tokens,"Deep Think mode, multimodal (video/audio), 1M context, cost-effective","Input: $1.25-$2.50, Output: $10.00-$15.00 (>200K: higher rates)",Strong performance reported,63.8% (SWE-bench Verified)
+DeepSeek R1,DeepSeek,671B (37B active),128K tokens,"Ultra cost-effective reasoning, open-source, strong math performance","Input: $0.55, Output: $2.19 (75% off-peak discount)",Strong math performance,Competitive performance
+Grok 4,xAI,Unknown (estimated >1T),256K tokens,"Real-time information, mathematical reasoning (87.5% GPQA Diamond)","Input: ~$3.00, Output: ~$15.00 (estimated)",Strong mathematical reasoning,75%

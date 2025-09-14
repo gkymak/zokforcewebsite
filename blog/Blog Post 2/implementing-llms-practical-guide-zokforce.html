@@ -699,52 +699,130 @@
                                 <th>Context Window</th>
                                 <th>Key Strengths</th>
                                 <th>Pricing (per 1M tokens)</th>
+                                <th>MATH Score</th>
+                                <th>Coding Score</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td><strong>GPT-5</strong></td>
+                                <td>OpenAI</td>
+                                <td>>2T estimated</td>
+                                <td>400K tokens</td>
+                                <td>Advanced reasoning, 26% lower hallucinations</td>
+                                <td>$1.25 input, $10.00 output</td>
+                                <td>94.6% (AIME 2025)</td>
+                                <td>74.9% (SWE-bench)</td>
+                            </tr>
+                            <tr>
                                 <td><strong>GPT-4o</strong></td>
                                 <td>OpenAI</td>
-                                <td>1.76T estimated</td>
+                                <td>~1.8T estimated</td>
                                 <td>128K tokens</td>
-                                <td>Mathematical reasoning, coding, multimodal</td>
-                                <td>$5 input, $15 output</td>
+                                <td>Multimodal capabilities, 2x faster than GPT-4</td>
+                                <td>$2.50 input, $10.00 output</td>
+                                <td>76.6% (MATH)</td>
+                                <td>Lower than newer models</td>
                             </tr>
                             <tr>
-                                <td><strong>Claude 3 Opus</strong></td>
+                                <td><strong>Claude 4 Opus</strong></td>
                                 <td>Anthropic</td>
-                                <td>2T estimated</td>
+                                <td>~2T estimated</td>
                                 <td>200K tokens</td>
-                                <td>Safety, analysis, creative writing</td>
-                                <td>$15 input, $75 output</td>
+                                <td>Complex reasoning, safety-focused, extended thinking</td>
+                                <td>$15.00 input, $75.00 output</td>
+                                <td>Not reported</td>
+                                <td>72.5% (74.5% extended)</td>
                             </tr>
                             <tr>
-                                <td><strong>Gemini 1.5 Pro</strong></td>
+                                <td><strong>Claude 4 Sonnet</strong></td>
+                                <td>Anthropic</td>
+                                <td>~200B estimated</td>
+                                <td>200K tokens (1M extended)</td>
+                                <td>Coding excellence, practical software engineering</td>
+                                <td>$3.00 input, $15.00 output</td>
+                                <td>Not reported</td>
+                                <td>72.7% (SWE-bench)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gemini 2.5 Pro</strong></td>
                                 <td>Google</td>
-                                <td>1.6T estimated</td>
-                                <td>1M tokens (preview)</td>
-                                <td>Multimodal, cost-effective, multilingual</td>
-                                <td>$3.5 input, $10.5 output</td>
+                                <td>~1.5T estimated</td>
+                                <td>1M tokens</td>
+                                <td>Deep Think mode, multimodal (video/audio)</td>
+                                <td>$1.25-$2.50 input, $10.00-$15.00 output</td>
+                                <td>Strong performance</td>
+                                <td>63.8% (SWE-bench Verified)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DeepSeek R1</strong></td>
+                                <td>DeepSeek</td>
+                                <td>671B (37B active)</td>
+                                <td>128K tokens</td>
+                                <td>Ultra cost-effective, open-source, strong math</td>
+                                <td>$0.55 input, $2.19 output</td>
+                                <td>Strong math performance</td>
+                                <td>Competitive performance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grok 4</strong></td>
+                                <td>xAI</td>
+                                <td>>1T estimated</td>
+                                <td>256K tokens</td>
+                                <td>Real-time information, mathematical reasoning</td>
+                                <td>~$3.00 input, ~$15.00 output</td>
+                                <td>87.5% (GPQA Diamond)</td>
+                                <td>75% (SWE-bench)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 
-                <h4>GPT-4o: Mathematical and Coding Excellence</h4>
+                <h4>GPT-5: Mathematical and Reasoning Excellence</h4>
                 
-                <p><a href="https://nu10.co/gpt-vs-claude-vs-gemini-comparing-llms/" class="source-link" target="_blank">GPT-4o demonstrates superior performance</a> in complex mathematical reasoning (76.6 MATH benchmark) and coding tasks (90.2 HumanEval score). This model excels in technical applications requiring precise logical reasoning and code generation. The integration with DALL-E provides additional image generation capabilities, making it suitable for comprehensive content creation workflows.</p>
+                <p>GPT-5 represents OpenAI's pinnacle achievement in mathematical reasoning, securing an unprecedented 94.6% on AIME 2025 - a 33% improvement over GPT-4o's 71% performance. The model demonstrates exceptional 74.9% accuracy on SWE-bench Verified, showcasing real-world coding capabilities that surpass most specialized programming models. OpenAI engineered a 26% reduction in hallucination rates compared to GPT-4o, making it significantly more reliable for technical applications. With an expanded 400K token context window (3x larger than GPT-4o) and competitive pricing at $1.25/$10.00 per million tokens, GPT-5 offers exceptional value for complex reasoning tasks, multi-step problem solving, and advanced research applications.</p>
                 
-                <h4>Claude 3 Opus: Safety and Analysis Leadership</h4>
+                <h4>GPT-4o: General-Purpose Multimodal Leadership</h4>
                 
-                <p>Anthropic's Claude 3 Opus prioritizes safety and ethical AI deployment while delivering exceptional analytical capabilities. <a href="https://creatoreconomy.so/p/chatgpt-vs-claude-vs-gemini-the-best-ai-model-for-each-use-case-2025" class="source-link" target="_blank">Recent evaluations</a> show Claude achieving an IQ score of 101, surpassing average human intelligence. The model's 200K context window and focus on nuanced reasoning make it ideal for complex business analysis and strategic planning applications.</p>
+                <p>GPT-4o maintains its position as the premier general-purpose model with seamless multimodal integration of text, audio, and images. The model delivers 2x faster inference than GPT-4 while achieving 90.2% on HumanEval and 69% on verbal reasoning tasks (compared to GPT-4 Turbo's 50%). Recent updates in March 2025 enhanced its STEM problem-solving capabilities and instruction-following accuracy, making it more intuitive for creative and collaborative tasks. With reduced pricing from the original $5/$15 to $2.50/$10.00 per million tokens, GPT-4o remains the go-to choice for general applications, customer service, rapid prototyping, and multimodal content creation where proven reliability is essential.</p>
                 
-                <h4>Gemini 1.5 Pro: Multimodal and Cost Leadership</h4>
+                <h4>Claude 4 Opus: Strategic Thinking and Safety Leadership</h4>
                 
-                <p>Google's Gemini 1.5 Pro offers the most cost-effective solution while providing strong multimodal capabilities and supporting 38+ languages. The model's exceptional context window (up to 1M tokens in preview) enables analysis of extensive documents and complex data sets. This makes Gemini particularly attractive for organizations requiring large-scale document processing at competitive pricing.</p>
+                <p>Claude 4 Opus excels in complex analytical tasks with its extended thinking mode that achieves 72.5% standard SWE-bench performance, rising to 74.5% with deep reasoning. Anthropic's safety-first approach makes it ideal for business analysis and strategic planning applications where ethical considerations are paramount. The model demonstrates superior instruction-following capabilities and excels in long-form analytical tasks that require nuanced reasoning. With a 200K token context window and industry-leading safety metrics, Claude 4 Opus is positioned for safety-critical applications, complex business analysis, strategic planning, and long-form content generation where thoroughness and ethical deployment are priorities.</p>
+                
+                <h4>Claude 4 Sonnet: Coding and Development Excellence</h4>
+                
+                <p>Claude 4 Sonnet has earned recognition as potentially "the best coding model in the world" with its 72.7% SWE-bench performance. Users consistently praise its concise code generation and superior instruction-following in programming contexts. The model features hybrid reasoning capabilities that can switch between instant responses and deeper analysis, with a 200K token base context expandable to 1M tokens for complex codebases. At $3.00/$15.00 per million tokens (with extended context pricing at $6.00/$22.50), Claude 4 Sonnet is optimized for software development, code review, debugging, technical documentation, and API development where practical software engineering excellence is required.</p>
+                
+                <h4>Gemini 2.5 Pro: Multimodal and Context Leadership</h4>
+                
+                <p>Gemini 2.5 Pro leads the industry with its 1M token context window and advanced "Deep Think" reasoning mode that enables comprehensive analysis of extensive documents. The model achieves 86.4% on GPQA Diamond and 82.1% on GRIND adaptive reasoning, demonstrating superior contextual understanding. Recent evaluations show Gemini ahead overall in benchmarks, especially excelling in factual Q&A, speed, and long-context applications. Its multimodal capabilities extend to video and audio understanding, making it exceptional for multimedia content analysis. With competitive pricing starting at $1.25-$2.50/$10.00-$15.00, Gemini 2.5 Pro is ideal for large-scale document processing, multimodal content analysis, video understanding, and multilingual applications requiring massive context windows.</p>
+                
+                <h4>DeepSeek R1: Cost-Effective Reasoning Revolution</h4>
+                
+                <p>DeepSeek R1 has revolutionized the LLM market with ultra-competitive pricing at $0.55/$2.19 per million tokens plus 75% off-peak discounts, making advanced reasoning accessible to budget-conscious users. Despite its low cost, the model achieves impressive benchmarks: 90.2% on MATH-500, 79.8% on AIME 2024, 89.1% on MMLU, and 91.6% on DROP. The model's efficient 671B parameter architecture with 37B active parameters delivers competitive performance while maintaining cost-effectiveness. Its open-source accessibility with commercial licensing makes it attractive for research institutions and educational applications. DeepSeek R1 is ideal for cost-sensitive applications, high-volume processing, mathematical problem solving, and research environments where budget constraints are primary considerations.</p>
+                
+                <h4>Grok 4: AGI Pioneer and Real-Time Intelligence</h4>
+                
+                <p>Grok 4 has achieved a groundbreaking 15.9% score on ARC-AGI-2, becoming the first model to exceed the 15% barrier and representing the closest approach to Artificial General Intelligence. The Heavy version achieves perfect 100% performance on AIME 2025, while maintaining 99% accuracy in tool selection and usage. Its real-time information integration with X, web, and news sources provides current data access unavailable in other models. In business simulation benchmarks, Grok 4 generates $4,694 net worth versus Claude's $2,077 in Vending-Bench tests. Built on xAI's 200,000 GPU Colossus supercomputer, Grok 4 is optimized for real-time research, business optimization, agentic applications, complex reasoning tasks, and AGI research where cutting-edge capabilities and current information access are essential.</p>
                 
                 <h3>Selection Criteria for Enterprise Implementation</h3>
                 
                 <p>Choosing the appropriate LLM depends on specific business requirements, budget constraints, and technical infrastructure. Organizations should evaluate models based on task-specific performance benchmarks, integration capabilities, compliance requirements, and total cost of ownership including both licensing fees and computational resources.</p>
+                
+                <h4>Strategic Model Selection Guide</h4>
+                
+                <ul>
+                    <li><strong>Mathematical Research:</strong> GPT-5 (94.6% AIME) or DeepSeek R1 (cost-effective alternative)</li>
+                    <li><strong>Software Development:</strong> Claude 4 Sonnet (72.7% SWE-bench) or Grok 4 (99% tool mastery)</li>
+                    <li><strong>Large Document Analysis:</strong> Gemini 2.5 Pro (1M tokens) or Claude 4 Opus (extended thinking)</li>
+                    <li><strong>Budget-Conscious Deployment:</strong> DeepSeek R1 ($0.55/$2.19) with 75% off-peak discounts</li>
+                    <li><strong>Real-Time Applications:</strong> Grok 4 (live data integration) or GPT-4o (2x processing speed)</li>
+                    <li><strong>Multimodal Content:</strong> Gemini 2.5 Pro (video/audio mastery) or GPT-4o (proven reliability)</li>
+                    <li><strong>Safety-Critical Systems:</strong> Claude 4 Opus (ethical focus) or GPT-5 (26% fewer hallucinations)</li>
+                </ul>
+                
+                <p>The September 2025 LLM landscape showcases unprecedented diversity in capabilities, with each model excelling in distinct domains while offering dramatically improved cost-effectiveness across the board. The emergence of models like DeepSeek R1 and Grok 4 has fundamentally disrupted traditional pricing structures, making advanced AI capabilities accessible to a broader range of users and applications.</p>
 
                 <!-- Business Applications and Value -->
                 <h2>LLM Applications in Business: Value Creation and Competitive Advantage</h2>
