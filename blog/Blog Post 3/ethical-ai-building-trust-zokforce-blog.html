@@ -50,33 +50,13 @@
             }
             
             .nav__list {
-                flex-direction: column !important;
-                padding: var(--space-16) !important;
-                gap: 0 !important;
-            }
-            
-            .nav__list li {
-                width: 100% !important;
-                border-bottom: 1px solid var(--color-border) !important;
-            }
-            
-            .nav__list li:last-child {
-                border-bottom: none !important;
+                flex-direction: column;
+                padding: var(--space-16);
             }
             
             .nav__link {
-                display: block !important;
-                padding: var(--space-12) 0 !important;
-                color: var(--color-text) !important;
-                font-weight: var(--font-weight-medium) !important;
-            }
-            
-            .nav__link:hover {
-                color: var(--color-primary) !important;
-            }
-            
-            .nav__link.active {
-                color: var(--color-primary) !important;
+                padding: var(--space-12) var(--space-16);
+                border-bottom: 1px solid var(--color-border);
             }
             
             /* Ensure mobile menu toggle is visible and positioned correctly */
@@ -85,15 +65,43 @@
                 z-index: 10002 !important;
             }
             
-            /* Hide desktop actions on mobile */
+            /* Adjust header content layout for mobile */
+            .header__content {
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .header__logo {
+                flex: 1;
+            }
+            
             .header__actions {
-                display: none !important;
+                margin-right: var(--space-8);
+            }
+            
+            /* Ensure header has relative positioning for dropdown */
+            .header {
+                position: relative;
             }
             
             /* Prevent body scroll when menu is open */
             body.menu-open {
                 overflow: hidden !important;
             }
+        }
+        
+        /* Logo link styling */
+        .header__logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+        }
+        
+        .header__logo a:hover {
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
         }
         
         /* Blog-specific styles extending the main design system */
@@ -131,6 +139,7 @@
             font-weight: var(--font-weight-bold);
             margin-bottom: var(--space-24);
             line-height: var(--line-height-tight);
+            color: white;
         }
         
         .blog-subtitle {
@@ -308,6 +317,7 @@
             font-size: var(--font-size-xl);
             font-weight: var(--font-weight-bold);
             margin: 0;
+            color: white !important;
         }
         
         .case-study-content {
@@ -677,7 +687,7 @@
                 <h1 class="blog-title">Ethical AI: Building Trust in Automated Systems</h1>
                 <p class="blog-subtitle">Best practices for developing responsible AI solutions that prioritize transparency, fairness, and user trust in an increasingly automated world</p>
                 <div class="blog-meta">
-                    <span><i class="fas fa-user"></i> ZOKFORCE Ethics Team</span>
+                    <span><i class="fas fa-user"></i> ZOKFORCE Governance Team</span>
                     <span><i class="fas fa-calendar"></i> September 14, 2025</span>
                     <span><i class="fas fa-clock"></i> 22 min read</span>
                 </div>
