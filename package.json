@@ -1,0 +1,18 @@
+{
+  "name": "zokforce-website",
+  "version": "1.0.0",
+  "description": "ZOKFORCE website with automated CSS validation",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 9000"
+  },
+
+  "keywords": [
+    "website",
+    "css",
+    "validation",
+    "visual-regression"
+  ],
+  "author": "ZOKFORCE",
+  "license": "MIT"
+}

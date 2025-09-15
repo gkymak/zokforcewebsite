@@ -21,3 +21,7 @@ exported-assets/Icon/test/icon-llm-integration-clean.svg
 exported-assets/Icon/test/icon-process-automation-clean.svg
 exported-assets/Icon/test/icon-smart-chatbots-clean.svg
 exported-assets/Icon/test/script.py
+.DS_Store
+.DS_Store
+~
+*.tmp
