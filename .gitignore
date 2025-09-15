@@ -25,3 +25,6 @@ exported-assets/Icon/test/script.py
 .DS_Store
 ~
 *.tmp
+.DS_Store
+~
+*.tmp
