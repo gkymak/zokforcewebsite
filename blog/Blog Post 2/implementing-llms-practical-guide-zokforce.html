@@ -20,6 +20,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../style.css">
     <style>
+        /* Ensure hamburger menu is visible on white background */
+        .mobile-menu-toggle span {
+            background: #333333 !important;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hide tagline on mobile to make room for hamburger menu */
+        @media (max-width: 768px) {
+            .header__logo .tagline {
+                display: none;
+            }
+            
+            /* Mobile navigation menu - override app.js styles */
+            .nav {
+                display: none !important;
+                position: fixed !important;
+                top: 64px !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: var(--color-surface) !important;
+                box-shadow: var(--shadow-lg) !important;
+                z-index: 10001 !important;
+                transform: none !important;
+            }
+            
+            .nav.active {
+                display: block !important;
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                padding: var(--space-16);
+            }
+            
+            .nav__link {
+                padding: var(--space-12) var(--space-16);
+                border-bottom: 1px solid var(--color-border);
+            }
+            
+            /* Adjust header content layout for mobile */
+            .header__content {
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .header__logo {
+                flex: 1;
+            }
+            
+            .header__actions {
+                margin-right: var(--space-8);
+            }
+            
+            /* Ensure header has relative positioning for dropdown */
+            .header {
+                position: relative;
+            }
+        }
+        
         /* Blog-specific styles extending the main design system */
         .blog-header {
             background: linear-gradient(135deg, rgba(79, 118, 246, 0.8) 0%, rgba(47, 58, 178, 0.8) 100%), url('banner2.png');
@@ -27,7 +86,7 @@
             background-position: center;
             background-repeat: no-repeat;
             color: white;
-            padding: var(--space-128) 0 var(--space-96) 0;
+            padding: var(--space-64) 0 var(--space-96) 0;
             margin-top: 80px; /* Account for fixed header */
         }
         
@@ -455,17 +514,8 @@
         
         /* Mobile menu toggle - let main CSS handle visibility */
         
-        /* Header positioning for mobile menu */
-        .header {
-            position: relative;
-        }
-        
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            /* Hide desktop navigation */
-            .nav {
-                display: none;
-            }
             .blog-title {
                 font-size: var(--font-size-4xl);
             }
@@ -486,60 +536,6 @@
                 flex-direction: column;
                 gap: var(--space-8);
             }
-            
-            /* Hide tagline on mobile to make room for hamburger menu */
-            .header__logo .tagline {
-                display: none;
-            }
-            
-            /* Mobile menu toggle handled by main CSS */
-            
-            /* Adjust header content layout for mobile */
-            .header__content {
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .header__logo {
-                flex: 1;
-            }
-            
-            .header__actions {
-                margin-right: var(--space-8);
-            }
-            
-            /* Mobile navigation menu - override app.js styles */
-            .nav {
-                display: none !important;
-                position: fixed !important;
-                top: 64px !important;
-                left: 0 !important;
-                right: 0 !important;
-                background: var(--color-surface) !important;
-                box-shadow: var(--shadow-lg) !important;
-                z-index: 10001 !important;
-                transform: none !important;
-            }
-            
-            .nav.active {
-                display: block !important;
-            }
-            
-            .nav__list {
-                flex-direction: column;
-                padding: var(--space-16);
-            }
-            
-            .nav__link {
-                padding: var(--space-12) var(--space-16);
-                border-bottom: 1px solid var(--color-border);
-            }
-            
-            /* Ensure hamburger menu is visible on white background */
-             .mobile-menu-toggle span {
-                 background: #333333 !important;
-                 transition: all 0.3s ease;
-             }
             
             .value-grid {
                 grid-template-columns: 1fr;
