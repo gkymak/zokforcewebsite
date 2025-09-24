@@ -149,11 +149,15 @@ async function sendToDifyAPI(message, env) {
     const DIFY_API_URL = env.DIFY_API_URL || 'http://31172269os.zicp.vip:5301/v1/chat-messages';
     const DIFY_API_KEY = env.DIFY_API_KEY || 'app-ALXmHrqK7sbUx0C6AEdTARl5';
     
+    console.log(`Attempting to connect to Dify API: ${DIFY_API_URL}`);
+    
     const response = await fetch(DIFY_API_URL, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${DIFY_API_KEY}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'User-Agent': 'ZOKFORCE-ContactForm/1.0'
       },
       body: JSON.stringify({
         inputs: {},
@@ -164,21 +168,48 @@ async function sendToDifyAPI(message, env) {
       })
     });
 
+    console.log(`Dify API response status: ${response.status}`);
+    console.log(`Dify API response headers:`, Object.fromEntries(response.headers));
+
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Dify API error response: ${errorText}`);
       throw new Error(`Dify API error: ${response.status} ${response.statusText}`);
     }
 
+    // Check if response is actually JSON
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      const responseText = await response.text();
+      console.error(`Expected JSON but received: ${contentType}`);
+      console.error(`Response body: ${responseText.substring(0, 500)}...`);
+      throw new Error(`Invalid response format: expected JSON, got ${contentType}`);
+    }
+
     const result = await response.json();
-    console.log('Dify API response received successfully');
-    return result;
+    console.log('Dify API response received successfully:', result);
+    
+    // Return structured response
+    return {
+      success: true,
+      data: result,
+      message: result.answer || 'Response received from AI assistant'
+    };
     
   } catch (error) {
     console.error('Dify API error:', error);
+    
+    // Enhanced error logging
+    if (error.message.includes('Unexpected token')) {
+      console.error('Received HTML instead of JSON - likely tunnel routing issue');
+    }
+    
     // Return a fallback response instead of throwing
     return {
       success: false,
       error: error.message,
-      fallback: true
+      fallback: true,
+      message: 'Your message has been received and will be processed manually.'
     };
   }
 }

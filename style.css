@@ -648,6 +648,80 @@ select.form-control {
   gap: var(--space-16);
 }
 
+/* Language Selector Styles - Button Layout */
+.language-selector {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  padding: var(--space-6) var(--space-12);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  transition: all var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+
+.lang-btn:hover {
+  border-color: var(--brand-accent);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.lang-btn.active {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: white;
+  font-weight: 500;
+}
+
+/* Chinese Typography Support */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap');
+
+/* Language-specific font stacks */
+html[lang="zh-CN"] {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
+}
+
+html[lang="zh-TW"] {
+  font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Hiragino Sans CNS', 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+}
+
+/* Adjust line height for Chinese text */
+html[lang="zh-CN"] body,
+html[lang="zh-TW"] body {
+  line-height: 1.7;
+}
+
+html[lang="zh-CN"] h1, html[lang="zh-CN"] h2, html[lang="zh-CN"] h3, html[lang="zh-CN"] h4, html[lang="zh-CN"] h5, html[lang="zh-CN"] h6,
+html[lang="zh-TW"] h1, html[lang="zh-TW"] h2, html[lang="zh-TW"] h3, html[lang="zh-TW"] h4, html[lang="zh-TW"] h5, html[lang="zh-TW"] h6 {
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* Adjust spacing for Chinese text */
+html[lang="zh-CN"] p,
+html[lang="zh-TW"] p {
+  letter-spacing: 0.02em;
+}
+
+/* Mobile language selector adjustments */
+@media (max-width: 768px) {
+  .language-selector {
+    gap: var(--space-6);
+  }
+  
+  .lang-btn {
+    padding: var(--space-4) var(--space-8);
+    font-size: 12px;
+  }
+}
+
 .m-0 {
   margin: 0;
 }
@@ -1863,9 +1937,19 @@ p {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.footer__bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
 .footer__bottom p {
   margin: 0;
   font-size: var(--font-size-sm);
+  text-align: center;
+  flex: 1;
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -1940,6 +2024,12 @@ p {
   .footer__links {
     grid-template-columns: 1fr;
     gap: var(--space-24);
+  }
+
+  .footer__bottom-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-12);
   }
 
   .section {

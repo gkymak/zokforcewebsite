@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOKFORCE AI Ethics Assessment Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Welcome Page -->
+    <div id="welcome-page" class="page active">
+        <div class="container">
+            <div class="welcome-header">
+                <div class="zokforce-logo">
+                    <h1>ZOKFORCE</h1>
+                    <p class="logo-subtitle">AI Consulting Excellence</p>
+                </div>
+                <div class="welcome-content">
+                    <h2>AI Ethics Assessment Platform</h2>
+                    <p class="welcome-description">
+                        Comprehensive evaluation framework to assess your organization's AI ethics maturity across six critical pillars. 
+                        This professional assessment will provide actionable insights and recommendations for improvement.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="company-info-form">
+                <h3>Company Information</h3>
+                <form id="company-form">
+                    <div class="form-group">
+                        <label for="company-name" class="form-label">Company Name *</label>
+                        <input type="text" id="company-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Contact Person *</label>
+                        <input type="text" id="contact-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Email Address *</label>
+                        <input type="email" id="contact-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry" class="form-label">Industry</label>
+                        <select id="industry" class="form-control">
+                            <option value="">Select Industry</option>
+                            <option value="Financial Services">Financial Services</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Retail">Retail</option>
+                            <option value="Education">Education</option>
+                            <option value="Government">Government</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--lg btn--full-width">
+                        Begin Assessment
+                    </button>
+                </form>
+            </div>
+            
+            <div class="assessment-overview">
+                <div class="overview-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">72</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Pillars</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">20</span>
+                        <span class="stat-label">Minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Page -->
+    <div id="assessment-page" class="page">
+        <div class="assessment-header">
+            <div class="container">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progress-text">Question 1 of 72</span>
+                        <span id="pillar-name">Transparency & Explainability</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="assessment-content">
+                <div class="question-container">
+                    <div class="pillar-indicator">
+                        <span id="current-pillar">Pillar 1 of 6</span>
+                    </div>
+                    <h3 id="question-text">Loading question...</h3>
+                    <div class="scoring-options">
+                        <div class="score-option" data-score="1">
+                            <input type="radio" id="score1" name="current-score" value="1">
+                            <label for="score1">
+                                <strong>Ad Hoc (1)</strong>
+                                <span>Informal, reactive practices with minimal documentation</span>
+                            </label>
+                        </div>
+                        <div class="score-option" data-score="2">
+                            <input type="radio" id="score2" name="current-score" value="2">
+                            <label for="score2">
+                                <strong>Developing (2)</strong>
+                                <span>Basic policies exist but implementation is inconsistent</span>
+                            </label>
+                        </div>
+                        <div class="score-option" data-score="3">
+                            <input type="radio" id="score3" name="current-score" value="3">
+                            <label for="score3">
+                                <strong>Managed (3)</strong>
+                                <span>Systematic processes with regular monitoring and review</span>
+                            </label>
+                        </div>
+                        <div class="score-option" data-score="4">
+                            <input type="radio" id="score4" name="current-score" value="4">
+                            <label for="score4">
+                                <strong>Optimized (4)</strong>
+                                <span>Continuous improvement with industry-leading practices</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button id="prev-btn" class="btn btn--outline" disabled>Previous</button>
+                    <button id="next-btn" class="btn btn--primary">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Dashboard -->
+    <div id="results-page" class="page">
+        <div class="container">
+            <div class="results-header">
+                <h2>AI Ethics Assessment Results</h2>
+                <div class="results-meta">
+                    <span id="company-name-display"></span>
+                    <span id="assessment-date"></span>
+                </div>
+            </div>
+            
+            <div class="results-summary">
+                <div class="overall-score-card">
+                    <div class="score-display">
+                        <span class="score-label">Overall Maturity Score</span>
+                        <span id="overall-score" class="score-value">0.0</span>
+                        <span id="maturity-level" class="maturity-badge">Foundation Required</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results-content">
+                <div class="chart-container">
+                    <h3>Pillar Performance Analysis</h3>
+                    <div class="charts-grid">
+                        <div class="chart-wrapper" style="position: relative; height: 400px;">
+                            <canvas id="radar-chart"></canvas>
+                        </div>
+                        <div class="chart-wrapper" style="position: relative; height: 400px;">
+                            <canvas id="bar-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pillar-breakdown">
+                    <h3>Detailed Pillar Analysis</h3>
+                    <div id="pillar-cards" class="pillar-cards-grid">
+                        <!-- Pillar cards will be generated dynamically -->
+                    </div>
+                </div>
+                
+                <div class="recommendations">
+                    <h3>Priority Recommendations</h3>
+                    <div id="recommendations-list" class="recommendations-list">
+                        <!-- Recommendations will be generated based on scores -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="export-actions">
+                <button id="download-pdf" class="btn btn--primary btn--lg">
+                    Download PDF Report
+                </button>
+                <button id="restart-assessment" class="btn btn--outline btn--lg">
+                    Start New Assessment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

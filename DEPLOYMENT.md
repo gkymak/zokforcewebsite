@@ -24,7 +24,7 @@ Set up the following secrets in your Cloudflare Worker:
 ```bash
 # Required: Dify API integration
 wrangler secret put DIFY_API_URL
-# Enter: http://31172269os.zicp.vip:5301/v1/chat-messages (or your Dify API endpoint)
+# Enter: https://zokforce.synology.me/v1/chat-messages (or your Dify API endpoint)
 
 wrangler secret put DIFY_API_KEY
 # Enter: app-ALXmHrqK7sbUx0C6AEdTARl5 (or your Dify API key)

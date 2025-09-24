@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600" role="img" aria-label="Strategic Global Footprint">
+  <defs>
+    <!-- Colors -->
+    <style>
+      .bg { fill: #f6fbfb; }
+      .land { fill: #e6eef2; stroke: #d0dbe0; stroke-width:1; }
+      .pin-teal { fill: #21808D; }
+      .pin-blue { fill: #4F76F6; }
+      .legend-text { font-family: Arial, Helvetica, sans-serif; font-size:14px; fill:#31414a; }
+      .header { font-family: "Helvetica Neue", Arial, sans-serif; font-size:28px; font-weight:700; fill:#16323a; }
+    </style>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Animated dashed line style -->
+    <style>
+      .flow {
+        fill:none;
+        stroke-width:3;
+        stroke-linecap:round;
+        stroke-dasharray:8 8;
+        stroke-opacity:0.95;
+        animation: dashmove 3s linear infinite;
+      }
+      @keyframes dashmove {
+        to { stroke-dashoffset: -32; }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" x="0" y="0" width="1600" height="600"/>
+
+  <!-- Header placeholder -->
+  <text x="80" y="48" class="header">Strategic Global Footprint</text>
+
+  <!-- Simplified continent shapes -->
+  <!-- North America -->
+  <path class="land" d="M80,160 C140,110 240,120 320,140 C380,150 420,200 460,210 C500,220 540,210 600,220 C640,225 700,240 760,260 C720,300 650,310 600,300 C540,290 480,270 420,270 C360,270 240,250 160,230 C120,210 90,190 80,160 Z"/>
+  <!-- South America -->
+  <path class="land" d="M420,320 C460,330 520,350 540,390 C560,430 540,470 520,510 C480,540 420,520 380,480 C360,450 360,410 420,380 Z"/>
+  <!-- Europe -->
+  <path class="land" d="M760,140 C800,120 860,110 920,120 C940,125 960,140 980,150 C960,160 920,160 880,170 C840,170 800,160 760,150 Z"/>
+  <!-- Africa -->
+  <path class="land" d="M820,200 C860,220 920,250 920,300 C920,350 880,400 840,420 C800,440 760,420 740,380 C720,340 740,300 780,270 Z"/>
+  <!-- Asia -->
+  <path class="land" d="M980,120 C1060,110 1130,140 1190,160 C1230,175 1260,200 1290,230 C1320,260 1320,310 1300,340 C1270,380 1230,390 1180,380 C1120,370 1080,340 1040,320 C1000,300 980,240 980,200 Z"/>
+  <!-- Australia -->
+  <path class="land" d="M1280,380 C1320,380 1370,390 1410,420 C1440,450 1420,480 1390,490 C1340,510 1280,500 1250,470 C1230,450 1240,410 1280,390 Z"/>
+  <!-- Antarctica -->
+  <ellipse class="land" cx="800" cy="560" rx="560" ry="30"/>
+
+  <!-- Toronto (Canada) -->
+  <g id="toronto" transform="translate(320,150)">
+    <circle cx="0" cy="0" r="22" fill="#21808D" opacity="0.18" filter="url(#glow)"/>
+    <path d="M0,-20 A10,10 0 1,1 0.01,-20 Z M0,-10 L0,18 L6,10 L0,18 L-6,10 Z" class="pin-teal"/>
+    <!-- Canada flag -->
+    <rect x="-14" y="-36" width="28" height="16" rx="2" ry="2" fill="#ffffff" stroke="#ddd" />
+    <rect x="-14" y="-36" width="6" height="16" fill="#FF0000"/>
+    <rect x="8" y="-36" width="6" height="16" fill="#FF0000"/>
+    <polygon points="0,-28 3,-24 0,-20 -3,-24" fill="#FF0000"/>
+  </g>
+
+  <!-- China -->
+  <g id="china" transform="translate(1060,150)">
+    <circle cx="0" cy="0" r="22" fill="#4F76F6" opacity="0.18" filter="url(#glow)"/>
+    <path d="M0,-20 A10,10 0 1,1 0.01,-20 Z M0,-10 L0,18 L6,10 L0,18 L-6,10 Z" class="pin-blue"/>
+    <!-- China flag -->
+    <rect x="-14" y="-36" width="28" height="16" rx="2" ry="2" fill="#DE2910" stroke="#b71b0f"/>
+    <polygon points="-10,-30 -7,-28 -10,-26 -9,-30" fill="#FFDE00"/>
+    <polygon points="-4,-33 -2,-31 -4,-29 -3,-33" fill="#FFDE00"/>
+    <polygon points="-2,-28 0,-26 -2,-24 -1,-28" fill="#FFDE00"/>
+    <polygon points="2,-31 4,-29 2,-27 3,-31" fill="#FFDE00"/>
+    <polygon points="6,-33 8,-31 6,-29 7,-33" fill="#FFDE00"/>
+  </g>
+
+  <!-- Hong Kong -->
+  <g id="hongkong" transform="translate(1100,230)">
+    <circle cx="0" cy="0" r="20" fill="#4F76F6" opacity="0.14" filter="url(#glow)"/>
+    <path d="M0,-18 A9,9 0 1,1 0.01,-18 Z M0,-9 L0,16 L5,9 L0,16 L-5,9 Z" class="pin-blue"/>
+    <!-- Hong Kong flag -->
+    <rect x="-12" y="-34" width="24" height="14" rx="2" ry="2" fill="#CC0000" stroke="#b20000"/>
+    <g fill="#fff">
+      <circle cx="-4" cy="-26" r="1.6"/>
+      <circle cx="0" cy="-29" r="1.6"/>
+      <circle cx="4" cy="-26" r="1.6"/>
+      <circle cx="-2" cy="-22" r="1.6"/>
+      <circle cx="2" cy="-22" r="1.6"/>
+    </g>
+  </g>
+
+  <!-- Collaboration flows -->
+  <path class="flow" stroke="#4F76F6" d="M320,150 C520,120 820,100 1060,150"/>
+  <path class="flow" stroke="#4F76F6" d="M320,150 C540,170 920,200 1100,230"/>
+
+  <!-- Direction markers -->
+  <circle cx="1060" cy="150" r="4" fill="#4F76F6"/>
+  <circle cx="1100" cy="230" r="4" fill="#4F76F6"/>
+
+  <!-- Legend -->
+  <g transform="translate(60,480)">
+    <rect x="-12" y="-28" width="300" height="78" rx="8" ry="8" fill="#ffffff" stroke="#e1e8eb" />
+    <text x="12" y="-4" class="legend-text" style="font-weight:700;">Legend</text>
+    <g transform="translate(16,12)">
+      <circle cx="0" cy="0" r="8" class="pin-teal"/>
+      <text x="20" y="5" class="legend-text">Onshore HQ &amp; Strategy</text>
+    </g>
+    <g transform="translate(16,36)">
+      <circle cx="0" cy="0" r="8" class="pin-blue"/>
+      <text x="20" y="5" class="legend-text">Offshore Development Centers</text>
+    </g>
+  </g>
+
+  <text x="1300" y="580" class="legend-text" style="font-size:12px;">Map for illustrative purposes</text>
+</svg>
