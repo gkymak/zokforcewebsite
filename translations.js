@@ -576,6 +576,23 @@ const translations = {
                 "zh-CN": "2025年5月20日"
             }
         },
+        reproducibility: {
+            title: {
+                en: "Strategies for Reproducibility in LLM Inference",
+                "zh-TW": "LLM推理可重現性策略",
+                "zh-CN": "LLM推理可重现性策略"
+            },
+            excerpt: {
+                en: "Expert analysis on achieving consistent and reliable outputs from Large Language Models through advanced reproducibility techniques and enterprise-grade infrastructure.",
+                "zh-TW": "透過先進的可重現性技術和企業級基礎設施，實現大型語言模型一致且可靠輸出的專家分析。",
+                "zh-CN": "通过先进的可重现性技术和企业级基础设施，实现大型语言模型一致且可靠输出的专家分析。"
+            },
+            date: {
+                en: "September 25, 2025",
+                "zh-TW": "2025年9月25日",
+                "zh-CN": "2025年9月25日"
+            }
+        },
         future: {
             title: {
                 en: "The Future of AI in Business Transformation",

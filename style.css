@@ -648,13 +648,98 @@ select.form-control {
   gap: var(--space-16);
 }
 
-/* Language Selector Styles - Button Layout */
+/* Language Selector Styles - Dropdown Layout */
 .language-selector {
+  position: relative;
   display: flex;
-  gap: var(--space-8);
-  align-items: center;
+  gap: 4px;
 }
 
+.language-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  transition: all var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  min-width: 120px;
+  justify-content: space-between;
+}
+
+.language-btn:hover {
+  border-color: var(--brand-accent);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.language-btn .fas {
+  font-size: 14px;
+}
+
+.language-current {
+  font-weight: 500;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--duration-fast) var(--ease-standard);
+  margin-top: 4px;
+}
+
+.language-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.language-option {
+  padding: var(--space-8) var(--space-12);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.language-option:last-child {
+  border-bottom: none;
+}
+
+.language-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 1);
+}
+
+.language-option.active {
+  background: var(--brand-accent);
+  color: white;
+}
+
+.language-option .flag {
+  font-size: 16px;
+}
+
+/* Legacy button-style language selector (for compatibility) */
 .lang-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -713,7 +798,7 @@ html[lang="zh-TW"] p {
 /* Mobile language selector adjustments */
 @media (max-width: 768px) {
   .language-selector {
-    gap: var(--space-6);
+    gap: 4px;
   }
   
   .lang-btn {

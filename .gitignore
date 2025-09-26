@@ -1,4 +1,22 @@
-exported-assets/AI Strategy & Consulting Photo.png
+# System files
+.DS_Store
+*.tmp
+~
+
+# Debug and test files
+debug-*.html
+test-*.html
+*.backup
+
+# Development files
+.vscode/
+.wrangler/
+
+# Temporary files
+*.log
+*.cache
+
+# Exported assets (old versions)
 exported-assets/AI Strategy & Consulting Photo.png
 exported-assets/AI Strategy & Consulting.png
 exported-assets/Data Analytics Photo.png
@@ -14,20 +32,8 @@ exported-assets/Smart Chatbots Photo.png
 exported-assets/Smart Chatbots.png
 exported-assets/Icon/.DS_Store
 exported-assets/Icon/zokforce-service-icons.css
-exported-assets/Icon/test/icon-ai-strategy-clean.svg
-exported-assets/Icon/test/icon-data-analytics-clean.svg
-exported-assets/Icon/test/icon-digital-twin-clean.svg
-exported-assets/Icon/test/icon-llm-integration-clean.svg
-exported-assets/Icon/test/icon-process-automation-clean.svg
-exported-assets/Icon/test/icon-smart-chatbots-clean.svg
-exported-assets/Icon/test/script.py
-.DS_Store
-.DS_Store
-~
-*.tmp
-.DS_Store
-~
-*.tmp
-.DS_Store
-~
-*.tmp
+exported-assets/Icon/test/
+
+# Office temporary files
+~$*.docx
+~$*.xlsx

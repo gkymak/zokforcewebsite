@@ -8,12 +8,6 @@
     <meta name="keywords" content="AI transformation, business AI, generative AI, artificial intelligence, digital transformation, ZOKFORCE">
     <meta name="author" content="ZOKFORCE Team">
     
-    <!-- Multilingual SEO -->
-    <link rel="alternate" hreflang="en" href="https://zokforce.com/blog/Blog Post 1/ai-transformation-blog-zokforce-style.html" />
-    <link rel="alternate" hreflang="zh-TW" href="https://zokforce.com/blog/Blog Post 1/ai-transformation-blog-zokforce-style.html" />
-    <link rel="alternate" hreflang="zh-CN" href="https://zokforce.com/blog/Blog Post 1/ai-transformation-blog-zokforce-style.html" />
-    <link rel="alternate" hreflang="x-default" href="https://zokforce.com/blog/Blog Post 1/ai-transformation-blog-zokforce-style.html" />
-    
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="The Future of AI in Business Transformation">
     <meta property="og:description" content="Comprehensive analysis of how Generative AI is revolutionizing business transformation, featuring real-world case studies, industry insights, and strategic guidance for enterprise adoption.">
@@ -69,9 +63,6 @@
         "keywords": ["AI transformation", "business AI", "generative AI", "artificial intelligence", "digital transformation"]
     }
     </script>
-    
-    <!-- Translation System -->
-    <script src="../../translations.js"></script>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKPWWSN9VT"></script>
@@ -194,11 +185,23 @@
         }
         
         .blog-meta {
+            text-align: center;
+            margin-top: var(--space-24);
+        }
+        
+        .blog-info {
             display: flex;
             justify-content: center;
             gap: var(--space-32);
             font-size: var(--font-size-md);
             opacity: 0.8;
+            flex-wrap: wrap;
+        }
+        
+        .blog-info span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
         }
         
         .blog-content {
@@ -484,10 +487,16 @@
         
         .tool-card {
             background: var(--color-bg-alt);
-            padding: var(--space-16);
+            border: 1px solid var(--color-card-border);
             border-radius: var(--radius-base);
+            padding: var(--space-16);
             text-align: center;
-            border: 1px solid var(--color-border);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
         
         .tool-icon {
@@ -497,20 +506,22 @@
         }
         
         .tool-name {
+            font-size: var(--font-size-md);
             font-weight: var(--font-weight-semibold);
+            color: var(--brand-dark);
             margin-bottom: var(--space-4);
-            color: var(--color-text);
         }
         
         .tool-description {
             font-size: var(--font-size-sm);
             color: var(--color-text-secondary);
+            line-height: var(--line-height-normal);
         }
         
         /* Risk warning */
         .risk-warning {
-            background: linear-gradient(135deg, rgba(220, 38, 127, 0.05), rgba(239, 68, 68, 0.05));
-            border: 1px solid rgba(220, 38, 127, 0.2);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border: 1px solid rgba(239, 68, 68, 0.3);
             border-radius: var(--radius-lg);
             padding: var(--space-24);
             margin: var(--space-32) 0;
@@ -524,15 +535,20 @@
         }
         
         .risk-icon {
-            color: #dc2626;
+            color: #EF4444;
             font-size: var(--font-size-xl);
         }
         
         .risk-title {
-            font-size: var(--font-size-xl);
+            font-size: var(--font-size-lg);
             font-weight: var(--font-weight-bold);
-            color: #dc2626;
+            color: #DC2626;
             margin: 0;
+        }
+        
+        .risk-content {
+            color: var(--color-text);
+            line-height: var(--line-height-relaxed);
         }
         
         /* Blog images */
@@ -635,8 +651,13 @@
             }
             
             .blog-meta {
+                text-align: center;
+            }
+            
+            .blog-info {
                 flex-direction: column;
                 gap: var(--space-8);
+                align-items: center;
             }
             
             .stats-container {
@@ -654,52 +675,52 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Fixed Header -->
     <header class="header">
         <div class="container">
             <div class="header__content">
                 <div class="header__logo">
-                    <a href="../../index.html">
-                        <h1 class="logo">ZOKFORCE</h1>
-                        <span class="tagline" data-translate="tagline">Lead in Tech, Deliver Excellence</span>
-                    </a>
+                    <h1 class="logo">ZOKFORCE</h1>
+                    <span class="tagline">Lead in Tech, Deliver Excellence</span>
                 </div>
-                <nav class="nav">
+                
+                <nav class="nav" id="nav">
                     <ul class="nav__list">
-                        <li><a href="../../index.html#home" class="nav__link" data-translate="nav_home">Home</a></li>
-                        <li><a href="../../index.html#services" class="nav__link" data-translate="nav_services">Services</a></li>
-                        <li><a href="../../index.html#about" class="nav__link" data-translate="nav_about">About</a></li>
-                        <li><a href="../../index.html#case-studies" class="nav__link" data-translate="nav_case_studies">Case Studies</a></li>
-                        <li><a href="../../index.html#blog" class="nav__link active" data-translate="nav_insights">Insights</a></li>
-                        <li><a href="../../index.html#contact" class="nav__link" data-translate="nav_contact">Contact</a></li>
+                        <li><a href="../../index.html#home" class="nav__link">Home</a></li>
+                        <li><a href="../../index.html#about" class="nav__link">About</a></li>
+                        <li><a href="../../index.html#services" class="nav__link">Services</a></li>
+                        <li><a href="../../index.html#case-studies" class="nav__link">Case Studies</a></li>
+                        <li><a href="../../index.html#blog" class="nav__link active">Insights</a></li>
+                        <li><a href="../../index.html#contact" class="nav__link">Contact</a></li>
                     </ul>
                 </nav>
+
                 <div class="header__actions">
-                    <button class="btn btn--primary cta-btn" onclick="window.location.href='../../index.html#contact'" data-translate="cta_free_consultation">Free Consultation</button>
+                    <button class="btn btn--primary cta-btn" onclick="window.location.href='../../index.html#contact'">Free Consultation</button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
-                <button class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
     </header>
 
     <!-- Blog Header -->
     <section class="blog-header">
-        <div class="container">
-            <div class="blog-hero">
-                <h1 class="blog-title" data-translate="blog_title_ai_transformation">The Future of AI in Business Transformation</h1>
-                <p class="blog-subtitle" data-translate="blog_subtitle_ai_transformation">How Generative AI is Reshaping Industries, Creating Unprecedented Opportunities, and Challenging Traditional Business Models</p>
+            <div class="container">
                 <div class="blog-meta">
-                    <span><i class="fas fa-user"></i> <span data-translate="blog_author_research_team">ZOKFORCE Research Team</span></span>
-                    <span><i class="fas fa-calendar"></i> <span data-translate="blog_date_march_2025">March 15, 2025</span></span>
-                    <span><i class="fas fa-clock"></i> <span data-translate="blog_read_time_15min">15 min read</span></span>
+                    <h1 class="blog-title">The Future of AI in Business Transformation</h1>
+                    <p class="blog-subtitle">How Generative AI is Reshaping Industries, Creating Unprecedented Opportunities, and Challenging Traditional Business Models</p>
+                    <div class="blog-info">
+                        <span><i class="fas fa-user"></i> <span>ZOKFORCE Research Team</span></span>
+                        <span><i class="fas fa-calendar"></i> <span>March 15, 2025</span></span>
+                        <span><i class="fas fa-clock"></i> <span>15 min read</span></span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Blog Content -->
     <main class="blog-content">
@@ -707,18 +728,18 @@
             <div class="article-content">
                 
                 <!-- Introduction -->
-                <div class="lead-paragraph" data-translate="blog_intro_ai_transformation">
+                <div class="lead-paragraph">
                     Business transformation has undergone five distinct evolutionary phases—from the pre-internet era of the 1950s through today's generative AI revolution. Each phase has fundamentally altered how organizations operate, compete, and create value. We now stand at the threshold of the most profound transformation yet: the age of Generative Artificial Intelligence.
                 </div>
                 
-                <p data-translate="blog_para1_ai_transformation">As experienced technology analysts who have witnessed three decades of digital evolution, we've observed that successful business transformation requires more than just adopting new technologies—it demands a complete reimagining of organizational DNA. Today's generative AI capabilities represent not merely an upgrade to existing systems, but a quantum leap that enables entirely new business models, operational frameworks, and competitive advantages.</p>
+                <p>As experienced technology analysts who have witnessed three decades of digital evolution, we've observed that successful business transformation requires more than just adopting new technologies—it demands a complete reimagining of organizational DNA. Today's generative AI capabilities represent not merely an upgrade to existing systems, but a quantum leap that enables entirely new business models, operational frameworks, and competitive advantages.</p>
                 
-                <p data-translate="blog_para2_ai_transformation">This comprehensive analysis examines the historical context of business transformation, explores how generative AI is revolutionizing enterprise operations through real-world case studies, and provides strategic guidance for navigating the opportunities and risks ahead. Based on extensive research and interviews with industry leaders, this report offers actionable insights for executives preparing their organizations for the AI-driven future.</p>
+                <p>This comprehensive analysis examines the historical context of business transformation, explores how generative AI is revolutionizing enterprise operations through real-world case studies, and provides strategic guidance for navigating the opportunities and risks ahead. Based on extensive research and interviews with industry leaders, this report offers actionable insights for executives preparing their organizations for the AI-driven future.</p>
 
                 <!-- Historical Context -->
-                <h2 data-translate="blog_h2_evolution">The Evolution of Business Transformation: From Manual Processes to AI Revolution</h2>
+                <h2>The Evolution of Business Transformation: From Manual Processes to AI Revolution</h2>
                 
-                <p data-translate="blog_para3_evolution">Understanding today's AI transformation requires examining the historical progression of business change. According to research from leading <a href="https://hatchworks.com/blog/product-design/history-digital-transformation/" target="_blank">digital transformation experts</a>, business evolution has occurred through five distinct eras, each characterized by fundamental shifts in how organizations operate and compete.</p>
+                <p>Understanding today's AI transformation requires examining the historical progression of business change. According to research from leading <a href="https://hatchworks.com/blog/product-design/history-digital-transformation/" target="_blank">digital transformation experts</a>, business evolution has occurred through five distinct eras, each characterized by fundamental shifts in how organizations operate and compete.</p>
                 
                 <div class="timeline">
                     <div class="timeline-item">
@@ -756,23 +777,23 @@
                 
                 <div class="stats-container">
                     <div class="stat-box">
-                        <span class="stat-number" data-translate="blog.posts.aiTransformation.stats.productivity.value">74%</span>
-                        <span class="stat-label" data-translate="blog.posts.aiTransformation.stats.productivity.label">Organizations report GenAI investments meet or exceed expectations</span>
+                        <span class="stat-number">74%</span>
+                        <span class="stat-label">Organizations report GenAI investments meet or exceed expectations</span>
                     </div>
                     
                     <div class="stat-box">
-                        <span class="stat-number" data-translate="blog.posts.aiTransformation.stats.costReduction.value">2.5x</span>
-                        <span class="stat-label" data-translate="blog.posts.aiTransformation.stats.costReduction.label">Higher revenue growth for AI-led process companies</span>
+                        <span class="stat-number">2.5x</span>
+                        <span class="stat-label">Higher revenue growth for AI-led process companies</span>
                     </div>
                     
                     <div class="stat-box">
-                        <span class="stat-number" data-translate="blog.posts.aiTransformation.stats.decisionSpeed.value">63%</span>
-                        <span class="stat-label" data-translate="blog.posts.aiTransformation.stats.decisionSpeed.label">Plan to increase AI capabilities by 2026</span>
+                        <span class="stat-number">63%</span>
+                        <span class="stat-label">Plan to increase AI capabilities by 2026</span>
                     </div>
                     
                     <div class="stat-box">
-                        <span class="stat-number" data-translate="blog.posts.aiTransformation.stats.customerSatisfaction.value">16%</span>
-                        <span class="stat-label" data-translate="blog.posts.aiTransformation.stats.customerSatisfaction.label">Companies have fully modernized AI-led processes</span>
+                        <span class="stat-number">16%</span>
+                        <span class="stat-label">Companies have fully modernized AI-led processes</span>
                     </div>
                 </div>
                 
@@ -780,13 +801,13 @@
                 
                 <h3>Key Capabilities Transforming Business Operations</h3>
                 
-                <p><strong>Intelligent Content Creation:</strong> Generative AI enables organizations to produce high-quality written content, visual materials, and multimedia assets at unprecedented scale. Companies report reducing content creation time by 50-70% while maintaining or improving quality standards.</p>
+                <p><strong>1. Intelligent Content Creation:</strong> Generative AI enables organizations to produce high-quality written content, visual materials, and multimedia assets at unprecedented scale. Companies report reducing content creation time by 50-70% while maintaining or improving quality standards.</p>
                 
-                <p><strong>Advanced Decision Support:</strong> Unlike traditional business intelligence tools that analyze historical data, generative AI can simulate scenarios, predict outcomes, and recommend optimal strategies based on complex, multi-variable analysis. This capability is transforming strategic planning, risk assessment, and resource allocation processes.</p>
+                <p><strong>2. Advanced Decision Support:</strong> Unlike traditional business intelligence tools that analyze historical data, generative AI can simulate scenarios, predict outcomes, and recommend optimal strategies based on complex, multi-variable analysis. This capability is transforming strategic planning, risk assessment, and resource allocation processes.</p>
                 
-                <p><strong>Personalized Customer Experiences:</strong> Generative AI enables mass personalization by creating unique, contextually relevant interactions for each customer. Organizations can now deliver individualized experiences across millions of customers simultaneously, driving engagement rates up by 25-35%.</p>
+                <p><strong>3. Personalized Customer Experiences:</strong> Generative AI enables mass personalization by creating unique, contextually relevant interactions for each customer. Organizations can now deliver individualized experiences across millions of customers simultaneously, driving engagement rates up by 25-35%.</p>
                 
-                <p><strong>Autonomous Process Optimization:</strong> Beyond traditional automation, generative AI can identify process inefficiencies, design improvements, and implement optimizations without human intervention. This self-improving capability creates compound efficiency gains over time.</p>
+                <p><strong>4. Autonomous Process Optimization:</strong> Beyond traditional automation, generative AI can identify process inefficiencies, design improvements, and implement optimizations without human intervention. This self-improving capability creates compound efficiency gains over time.</p>
 
                 <!-- Real-World Case Studies -->
                 <h2>Real-World Success Stories: Generative AI in Action</h2>
@@ -943,9 +964,9 @@
                 </ol>
 
                 <!-- Conclusion -->
-                <h2>The Path Forward: Balancing Innovation with Responsibility</h2>
+                <h2>The Strategic Imperative: Preparing for the AI-Driven Future</h2>
                 
-                <p>As we stand at the threshold of the AI transformation era, organizations face unprecedented opportunities alongside equally unprecedented risks. The evidence from real-world implementations demonstrates that generative AI can deliver transformational business value—but only when deployed with careful planning, robust governance, and continuous oversight.</p>
+                <p>The generative AI revolution represents more than a technological upgrade—it's a fundamental shift in how businesses create value, serve customers, and compete in global markets. Organizations that successfully navigate this transformation will gain sustainable competitive advantages, while those that delay risk obsolescence.</p>
                 
                 <h3>The Revolutionary Benefits of Generative AI</h3>
                 
@@ -970,13 +991,15 @@
                     <p class="quote-source">Source: <a href="https://hbr.org/2025/01/6-ways-ai-changed-business-in-2024-according-to-executives" class="source-link" target="_blank">Harvard Business Review AI Analysis</a></p>
                 </div>
                 
-                <h3>The Strategic Imperative</h3>
+                <div class="quote-block">
+                    <div class="quote-text">The organizations that will thrive in the AI era are those that view generative AI not as a replacement for human intelligence, but as a powerful amplifier of human creativity, judgment, and strategic thinking.</div>
+                    <div class="quote-author">ZOKFORCE Research Team</div>
+                    <div class="quote-title">AI Strategy Experts</div>
+                </div>
                 
-                <p>The choice facing organizations is not whether to adopt AI, but how quickly and responsibly they can harness its transformational potential. Companies that master this balance will thrive in the AI-driven economy. Those that fail to adapt risk obsolescence.</p>
+                <p>As we stand at this inflection point, the question is not whether to adopt generative AI, but how quickly and effectively organizations can integrate these capabilities into their core operations. The window for competitive advantage is narrowing, making immediate action essential for long-term success.</p>
                 
-                <p>The future belongs to organizations that can embrace AI's revolutionary capabilities while managing its inherent risks with wisdom, ethics, and strategic foresight. Success requires not just technological sophistication, but organizational maturity, cultural adaptability, and unwavering commitment to responsible innovation.</p>
-                
-                <p>As we navigate this transformational era, remember that the most powerful technology in human history demands our most thoughtful, careful, and responsible approach to implementation. The future of business transformation is bright—but only for those who proceed with both boldness and wisdom.</p>
+                <p>The future belongs to organizations that can harness the transformative power of generative AI while maintaining human-centered values, ethical practices, and strategic focus. By understanding the opportunities, managing the risks, and implementing thoughtful AI strategies, businesses can position themselves to lead in the AI-driven economy of tomorrow.</p>
             </div>
         </div>
     </main>
@@ -984,11 +1007,11 @@
     <!-- CTA Section -->
     <section class="blog-cta">
         <div class="container">
-            <h2 class="cta-title" data-translate="blog_cta_title">Ready to Navigate Your AI Transformation Journey?</h2>
-            <p class="cta-description" data-translate="blog_cta_description">ZOKFORCE's expert consultants help organizations develop comprehensive AI transformation strategies that maximize opportunities while managing risks. From strategic planning to implementation, we guide your path to AI-powered success.</p>
+            <h2 class="cta-title">Ready to Navigate Your AI Transformation Journey?</h2>
+            <p class="cta-description">ZOKFORCE's expert consultants help organizations develop comprehensive AI transformation strategies that maximize opportunities while managing risks. From strategic planning to implementation, we guide your path to AI-powered success.</p>
             <a href="../../index.html#contact" class="btn btn--lg btn--cta">
                 <i class="fas fa-rocket"></i>
-                <span data-translate="blog_cta_button">Start Your AI Transformation</span>
+                <span>Start Your AI Transformation</span>
             </a>
         </div>
     </section>
@@ -999,92 +1022,77 @@
             <div class="footer__content">
                 <div class="footer__brand">
                     <h2 class="logo">ZOKFORCE</h2>
-                    <p data-translate="tagline_footer">Digital excellence, driven by AI for all</p>
+                    <p>Digital excellence, driven by AI for all</p>
                 </div>
                 <div class="footer__links">
                     <div class="footer__section">
-                        <h4 data-translate="footer_services">Services</h4>
+                        <h4>Services</h4>
                         <ul>
-                            <li><a href="../../index.html#services" data-translate="service_ai_strategy">AI Strategy & Consulting</a></li>
-                            <li><a href="../../index.html#services" data-translate="service_llm_integration">LLM Integration</a></li>
-                            <li><a href="../../index.html#services" data-translate="service_smart_chatbots">Smart Chatbots</a></li>
-                            <li><a href="../../index.html#services" data-translate="service_process_automation">Process Automation</a></li>
-                            <li><a href="../../index.html#services" data-translate="service_data_analytics">Data Analytics</a></li>
-                            <li><a href="../../index.html#services" data-translate="service_digital_twin">Digital Twin Solutions</a></li>
+                            <li><a href="../../index.html#services">AI Strategy & Consulting</a></li>
+                            <li><a href="../../index.html#services">LLM Integration</a></li>
+                            <li><a href="../../index.html#services">Smart Chatbots</a></li>
+                            <li><a href="../../index.html#services">Process Automation</a></li>
+                            <li><a href="../../index.html#services">Data Analytics</a></li>
+                            <li><a href="../../index.html#services">Digital Twin Solutions</a></li>
                         </ul>
                     </div>
                     <div class="footer__section">
-                        <h4 data-translate="footer_company">Company</h4>
+                        <h4>Company</h4>
                         <ul>
-                            <li><a href="../../index.html#about" data-translate="nav_about">About Us</a></li>
-                            <li><a href="../../index.html#case-studies" data-translate="nav_case_studies">Case Studies</a></li>
-                            <li><a href="../../index.html#blog" data-translate="nav_insights">Insights</a></li>
-                            <li><a href="../../index.html#contact" data-translate="nav_contact">Contact</a></li>
+                            <li><a href="../../index.html#about">About Us</a></li>
+                            <li><a href="../../index.html#case-studies">Case Studies</a></li>
+                            <li><a href="../../index.html#blog">Insights</a></li>
+                            <li><a href="../../index.html#contact">Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer__section">
-                        <h4 data-translate="footer_connect">Connect</h4>
+                        <h4>Connect</h4>
                         <ul>
-                            <li><a href="mailto:service@zokforce.com" data-translate="contact_email">Email</a></li>
-                            <li><a href="tel:+1-437-808-2160" data-translate="contact_phone">Phone</a></li>
+                            <li><a href="mailto:service@zokforce.com">Email</a></li>
+                            <li><a href="tel:+1-437-808-2160">Phone</a></li>
                             <li><a href="https://www.linkedin.com/company/zokforce/">LinkedIn</a></li>
-                            <li><a href="#Twitter">Twitter</a></li>
+                            <li><a href="#">Twitter</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p data-translate="footer_copyright">&copy; 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <div class="footer__bottom-content">
+                    <p>&copy; 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service</p>
+                    <div class="language-selector">
+                        <a href="ai-transformation-blog-zokforce-style.html" class="lang-btn active" data-lang="en">
+                            <span>English</span>
+                        </a>
+                        <a href="ai-transformation-blog-zokforce-style-zh-tw.html" class="lang-btn" data-lang="zh-TW">
+                            <span>繁體中文</span>
+                        </a>
+                        <a href="ai-transformation-blog-zokforce-style-zh-cn.html" class="lang-btn" data-lang="zh-CN">
+                            <span>简体中文</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Language Selector -->
-    <div class="language-toggle">
-        <button class="language-btn" id="languageBtn">
-            <i class="fas fa-globe"></i>
-            <span id="currentLang">EN</span>
-            <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="language-dropdown" id="languageDropdown">
-            <div class="language-option" data-lang="en">
-                <span class="flag">🇺🇸</span>
-                <span>English</span>
-            </div>
-            <div class="language-option" data-lang="zh-TW">
-                <span class="flag">🇹🇼</span>
-                <span>繁體中文</span>
-            </div>
-            <div class="language-option" data-lang="zh-CN">
-                <span class="flag">🇨🇳</span>
-                <span>简体中文</span>
-            </div>
-        </div>
-    </div>
-
+    <!-- Mobile Menu Script -->
     <script>
-        // Mobile menu toggle functionality with hamburger animation
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const nav = document.querySelector('.nav');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const nav = document.getElementById('nav');
             
             if (mobileMenuToggle && nav) {
                 mobileMenuToggle.addEventListener('click', function() {
                     nav.classList.toggle('active');
-                    mobileMenuToggle.classList.toggle('mobile-menu-toggle--open');
-                    document.body.classList.toggle('menu-open');
-                    
-                    // Animate hamburger menu to X
-                    const spans = mobileMenuToggle.querySelectorAll('span');
-                    spans.forEach((span, index) => {
-                        if (nav.classList.contains('active')) {
-                            if (index === 0) span.style.transform = 'rotate(45deg) translate(6px, 6px)';
-                            if (index === 1) span.style.opacity = '0';
-                            if (index === 2) span.style.transform = 'rotate(-45deg) translate(6px, -6px)';
-                        } else {
-                            span.style.transform = '';
-                            span.style.opacity = '';
-                        }
+                    mobileMenuToggle.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = nav.querySelectorAll('.nav__link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
                     });
                 });
                 
@@ -1092,15 +1100,7 @@
                 document.addEventListener('click', function(event) {
                     if (!nav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
                         nav.classList.remove('active');
-                        mobileMenuToggle.classList.remove('mobile-menu-toggle--open');
-                        document.body.classList.remove('menu-open');
-                        
-                        // Reset hamburger animation
-                        const spans = mobileMenuToggle.querySelectorAll('span');
-                        spans.forEach((span) => {
-                            span.style.transform = '';
-                            span.style.opacity = '';
-                        });
+                        mobileMenuToggle.classList.remove('active');
                     }
                 });
             }

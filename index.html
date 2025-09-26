@@ -533,41 +533,51 @@
                 <div class="blog-grid">
                     <article class="blog-post">
                         <div class="blog-post__meta">
-                            <span class="blog-post__category" data-translate="blog.categories.aiStrategy">AI Strategy</span>
-                            <time class="blog-post__date">September 17, 2025</time>
+                            <span class="blog-post__category" data-translate="blog.categories.technical">Technical Insights</span>
+                            <time class="blog-post__date" data-translate="blog.reproducibility.date">September 25, 2025</time>
                         </div>
-                        <h3 class="blog-post__title" data-translate="blog.posts.transformation.title">AI Adoption or Organization Transformation?</h3>
-                        <p class="blog-post__excerpt" data-translate="blog.posts.transformation.excerpt">MIT research reveals 95% of organizations investing in generative AI achieve zero ROI, creating the GenAI Divide. Learn how to transform your organization to cross this divide and achieve sustainable AI success.</p>
+                        <h3 class="blog-post__title" data-translate="blog.reproducibility.title">Strategies for Reproducibility in LLM Inference</h3>
+                        <p class="blog-post__excerpt" data-translate="blog.reproducibility.excerpt">Expert analysis on achieving consistent and reliable outputs from Large Language Models through advanced reproducibility techniques and enterprise-grade infrastructure.</p>
+                        <a href="blog/Blog Post 5/llm-reproducibility-strategies-zokforce-blog.html" class="blog-post__link" data-translate="blog.readMore">Read More →</a>
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-post__meta">
+                            <span class="blog-post__category" data-translate="blog.categories.aiStrategy">AI Strategy</span>
+                            <time class="blog-post__date" data-translate="blog.strategic.date">September 17, 2025</time>
+                        </div>
+                        <h3 class="blog-post__title" data-translate="blog.strategic.title">AI Adoption or Organization Transformation?</h3>
+                        <p class="blog-post__excerpt" data-translate="blog.strategic.subtitle">MIT research reveals 95% of organizations investing in generative AI achieve zero ROI, creating the GenAI Divide. Learn how to transform your organization to cross this divide and achieve sustainable AI success.</p>
                         <a href="blog/Blog Post 4/ai-transformation-strategic-imperative-zokforce.html" class="blog-post__link" data-translate="blog.readMore">Read More →</a>
                     </article>
 
                     <article class="blog-post">
                         <div class="blog-post__meta">
                             <span class="blog-post__category" data-translate="blog.categories.technical">Technical Insights</span>
-                            <time class="blog-post__date">September 12, 2025</time>
+                            <time class="blog-post__date" data-translate="blog.llm.date">September 12, 2025</time>
                         </div>
-                        <h3 class="blog-post__title" data-translate="blog.posts.llm.title">Implementing Large Language Models: A Practical Guide</h3>
-                        <p class="blog-post__excerpt" data-translate="blog.posts.llm.excerpt">Step-by-step approach to successfully integrating LLMs into your business processes for maximum impact and sustainable competitive advantage.</p>
+                        <h3 class="blog-post__title" data-translate="blog.llm.title">Implementing Large Language Models: A Practical Guide</h3>
+                        <p class="blog-post__excerpt" data-translate="blog.llm.subtitle">Step-by-step approach to successfully integrating LLMs into your business processes for maximum impact and sustainable competitive advantage.</p>
                         <a href="blog/Blog Post 2/implementing-llms-practical-guide-zokforce.html" class="blog-post__link" data-translate="blog.readMore">Read More →</a>
                     </article>
 
                     <article class="blog-post">
                         <div class="blog-post__meta">
                             <span class="blog-post__category" data-translate="blog.categories.ethics">AI Ethics</span>
-                            <time class="blog-post__date">May 20, 2025</time>
+                            <time class="blog-post__date" data-translate="blog.ethics.date">May 20, 2025</time>
                         </div>
-                        <h3 class="blog-post__title" data-translate="blog.posts.ethics.title">Ethical AI: Building Trust in Automated Systems</h3>
-                        <p class="blog-post__excerpt" data-translate="blog.posts.ethics.excerpt">Best practices for developing responsible AI solutions that prioritize transparency, fairness, and user trust in an increasingly automated world.</p>
+                        <h3 class="blog-post__title" data-translate="blog.ethics.title">Ethical AI: Building Trust in Automated Systems</h3>
+                        <p class="blog-post__excerpt" data-translate="blog.ethics.excerpt">Best practices for developing responsible AI solutions that prioritize transparency, fairness, and user trust in an increasingly automated world.</p>
                         <a href="blog/Blog Post 3/ethical-ai-building-trust-zokforce-blog.html" class="blog-post__link" data-translate="blog.readMore">Read More →</a>
                     </article>
 
                     <article class="blog-post">
                         <div class="blog-post__meta">
                             <span class="blog-post__category" data-translate="blog.categories.aiStrategy">AI Strategy</span>
-                            <time class="blog-post__date">March 15, 2025</time>
+                            <time class="blog-post__date" data-translate="blog.future.date">March 15, 2025</time>
                         </div>
-                        <h3 class="blog-post__title" data-translate="blog.posts.future.title">The Future of AI in Business Transformation</h3>
-                        <p class="blog-post__excerpt" data-translate="blog.posts.future.excerpt">Exploring how artificial intelligence is reshaping industries and creating new opportunities for growth and innovation across diverse business sectors.</p>
+                        <h3 class="blog-post__title" data-translate="blog.future.title">The Future of AI in Business Transformation</h3>
+                        <p class="blog-post__excerpt" data-translate="blog.future.excerpt">Exploring how artificial intelligence is reshaping industries and creating new opportunities for growth and innovation across diverse business sectors.</p>
                         <a href="blog/Blog Post 1/ai-transformation-blog-zokforce-style.html" class="blog-post__link" data-translate="blog.readMore">Read More →</a>
                     </article>
                 </div>
@@ -841,5 +851,44 @@
         });
     </script>
     <script src="app.js"></script>
+    
+    <!-- Debug Translation Initialization -->
+    <script>
+        // Enhanced translation system initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Translation Debug - DOM loaded');
+            
+            // Wait for all scripts to load
+            setTimeout(function() {
+                console.log('Translation Debug - LanguageManager exists:', typeof window.languageManager !== 'undefined');
+                console.log('Translation Debug - changeLanguage exists:', typeof window.changeLanguage !== 'undefined');
+                console.log('Translation Debug - LanguageManager class exists:', typeof LanguageManager !== 'undefined');
+                
+                // Initialize LanguageManager if it doesn't exist
+                if (!window.languageManager && typeof LanguageManager !== 'undefined') {
+                    console.log('Translation Debug - Initializing LanguageManager');
+                    window.languageManager = new LanguageManager();
+                    window.languageManager.init();
+                }
+                
+                if (window.languageManager) {
+                    console.log('Translation Debug - Current language:', window.languageManager.currentLanguage);
+                    console.log('Translation Debug - blog.title translation:', window.languageManager.translate('blog.title'));
+                    
+                    // Force update translatable elements
+                    console.log('Translation Debug - Updating translatable elements');
+                    window.languageManager.updateTranslatableElements();
+                    
+                    // Check if the element was updated
+                    const blogTitleElement = document.querySelector('[data-translate="blog.title"]');
+                    if (blogTitleElement) {
+                        console.log('Translation Debug - Blog title element text after update:', blogTitleElement.innerHTML);
+                    }
+                } else {
+                    console.error('Translation Debug - LanguageManager still not available');
+                }
+            }, 500);
+        });
+    </script>
 </body>
 </html>

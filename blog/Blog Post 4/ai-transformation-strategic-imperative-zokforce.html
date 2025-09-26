@@ -16,6 +16,9 @@
       gtag('config', 'G-XKPWWSN9VT');
     </script>
     
+    <!-- Translation System -->
+    <script src="../../translations.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../style.css">
@@ -127,11 +130,23 @@
         }
         
         .blog-meta {
+            text-align: center;
+            margin-top: var(--space-24);
+        }
+        
+        .blog-info {
             display: flex;
             justify-content: center;
             gap: var(--space-32);
             font-size: var(--font-size-md);
             opacity: 0.8;
+            flex-wrap: wrap;
+        }
+        
+        .blog-info span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
         }
         
         .blog-content {
@@ -424,8 +439,13 @@
             }
             
             .blog-meta {
+                text-align: center;
+            }
+            
+            .blog-info {
                 flex-direction: column;
                 gap: var(--space-8);
+                align-items: center;
             }
             
             .implementation-phases {
@@ -453,34 +473,34 @@
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- Fixed Header -->
     <header class="header">
         <div class="container">
             <div class="header__content">
                 <div class="header__logo">
-                    <a href="../../index.html">
-                        <h1 class="logo">ZOKFORCE</h1>
-                        <span class="tagline">Lead in Tech, Deliver Excellence</span>
-                    </a>
+                    <h1 class="logo">ZOKFORCE</h1>
+                    <span class="tagline" data-translate="header.tagline">Lead in Tech, Deliver Excellence</span>
                 </div>
-                <nav class="nav">
+                
+                <nav class="nav" id="nav">
                     <ul class="nav__list">
-                        <li><a href="../../index.html#home" class="nav__link">Home</a></li>
-                        <li><a href="../../index.html#services" class="nav__link">Services</a></li>
-                        <li><a href="../../index.html#about" class="nav__link">About</a></li>
-                        <li><a href="../../index.html#case-studies" class="nav__link">Case Studies</a></li>
-                        <li><a href="../../index.html#blog" class="nav__link active">Insights</a></li>
-                        <li><a href="../../index.html#contact" class="nav__link">Contact</a></li>
+                        <li><a href="../../index.html#home" class="nav__link" data-translate="nav.home">Home</a></li>
+                        <li><a href="../../index.html#about" class="nav__link" data-translate="nav.about">About</a></li>
+                        <li><a href="../../index.html#services" class="nav__link" data-translate="nav.services">Services</a></li>
+                        <li><a href="../../index.html#case-studies" class="nav__link" data-translate="nav.caseStudies">Case Studies</a></li>
+                        <li><a href="../../index.html#blog" class="nav__link active" data-translate="nav.insights">Insights</a></li>
+                        <li><a href="../../index.html#contact" class="nav__link" data-translate="nav.contact">Contact</a></li>
                     </ul>
                 </nav>
+
                 <div class="header__actions">
-                    <button class="btn btn--primary cta-btn" onclick="window.location.href='../../index.html#contact'">Free Consultation</button>
+                    <button class="btn btn--primary cta-btn" onclick="window.location.href='../../index.html#contact'" data-translate="header.freeConsultation">Free Consultation</button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
-                <button class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
     </header>
@@ -489,12 +509,12 @@
     <section class="blog-header">
         <div class="container">
             <div class="blog-hero">
-                <h1 class="blog-title">AI Adoption or Organization Transformation?</h1>
-                <p class="blog-subtitle">The Strategic Imperative for Enterprise Success</p>
+                <h1 class="blog-title" data-translate="blog.strategic.title">AI Adoption or Organization Transformation?</h1>
+                <p class="blog-subtitle" data-translate="blog.strategic.subtitle">The Strategic Imperative for Enterprise Success</p>
                 <div class="blog-meta">
-                    <span><i class="fas fa-user"></i> ZOKFORCE Research Team</span>
-                    <span><i class="fas fa-calendar"></i> September 17, 2025</span>
-                    <span><i class="fas fa-clock"></i> 22 min read</span>
+                    <span><i class="fas fa-user"></i> <span data-translate="blog.strategic.author">ZOKFORCE Research Team</span></span>
+                    <span><i class="fas fa-calendar"></i> <span data-translate="blog.strategic.date">September 17, 2025</span></span>
+                    <span><i class="fas fa-clock"></i> <span data-translate="blog.strategic.readTime">22 min read</span></span>
                 </div>
             </div>
         </div>
@@ -1029,11 +1049,11 @@
     <!-- CTA Section -->
     <section class="blog-cta">
         <div class="container">
-            <h2 class="cta-title">Ready to Cross the GenAI Divide?</h2>
-            <p class="cta-description">ZOKFORCE's expert consultants provide end-to-end AI transformation services, from strategic planning to organizational change management. Let us guide your organization through successful AI adoption and sustainable competitive advantage.</p>
+            <h2 class="cta-title" data-translate="blog_cta_title">Ready to Cross the GenAI Divide?</h2>
+            <p class="cta-description" data-translate="blog_cta_description">ZOKFORCE's expert consultants provide end-to-end AI transformation services, from strategic planning to organizational change management. Let us guide your organization through successful AI adoption and sustainable competitive advantage.</p>
             <a href="../../index.html#contact" class="btn btn--lg btn--cta">
                 <i class="fas fa-rocket"></i>
-                Schedule Your AI Transformation Consultation
+                <span data-translate="blog_cta_button">Schedule Your AI Transformation Consultation</span>
             </a>
         </div>
     </section>
@@ -1044,42 +1064,55 @@
             <div class="footer__content">
                 <div class="footer__brand">
                     <h2 class="logo">ZOKFORCE</h2>
-                    <p>Digital excellence, driven by AI for all</p>
+                    <p data-translate="footer.tagline">Digital excellence, driven by AI for all</p>
                 </div>
                 <div class="footer__links">
                     <div class="footer__section">
-                        <h4>Services</h4>
+                        <h4 data-translate="footer.services.title">Services</h4>
                         <ul>
-                            <li><a href="../../index.html#services">AI Strategy & Consulting</a></li>
-                            <li><a href="../../index.html#services">LLM Integration</a></li>
-                            <li><a href="../../index.html#services">Smart Chatbots</a></li>
-                            <li><a href="../../index.html#services">Process Automation</a></li>
-                            <li><a href="../../index.html#services">Data Analytics</a></li>
-                            <li><a href="../../index.html#services">Digital Twin Solutions</a></li>
+                            <li><a href="../../index.html#services" data-translate="footer.services.strategy">AI Strategy & Consulting</a></li>
+                            <li><a href="../../index.html#services" data-translate="footer.services.llm">LLM Integration</a></li>
+                            <li><a href="../../index.html#services" data-translate="footer.services.chatbots">Smart Chatbots</a></li>
+                            <li><a href="../../index.html#services" data-translate="footer.services.automation">Process Automation</a></li>
+                            <li><a href="../../index.html#services" data-translate="footer.services.analytics">Data Analytics</a></li>
+                            <li><a href="../../index.html#services" data-translate="footer.services.digitalTwin">Digital Twin Solutions</a></li>
                         </ul>
                     </div>
                     <div class="footer__section">
-                        <h4>Company</h4>
+                        <h4 data-translate="footer.company.title">Company</h4>
                         <ul>
-                            <li><a href="../../index.html#about">About Us</a></li>
-                            <li><a href="../../index.html#case-studies">Case Studies</a></li>
-                            <li><a href="../../index.html#blog">Insights</a></li>
-                            <li><a href="../../index.html#contact">Contact</a></li>
+                            <li><a href="../../index.html#about" data-translate="footer.company.about">About Us</a></li>
+                            <li><a href="../../index.html#case-studies" data-translate="footer.company.caseStudies">Case Studies</a></li>
+                            <li><a href="../../index.html#blog" data-translate="footer.company.insights">Insights</a></li>
+                            <li><a href="../../index.html#contact" data-translate="footer.company.contact">Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer__section">
-                        <h4>Connect</h4>
+                        <h4 data-translate="footer.connect.title">Connect</h4>
                         <ul>
-                            <li><a href="mailto:service@zokforce.com">Email</a></li>
-                            <li><a href="tel:+1-437-808-2160">Phone</a></li>
-                            <li><a href="https://www.linkedin.com/company/zokforce/">LinkedIn</a></li>
-                            <li><a href="#Twitter">Twitter</a></li>
+                            <li><a href="mailto:service@zokforce.com" data-translate="footer.connect.email">Email</a></li>
+                            <li><a href="tel:+1-437-808-2160" data-translate="footer.connect.phone">Phone</a></li>
+                            <li><a href="https://www.linkedin.com/company/zokforce/" data-translate="footer.connect.linkedin">LinkedIn</a></li>
+                            <li><a href="#Twitter" data-translate="footer.connect.twitter">Twitter</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <div class="footer__bottom-content">
+                    <p data-translate="footer.copyright">&copy; 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service</p>
+                    <div class="language-selector">
+                        <button onclick="changeLanguage('en')" class="lang-btn active" data-lang="en">
+                            <span data-translate="languageSelector.english">English</span>
+                        </button>
+                        <button onclick="changeLanguage('zh-TW')" class="lang-btn" data-lang="zh-TW">
+                            <span data-translate="languageSelector.traditionalChinese">繁體中文</span>
+                        </button>
+                        <button onclick="changeLanguage('zh-CN')" class="lang-btn" data-lang="zh-CN">
+                            <span data-translate="languageSelector.simplifiedChinese">简体中文</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
