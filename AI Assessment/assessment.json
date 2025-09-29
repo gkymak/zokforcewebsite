@@ -1,0 +1,1803 @@
+[
+  {
+    "id": "AI-001",
+    "pillar": "Transparency & Explainability",
+    "question": "[AI Decision Documentation] Does your organization document AI decision-making processes in user-accessible formats?",
+    "example": "A loan approval AI provides detailed explanations of factors influencing decisions, including relative importance of income, credit history, and debt-to-income ratio.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No documentation exists for AI decision processes"
+      },
+      {
+        "level": 2,
+        "text": "Basic technical documentation exists but not user-friendly"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive documentation with user-friendly explanations"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic, interactive explanations tailored to different stakeholders"
+      }
+    ],
+    "regulatoryAlignment": "Regulatory Reference: EU AI Act Article 13 - Transparency obligations for high-risk AI systems"
+  },
+  {
+    "id": "AI-002",
+    "pillar": "Transparency & Explainability",
+    "question": "Explainable AI Implementation",
+    "assmentquestionitem": "Explainable AI Implementation",
+    "example": "Using LIME or SHAP to explain individual predictions in hiring algorithms, showing which resume factors most influenced the decision.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No XAI tools implemented"
+      },
+      {
+        "level": 2,
+        "text": "Basic XAI tools for some models"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive XAI implementation across all critical models"
+      },
+      {
+        "level": 4,
+        "text": "Advanced XAI with real-time explanations and stakeholder customization"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Measure function requirements for model interpretability"
+  },
+  {
+    "id": "AI-003",
+    "pillar": "Transparency & Explainability",
+    "question": "Algorithm Audit Trails",
+    "example": "Complete versioning system tracking all model updates, training data changes, and decision outcomes with timestamps and responsible parties.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic audit trail processes"
+      },
+      {
+        "level": 2,
+        "text": "Basic logging for some AI systems"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive audit trails for all production AI systems"
+      },
+      {
+        "level": 4,
+        "text": "Real-time audit capabilities with predictive anomaly detection"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 42001 - AI management system documentation requirements"
+  },
+  {
+    "id": "AI-004",
+    "pillar": "Transparency & Explainability",
+    "question": "User Communication Protocols",
+    "example": "Healthcare AI system provides patients with clear explanation of diagnostic capabilities, confidence levels, and when human physician review is required.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No communication protocols exist"
+      },
+      {
+        "level": 2,
+        "text": "Basic disclaimers or notifications about AI usage"
+      },
+      {
+        "level": 3,
+        "text": "Structured communication templates with clear capability statements"
+      },
+      {
+        "level": 4,
+        "text": "Interactive user interfaces with real-time capability feedback and education"
+      }
+    ],
+    "regulatoryAlignment": "EU AI Act Article 14 - Human oversight and transparency requirements"
+  },
+  {
+    "id": "AI-005",
+    "pillar": "Transparency & Explainability",
+    "question": "Technical Documentation Standards",
+    "example": "Model cards documenting training data, performance metrics, intended use cases, and known limitations for each deployed AI system.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No technical documentation standards"
+      },
+      {
+        "level": 2,
+        "text": "Basic code comments and ad-hoc documentation"
+      },
+      {
+        "level": 3,
+        "text": "Standardized technical documentation across all AI projects"
+      },
+      {
+        "level": 4,
+        "text": "Automated documentation generation with version control and stakeholder access"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - MAP function documentation requirements"
+  },
+  {
+    "id": "AI-006",
+    "pillar": "Transparency & Explainability",
+    "question": "Stakeholder Accessibility",
+    "example": "Financial AI system provides simplified explanations for customers, detailed technical reports for regulators, and operational dashboards for business users.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No consideration of stakeholder accessibility"
+      },
+      {
+        "level": 2,
+        "text": "Documentation available to technical teams only"
+      },
+      {
+        "level": 3,
+        "text": "Multi-level documentation for technical and non-technical stakeholders"
+      },
+      {
+        "level": 4,
+        "text": "Adaptive interfaces providing personalized explanations based on stakeholder expertise"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - Accessibility guidelines"
+  },
+  {
+    "id": "AI-007",
+    "pillar": "Transparency & Explainability",
+    "question": "Decision Rationale Provision",
+    "example": "Credit scoring system automatically provides applicants with specific factors that influenced approval/denial and suggestions for improvement.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No decision rationale provided"
+      },
+      {
+        "level": 2,
+        "text": "Generic explanations available upon request"
+      },
+      {
+        "level": 3,
+        "text": "Automatic provision of decision rationale for all significant decisions"
+      },
+      {
+        "level": 4,
+        "text": "Interactive rationale with ability to explore alternative scenarios"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Article 22 - Right to explanation for automated decision-making"
+  },
+  {
+    "id": "AI-008",
+    "pillar": "Transparency & Explainability",
+    "question": "Model Interpretability Measures",
+    "example": "Global feature importance scores, local explanation consistency metrics, and decision boundary stability measures tracked for all production models.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No interpretability metrics defined"
+      },
+      {
+        "level": 2,
+        "text": "Basic interpretability measures for select models"
+      },
+      {
+        "level": 3,
+        "text": "Standardized interpretability metrics across all models"
+      },
+      {
+        "level": 4,
+        "text": "Real-time interpretability monitoring with automated alerts for degradation"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Measure function interpretability requirements"
+  },
+  {
+    "id": "AI-009",
+    "pillar": "Transparency & Explainability",
+    "question": "Transparency Reporting",
+    "example": "Quarterly transparency reports detailing AI system performance metrics, bias assessments, and impact evaluations published on company website.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No transparency reporting"
+      },
+      {
+        "level": 2,
+        "text": "Internal reports for management only"
+      },
+      {
+        "level": 3,
+        "text": "Annual public transparency reports"
+      },
+      {
+        "level": 4,
+        "text": "Real-time transparency dashboards with interactive public access"
+      }
+    ],
+    "regulatoryAlignment": "EU AI Act Article 60 - Transparency and information provision obligations"
+  },
+  {
+    "id": "AI-010",
+    "pillar": "Transparency & Explainability",
+    "question": "External Audit Readiness",
+    "example": "Complete audit packages including model documentation, performance reports, bias assessments, and stakeholder feedback summaries maintained for all high-risk AI systems.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No audit preparation or documentation"
+      },
+      {
+        "level": 2,
+        "text": "Basic documentation available but not audit-ready"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive audit trail and documentation packages prepared"
+      },
+      {
+        "level": 4,
+        "text": "Continuous audit-readiness with automated compliance reporting"
+      }
+    ],
+    "regulatoryAlignment": "EU AI Act Article 64 - Access to data and documentation for authorities"
+  },
+  {
+    "id": "AI-011",
+    "pillar": "Transparency & Explainability",
+    "question": "Regulatory Disclosure Compliance",
+    "example": "Automated system tracking compliance with EU AI Act, financial services regulations, and industry-specific requirements with quarterly compliance reports.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No regulatory compliance tracking"
+      },
+      {
+        "level": 2,
+        "text": "Ad-hoc compliance for known regulations"
+      },
+      {
+        "level": 3,
+        "text": "Systematic compliance tracking and reporting"
+      },
+      {
+        "level": 4,
+        "text": "Automated regulatory compliance monitoring with predictive updates"
+      }
+    ],
+    "regulatoryAlignment": "Industry-specific regulatory disclosure requirements"
+  },
+  {
+    "id": "AI-012",
+    "pillar": "Transparency & Explainability",
+    "question": "Third-party Explanation Validation",
+    "example": "Independent AI ethics consultants validate explanation quality and accuracy for high-stakes decision systems quarterly.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No external validation of explanations"
+      },
+      {
+        "level": 2,
+        "text": "Occasional peer review of explanation quality"
+      },
+      {
+        "level": 3,
+        "text": "Regular third-party validation of explanation accuracy and comprehensiveness"
+      },
+      {
+        "level": 4,
+        "text": "Continuous external validation with automated quality scoring"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - Third-party validation standards"
+  },
+  {
+    "id": "AI-013",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Bias Detection and Monitoring",
+    "example": "Implementing statistical parity and equalized odds testing across gender, race, and age groups in hiring algorithms, with monthly monitoring reports.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic bias detection processes"
+      },
+      {
+        "level": 2,
+        "text": "Ad hoc bias testing during development"
+      },
+      {
+        "level": 3,
+        "text": "Regular bias monitoring with defined metrics"
+      },
+      {
+        "level": 4,
+        "text": "Continuous real-time bias detection with automated alerts"
+      }
+    ],
+    "regulatoryAlignment": "EEOC Title VII Guidance - Algorithmic bias detection requirements"
+  },
+  {
+    "id": "AI-014",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Fairness Metrics Implementation",
+    "example": "Measuring demographic parity, equality of opportunity, and predictive rate parity for credit scoring algorithms across racial and gender demographics.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No fairness metrics defined"
+      },
+      {
+        "level": 2,
+        "text": "Basic fairness metrics for some applications"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive fairness metrics across all applications"
+      },
+      {
+        "level": 4,
+        "text": "Advanced metrics with intersectional analysis and predictive fairness"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Manage function for bias risk mitigation"
+  },
+  {
+    "id": "AI-015",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Data Representativeness Assessment",
+    "example": "Analyzing facial recognition training data to ensure balanced representation across age, gender, ethnicity, and accessibility needs, with targeted data collection for underrepresented groups.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic data representativeness assessment"
+      },
+      {
+        "level": 2,
+        "text": "Basic demographic analysis of training data"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive representativeness analysis with gap identification"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic data balancing with ongoing representativeness optimization"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - Data representativeness standards"
+  },
+  {
+    "id": "AI-016",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Algorithmic Impact Evaluation",
+    "example": "Pre-deployment impact assessment for employment screening AI evaluating potential disparate impact on protected classes with ongoing post-deployment monitoring.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No algorithmic impact assessments conducted"
+      },
+      {
+        "level": 2,
+        "text": "Basic impact assessments for high-risk systems only"
+      },
+      {
+        "level": 3,
+        "text": "Systematic impact assessments for all AI systems affecting individuals"
+      },
+      {
+        "level": 4,
+        "text": "Continuous impact monitoring with real-time assessment updates"
+      }
+    ],
+    "regulatoryAlignment": "EU AI Act Article 27 - Fundamental rights impact assessment"
+  },
+  {
+    "id": "AI-017",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Protected Characteristics Analysis",
+    "example": "Healthcare AI system analyzed for bias across race, gender, age, disability status, religion, and their intersections with quarterly bias reports.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No protected characteristics analysis"
+      },
+      {
+        "level": 2,
+        "text": "Analysis limited to obvious protected classes (race, gender)"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive analysis across all legally protected characteristics"
+      },
+      {
+        "level": 4,
+        "text": "Intersectional analysis with automated monitoring across characteristic combinations"
+      }
+    ],
+    "regulatoryAlignment": "EEOC Guidelines - Protected class analysis requirements"
+  },
+  {
+    "id": "AI-018",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Intersectional Bias Testing",
+    "example": "Testing loan approval algorithms for bias across race-gender intersections, finding disparate treatment of minority women requiring targeted algorithm adjustment.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No intersectional bias testing"
+      },
+      {
+        "level": 2,
+        "text": "Basic testing for single-characteristic bias only"
+      },
+      {
+        "level": 3,
+        "text": "Systematic intersectional testing for major characteristic combinations"
+      },
+      {
+        "level": 4,
+        "text": "Comprehensive intersectional analysis with automated detection across all combinations"
+      }
+    ],
+    "regulatoryAlignment": "Title VII Civil Rights Act - Intersectional discrimination analysis"
+  },
+  {
+    "id": "AI-019",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Fairness Constraint Implementation",
+    "example": "Multi-objective optimization incorporating both accuracy and demographic parity constraints in recruitment AI model training.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No fairness constraints in model development"
+      },
+      {
+        "level": 2,
+        "text": "Informal fairness considerations during development"
+      },
+      {
+        "level": 3,
+        "text": "Formal fairness constraints implemented in training objectives"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic fairness constraints with adaptive optimization based on ongoing monitoring"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Govern function fairness requirements"
+  },
+  {
+    "id": "AI-020",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Demographic Parity Measurement",
+    "example": "Credit approval system maintains 95% demographic parity across racial groups with monthly measurement and quarterly algorithm adjustment if thresholds exceeded.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No demographic parity measurement"
+      },
+      {
+        "level": 2,
+        "text": "Occasional parity checks for major demographic groups"
+      },
+      {
+        "level": 3,
+        "text": "Regular demographic parity measurement with defined thresholds"
+      },
+      {
+        "level": 4,
+        "text": "Real-time demographic parity monitoring with automated corrections"
+      }
+    ],
+    "regulatoryAlignment": "EEOC Four-Fifths Rule - Demographic parity assessment methodology"
+  },
+  {
+    "id": "AI-021",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Equal Opportunity Assessment",
+    "example": "Hiring AI system ensures equal true positive rates across demographic groups, with monthly assessment and adjustment protocols.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No equal opportunity measurement"
+      },
+      {
+        "level": 2,
+        "text": "Basic equal opportunity checks during testing"
+      },
+      {
+        "level": 3,
+        "text": "Regular equal opportunity assessment with defined metrics"
+      },
+      {
+        "level": 4,
+        "text": "Continuous equal opportunity monitoring with adaptive fairness adjustments"
+      }
+    ],
+    "regulatoryAlignment": "Title VII Civil Rights Act - Equal opportunity requirements"
+  },
+  {
+    "id": "AI-022",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Predictive Parity Evaluation",
+    "example": "Medical diagnostic AI maintains equal positive predictive value across racial groups with quarterly evaluation and model recalibration procedures.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No predictive parity evaluation"
+      },
+      {
+        "level": 2,
+        "text": "Basic accuracy comparison across major groups"
+      },
+      {
+        "level": 3,
+        "text": "Systematic predictive parity evaluation with statistical significance testing"
+      },
+      {
+        "level": 4,
+        "text": "Real-time predictive parity monitoring with automated model rebalancing"
+      }
+    ],
+    "regulatoryAlignment": "FDA AI/ML Guidance - Fairness requirements for medical devices"
+  },
+  {
+    "id": "AI-023",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Individual Fairness Testing",
+    "example": "Insurance pricing AI uses similarity metrics to ensure individuals with equivalent risk profiles receive similar premiums regardless of race or gender.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No individual fairness testing"
+      },
+      {
+        "level": 2,
+        "text": "Ad-hoc similarity testing for selected cases"
+      },
+      {
+        "level": 3,
+        "text": "Systematic individual fairness testing using defined similarity metrics"
+      },
+      {
+        "level": 4,
+        "text": "Continuous individual fairness monitoring with counterfactual analysis"
+      }
+    ],
+    "regulatoryAlignment": "Fair Housing Act - Individual treatment requirements"
+  },
+  {
+    "id": "AI-024",
+    "pillar": "Fairness & Non-Discrimination",
+    "question": "Group Fairness Optimization",
+    "example": "College admission AI optimizes for both predictive accuracy and demographic representation using multi-objective optimization techniques.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No fairness optimization"
+      },
+      {
+        "level": 2,
+        "text": "Post-hoc fairness adjustments"
+      },
+      {
+        "level": 3,
+        "text": "Integrated fairness optimization in model development"
+      },
+      {
+        "level": 4,
+        "text": "Multi-objective optimization with adaptive fairness-performance trade-offs"
+      }
+    ],
+    "regulatoryAlignment": "Constitutional Equal Protection Clause - Group fairness principles"
+  },
+  {
+    "id": "AI-025",
+    "pillar": "Privacy & Security",
+    "question": "Data Privacy Protection",
+    "example": "Customer analytics AI uses differential privacy to provide insights while mathematically guaranteeing individual privacy protection.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No privacy protection measures implemented"
+      },
+      {
+        "level": 2,
+        "text": "Basic privacy policies with minimal enforcement"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive privacy protection including anonymization and pseudonymization"
+      },
+      {
+        "level": 4,
+        "text": "Advanced privacy-preserving techniques including differential privacy and federated learning"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Articles 5, 25, 32 - Data protection by design and by default"
+  },
+  {
+    "id": "AI-026",
+    "pillar": "Privacy & Security",
+    "question": "Security Infrastructure",
+    "example": "AI model serving infrastructure uses encrypted model storage, authenticated API access, and adversarial attack detection with automated threat response.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Basic security measures with known vulnerabilities"
+      },
+      {
+        "level": 2,
+        "text": "Standard cybersecurity practices applied to AI systems"
+      },
+      {
+        "level": 3,
+        "text": "AI-specific security measures including model protection and adversarial defense"
+      },
+      {
+        "level": 4,
+        "text": "Zero-trust architecture with continuous threat monitoring and automated response"
+      }
+    ],
+    "regulatoryAlignment": "NIST Cybersecurity Framework - AI system protection controls"
+  },
+  {
+    "id": "AI-027",
+    "pillar": "Privacy & Security",
+    "question": "Access Control Implementation",
+    "example": "AI development platform requires MFA, implements role-based permissions for data scientists, engineers, and business users, with automated access reviews.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Basic username/password access with broad permissions"
+      },
+      {
+        "level": 2,
+        "text": "Role-based access control for major user categories"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive RBAC with MFA and least privilege principles"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic access control with behavioral analytics and just-in-time access provisioning"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 27001 - Access control management requirements"
+  },
+  {
+    "id": "AI-028",
+    "pillar": "Privacy & Security",
+    "question": "Data Minimization Practices",
+    "example": "Customer recommendation system automatically purges individual browsing data after 90 days while retaining anonymized aggregate patterns for model improvement.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No data minimization practices"
+      },
+      {
+        "level": 2,
+        "text": "Basic retention policies for some data types"
+      },
+      {
+        "level": 3,
+        "text": "Systematic data minimization with automated deletion after retention periods"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic data minimization with purpose limitation and automated usage tracking"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Article 5(1)(c) - Data minimization principle"
+  },
+  {
+    "id": "AI-029",
+    "pillar": "Privacy & Security",
+    "question": "Consent Management Systems",
+    "example": "Personalization AI provides users with granular consent controls over data usage with real-time preference updates affecting model behavior.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No consent management system"
+      },
+      {
+        "level": 2,
+        "text": "Basic consent capture with manual tracking"
+      },
+      {
+        "level": 3,
+        "text": "Automated consent management with granular preferences"
+      },
+      {
+        "level": 4,
+        "text": "Real-time consent enforcement with user control dashboards and automated compliance"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Article 7 - Conditions for consent"
+  },
+  {
+    "id": "AI-030",
+    "pillar": "Privacy & Security",
+    "question": "Anonymization Techniques",
+    "example": "Healthcare AI research uses k-anonymity and differential privacy to enable medical insights while preventing patient re-identification.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No anonymization techniques applied"
+      },
+      {
+        "level": 2,
+        "text": "Basic pseudonymization or data masking"
+      },
+      {
+        "level": 3,
+        "text": "Robust anonymization methods including k-anonymity or l-diversity"
+      },
+      {
+        "level": 4,
+        "text": "Advanced privacy-preserving techniques with formal privacy guarantees"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 20889 - Privacy engineering guidance"
+  },
+  {
+    "id": "AI-031",
+    "pillar": "Privacy & Security",
+    "question": "Encryption Standards",
+    "example": "Financial AI platform uses AES-256 encryption for stored data, TLS 1.3 for communications, and homomorphic encryption for secure multi-party computation.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No encryption or weak encryption methods"
+      },
+      {
+        "level": 2,
+        "text": "Basic encryption for sensitive data only"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive encryption using industry-standard algorithms (AES-256, TLS 1.3)"
+      },
+      {
+        "level": 4,
+        "text": "End-to-end encryption with homomorphic encryption for secure computation"
+      }
+    ],
+    "regulatoryAlignment": "NIST SP 800-175B - Cryptographic standards"
+  },
+  {
+    "id": "AI-032",
+    "pillar": "Privacy & Security",
+    "question": "Data Retention Policies",
+    "example": "AI training data automatically deleted after model deployment, with audit logs deleted after 7 years, and personal data purged per user retention preferences.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No formal retention policies"
+      },
+      {
+        "level": 2,
+        "text": "Written policies with manual enforcement"
+      },
+      {
+        "level": 3,
+        "text": "Automated retention policy enforcement with regular audits"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic retention policies adapted to use case requirements with automated compliance monitoring"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Article 5(1)(e) - Storage limitation principle"
+  },
+  {
+    "id": "AI-033",
+    "pillar": "Privacy & Security",
+    "question": "Third-party Data Sharing Controls",
+    "example": "AI research collaborations use secure multi-party computation to enable joint model development without sharing raw data between organizations.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No controls on third-party data sharing"
+      },
+      {
+        "level": 2,
+        "text": "Basic contractual agreements for major data sharing"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive data sharing agreements with technical controls and monitoring"
+      },
+      {
+        "level": 4,
+        "text": "Automated data sharing governance with real-time monitoring and breach detection"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Article 28 - Processor relationship requirements"
+  },
+  {
+    "id": "AI-034",
+    "pillar": "Privacy & Security",
+    "question": "Privacy Impact Assessments",
+    "example": "Marketing AI system undergoes quarterly PIA reviews evaluating privacy risks, mitigation measures, and compliance with updated data protection regulations.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No privacy impact assessments conducted"
+      },
+      {
+        "level": 2,
+        "text": "Basic PIAs for high-risk systems only"
+      },
+      {
+        "level": 3,
+        "text": "Systematic PIAs integrated into AI development lifecycle"
+      },
+      {
+        "level": 4,
+        "text": "Continuous privacy impact monitoring with automated risk assessment updates"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Article 35 - Data protection impact assessment"
+  },
+  {
+    "id": "AI-035",
+    "pillar": "Privacy & Security",
+    "question": "Cross-border Data Transfer Compliance",
+    "example": "Global AI platform implements data residency controls ensuring EU citizen data remains in EU, with automated transfer impact assessments for cross-border processing.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No consideration of cross-border transfer requirements"
+      },
+      {
+        "level": 2,
+        "text": "Basic compliance for major international transfers"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive transfer impact assessments with appropriate safeguards"
+      },
+      {
+        "level": 4,
+        "text": "Automated data localization and transfer controls with real-time compliance monitoring"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Chapter V - International data transfers"
+  },
+  {
+    "id": "AI-036",
+    "pillar": "Privacy & Security",
+    "question": "User Rights Management",
+    "example": "AI platform provides users with real-time dashboard to view personal data usage, request corrections, download data exports, and request deletion with immediate effect.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No user rights management capabilities"
+      },
+      {
+        "level": 2,
+        "text": "Manual processing of user rights requests"
+      },
+      {
+        "level": 3,
+        "text": "Automated user rights request processing with defined response timeframes"
+      },
+      {
+        "level": 4,
+        "text": "Real-time user rights enforcement with self-service portals and automated compliance"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Articles 15-22 - Data subject rights"
+  },
+  {
+    "id": "AI-037",
+    "pillar": "Accountability & Governance",
+    "question": "Governance Structure Establishment",
+    "example": "AI Ethics Board chaired by Chief Ethics Officer with representatives from legal, engineering, product, and external ethics experts meeting monthly with public reporting.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No formal AI governance structure"
+      },
+      {
+        "level": 2,
+        "text": "Informal AI steering committee or working group"
+      },
+      {
+        "level": 3,
+        "text": "Formal AI governance board with defined charter and responsibilities"
+      },
+      {
+        "level": 4,
+        "text": "Multi-level governance with independent ethics council and public accountability"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Govern function organizational requirements"
+  },
+  {
+    "id": "AI-038",
+    "pillar": "Accountability & Governance",
+    "question": "Role and Responsibility Definition",
+    "example": "RACI matrix defines data scientist responsibility for bias testing, legal counsel accountability for compliance review, and product manager authority for deployment decisions.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Unclear or overlapping responsibilities"
+      },
+      {
+        "level": 2,
+        "text": "Basic role definitions for key positions"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive RACI matrix covering all AI lifecycle stages"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic role assignment with automated accountability tracking and performance measurement"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 42001 - AI management system role requirements"
+  },
+  {
+    "id": "AI-039",
+    "pillar": "Accountability & Governance",
+    "question": "Decision Authority Mapping",
+    "example": "Decision authority matrix specifying VP-level approval for high-risk AI deployments, manager approval for model updates, and automated approval for low-risk changes.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No clear decision authority mapping"
+      },
+      {
+        "level": 2,
+        "text": "Authority defined for major deployment decisions only"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive authority mapping across all AI decisions"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic authority delegation with automated escalation and audit trails"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Govern function decision-making requirements"
+  },
+  {
+    "id": "AI-040",
+    "pillar": "Accountability & Governance",
+    "question": "Escalation Procedures",
+    "example": "AI incident escalation procedure automatically notifies legal counsel within 1 hour for bias complaints and C-suite within 4 hours for regulatory violations.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No formal escalation procedures"
+      },
+      {
+        "level": 2,
+        "text": "Basic incident reporting with informal escalation"
+      },
+      {
+        "level": 3,
+        "text": "Documented escalation procedures with defined triggers and timelines"
+      },
+      {
+        "level": 4,
+        "text": "Automated escalation with real-time notification and tracking systems"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 27035 - Information security incident management"
+  },
+  {
+    "id": "AI-041",
+    "pillar": "Accountability & Governance",
+    "question": "Risk Management Integration",
+    "example": "AI risk scores feed into enterprise risk management system with quarterly board reporting on AI-related operational, compliance, and reputational risks.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "AI risks managed separately from enterprise risk"
+      },
+      {
+        "level": 2,
+        "text": "Ad-hoc integration with enterprise risk processes"
+      },
+      {
+        "level": 3,
+        "text": "Systematic AI risk integration with regular ERM reporting"
+      },
+      {
+        "level": 4,
+        "text": "Real-time AI risk monitoring with automated ERM dashboard integration"
+      }
+    ],
+    "regulatoryAlignment": "COSO Enterprise Risk Management - Integrated risk framework"
+  },
+  {
+    "id": "AI-042",
+    "pillar": "Accountability & Governance",
+    "question": "Performance Monitoring Systems",
+    "example": "AI governance dashboard tracks model accuracy, bias metrics, compliance violations, user satisfaction, and business KPIs with automated alerting.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Basic performance monitoring for business metrics only"
+      },
+      {
+        "level": 2,
+        "text": "Technical performance monitoring with some ethical metrics"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive monitoring including ethics, compliance, and business performance"
+      },
+      {
+        "level": 4,
+        "text": "Real-time integrated monitoring with predictive performance analytics"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Measure function monitoring requirements"
+  },
+  {
+    "id": "AI-043",
+    "pillar": "Accountability & Governance",
+    "question": "Incident Response Protocols",
+    "example": "AI incident response team activated within 30 minutes of bias alert with defined procedures for investigation, remediation, and stakeholder communication.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No AI-specific incident response protocols"
+      },
+      {
+        "level": 2,
+        "text": "General incident response adapted for AI issues"
+      },
+      {
+        "level": 3,
+        "text": "Dedicated AI incident response procedures with specialized teams"
+      },
+      {
+        "level": 4,
+        "text": "Automated incident detection with AI-specific response workflows"
+      }
+    ],
+    "regulatoryAlignment": "NIST SP 800-61 - Computer security incident handling guide"
+  },
+  {
+    "id": "AI-044",
+    "pillar": "Accountability & Governance",
+    "question": "Compliance Tracking",
+    "example": "Compliance management system tracks adherence to EU AI Act, GDPR, industry standards, and internal policies with monthly compliance scorecards.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic compliance tracking"
+      },
+      {
+        "level": 2,
+        "text": "Manual compliance checklist reviews"
+      },
+      {
+        "level": 3,
+        "text": "Automated compliance monitoring with regular reporting"
+      },
+      {
+        "level": 4,
+        "text": "Real-time compliance dashboards with predictive violation alerts"
+      }
+    ],
+    "regulatoryAlignment": "Industry-specific regulatory compliance requirements"
+  },
+  {
+    "id": "AI-045",
+    "pillar": "Accountability & Governance",
+    "question": "Executive Oversight",
+    "example": "C-suite receives monthly AI governance reports including ethics metrics, compliance status, risk assessments, and stakeholder feedback.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No executive oversight of AI ethics"
+      },
+      {
+        "level": 2,
+        "text": "Annual executive review of AI initiatives"
+      },
+      {
+        "level": 3,
+        "text": "Quarterly executive oversight with formal reporting"
+      },
+      {
+        "level": 4,
+        "text": "Real-time executive dashboards with monthly governance meetings"
+      }
+    ],
+    "regulatoryAlignment": "Corporate governance best practices - Executive oversight"
+  },
+  {
+    "id": "AI-046",
+    "pillar": "Accountability & Governance",
+    "question": "Board-level Reporting",
+    "example": "Board of Directors receives quarterly AI governance report including risk assessment, compliance status, incident summary, and strategic recommendations.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No board reporting on AI matters"
+      },
+      {
+        "level": 2,
+        "text": "Annual board presentation on AI strategy"
+      },
+      {
+        "level": 3,
+        "text": "Quarterly board reports on AI governance and performance"
+      },
+      {
+        "level": 4,
+        "text": "Real-time board access to AI governance dashboards with formal oversight"
+      }
+    ],
+    "regulatoryAlignment": "NYSE/NASDAQ Corporate Governance Standards - Board oversight"
+  },
+  {
+    "id": "AI-047",
+    "pillar": "Accountability & Governance",
+    "question": "External Audit Coordination",
+    "example": "Annual external audit by certified AI ethics auditor covering bias assessment, privacy compliance, and governance effectiveness with public report.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No external AI audits conducted"
+      },
+      {
+        "level": 2,
+        "text": "Occasional external review of AI practices"
+      },
+      {
+        "level": 3,
+        "text": "Annual comprehensive external AI audits"
+      },
+      {
+        "level": 4,
+        "text": "Continuous third-party monitoring with real-time assurance reporting"
+      }
+    ],
+    "regulatoryAlignment": "SOC 2 Type II - Audit requirements for automated systems"
+  },
+  {
+    "id": "AI-048",
+    "pillar": "Accountability & Governance",
+    "question": "Stakeholder Accountability Measures",
+    "example": "AI ethics performance metrics integrated into employee performance reviews with specific objectives for data scientists, product managers, and executives.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No stakeholder accountability measures"
+      },
+      {
+        "level": 2,
+        "text": "Basic performance expectations for key roles"
+      },
+      {
+        "level": 3,
+        "text": "Formal accountability metrics with regular performance reviews"
+      },
+      {
+        "level": 4,
+        "text": "Automated accountability tracking with performance-based incentives"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - Stakeholder accountability frameworks"
+  },
+  {
+    "id": "AI-049",
+    "pillar": "Reliability & Safety",
+    "question": "Model Validation Procedures",
+    "example": "Medical AI model undergoes FDA-compliant validation including clinical trials, statistical performance validation, and ongoing post-market surveillance.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Basic unit testing with minimal validation"
+      },
+      {
+        "level": 2,
+        "text": "Standard statistical validation with cross-validation"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive validation including out-of-sample testing and stress testing"
+      },
+      {
+        "level": 4,
+        "text": "Continuous validation with real-time performance monitoring and automatic revalidation"
+      }
+    ],
+    "regulatoryAlignment": "FDA AI/ML Guidance - Software as Medical Device validation"
+  },
+  {
+    "id": "AI-050",
+    "pillar": "Reliability & Safety",
+    "question": "Performance Monitoring",
+    "example": "Financial trading AI continuously monitors prediction accuracy, market regime changes, and model performance with automatic model retraining triggers.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Manual periodic performance checks"
+      },
+      {
+        "level": 2,
+        "text": "Automated performance monitoring with basic alerting"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive performance tracking with drift detection"
+      },
+      {
+        "level": 4,
+        "text": "Real-time performance monitoring with predictive degradation alerts and auto-remediation"
+      }
+    ],
+    "regulatoryAlignment": "Financial services model risk management guidance"
+  },
+  {
+    "id": "AI-051",
+    "pillar": "Reliability & Safety",
+    "question": "Safety Testing Protocols",
+    "example": "Autonomous vehicle AI undergoes millions of simulated safety scenarios including adverse weather, unusual objects, and system failures before deployment.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic safety testing"
+      },
+      {
+        "level": 2,
+        "text": "Basic edge case testing during development"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive safety testing protocols with defined scenarios"
+      },
+      {
+        "level": 4,
+        "text": "Continuous safety testing with automated scenario generation and validation"
+      }
+    ],
+    "regulatoryAlignment": "ISO 26262 - Functional safety for automotive systems"
+  },
+  {
+    "id": "AI-052",
+    "pillar": "Reliability & Safety",
+    "question": "Robustness Assessment",
+    "example": "Image classification AI tested against adversarial examples, noise injection, and distribution shifts with certified robustness guarantees.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No robustness testing"
+      },
+      {
+        "level": 2,
+        "text": "Basic adversarial testing during development"
+      },
+      {
+        "level": 3,
+        "text": "Systematic robustness assessment with defined threat models"
+      },
+      {
+        "level": 4,
+        "text": "Continuous robustness monitoring with adaptive defense mechanisms"
+      }
+    ],
+    "regulatoryAlignment": "NIST AI RMF - Measure function robustness requirements"
+  },
+  {
+    "id": "AI-053",
+    "pillar": "Reliability & Safety",
+    "question": "Edge Case Handling",
+    "example": "Natural language AI maintains database of unusual inputs with defined fallback responses and human escalation procedures for novel edge cases.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic edge case handling"
+      },
+      {
+        "level": 2,
+        "text": "Ad-hoc identification and handling of obvious edge cases"
+      },
+      {
+        "level": 3,
+        "text": "Systematic edge case discovery with documented handling procedures"
+      },
+      {
+        "level": 4,
+        "text": "Automated edge case detection with dynamic handling and continuous learning"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - Safety management system requirements"
+  },
+  {
+    "id": "AI-054",
+    "pillar": "Reliability & Safety",
+    "question": "Failure Mode Analysis",
+    "example": "Healthcare diagnostic AI undergoes FMEA identifying false positive/negative modes, system failures, and data quality issues with mitigation strategies.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic failure mode analysis"
+      },
+      {
+        "level": 2,
+        "text": "Basic failure mode identification for critical components"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive FMEA with risk prioritization and mitigation plans"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic failure mode analysis with real-time risk assessment updates"
+      }
+    ],
+    "regulatoryAlignment": "IEC 60812 - Failure modes and effects analysis"
+  },
+  {
+    "id": "AI-055",
+    "pillar": "Reliability & Safety",
+    "question": "Quality Assurance Processes",
+    "example": "AI development pipeline includes automated unit tests, integration tests, bias tests, and performance validation with mandatory peer code review.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Basic code review with minimal QA processes"
+      },
+      {
+        "level": 2,
+        "text": "Standard software QA practices applied to AI development"
+      },
+      {
+        "level": 3,
+        "text": "AI-specific QA processes including model testing and validation"
+      },
+      {
+        "level": 4,
+        "text": "Automated QA with continuous integration and intelligent test generation"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 25010 - Systems and software quality requirements"
+  },
+  {
+    "id": "AI-056",
+    "pillar": "Reliability & Safety",
+    "question": "Stress Testing Implementation",
+    "example": "Recommendation system stress tested with 10x normal user load, database failures, and memory constraints to ensure graceful degradation.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No stress testing procedures"
+      },
+      {
+        "level": 2,
+        "text": "Basic load testing for expected usage patterns"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive stress testing including peak load and resource limitation scenarios"
+      },
+      {
+        "level": 4,
+        "text": "Continuous stress testing with automated capacity planning and scaling"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - System stress testing requirements"
+  },
+  {
+    "id": "AI-057",
+    "pillar": "Reliability & Safety",
+    "question": "Backup System Procedures",
+    "example": "AI production environment maintains automated daily backups of models, training data, and configurations with 4-hour recovery time objective.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic backup procedures"
+      },
+      {
+        "level": 2,
+        "text": "Basic data backup with manual recovery procedures"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive backup including models, data, and configurations with tested recovery"
+      },
+      {
+        "level": 4,
+        "text": "Automated backup and recovery with geo-redundancy and continuous data protection"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 27031 - Business continuity guidelines"
+  },
+  {
+    "id": "AI-058",
+    "pillar": "Reliability & Safety",
+    "question": "Disaster Recovery Planning",
+    "example": "AI platform maintains hot standby in secondary region with automated failover capability tested quarterly, achieving 1-hour recovery time objective.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No disaster recovery planning"
+      },
+      {
+        "level": 2,
+        "text": "Basic recovery procedures documented but not tested"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive disaster recovery plan with annual testing"
+      },
+      {
+        "level": 4,
+        "text": "Automated disaster recovery with continuous testing and geo-redundant failover"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 22301 - Business continuity management"
+  },
+  {
+    "id": "AI-059",
+    "pillar": "Reliability & Safety",
+    "question": "Service Level Agreement Compliance",
+    "example": "Customer-facing AI service maintains 99.9% availability SLA, <200ms response time SLA, and >95% accuracy SLA with real-time monitoring and monthly reporting.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No defined SLAs for AI systems"
+      },
+      {
+        "level": 2,
+        "text": "Basic availability SLAs with manual monitoring"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive SLAs covering availability, performance, and accuracy with automated monitoring"
+      },
+      {
+        "level": 4,
+        "text": "Dynamic SLAs with predictive compliance management and automatic compensation"
+      }
+    ],
+    "regulatoryAlignment": "ITIL Service Level Management practices"
+  },
+  {
+    "id": "AI-060",
+    "pillar": "Reliability & Safety",
+    "question": "Continuous Reliability Monitoring",
+    "example": "AI infrastructure uses machine learning for anomaly detection, predictive failure analysis, and automated remediation with 99.99% system reliability.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Reactive monitoring with manual issue detection"
+      },
+      {
+        "level": 2,
+        "text": "Basic automated monitoring with threshold-based alerting"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive reliability monitoring with trend analysis and predictive alerting"
+      },
+      {
+        "level": 4,
+        "text": "AI-powered reliability monitoring with self-healing capabilities and predictive maintenance"
+      }
+    ],
+    "regulatoryAlignment": "ISO/IEC 20000 - IT service management reliability requirements"
+  },
+  {
+    "id": "AI-061",
+    "pillar": "Human Agency & Oversight",
+    "question": "Human-in-the-Loop Implementation",
+    "example": "Medical diagnosis AI requires physician review for all diagnoses with confidence below 90% and mandatory review for life-threatening conditions.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "Fully automated decisions with no human involvement"
+      },
+      {
+        "level": 2,
+        "text": "Human review available but not systematically required"
+      },
+      {
+        "level": 3,
+        "text": "Mandatory human review for all high-risk decisions"
+      },
+      {
+        "level": 4,
+        "text": "Adaptive human involvement based on confidence levels and risk assessment"
+      }
+    ],
+    "regulatoryAlignment": "EU AI Act Article 14 - Human oversight requirements"
+  },
+  {
+    "id": "AI-062",
+    "pillar": "Human Agency & Oversight",
+    "question": "Override Capability Design",
+    "example": "Autonomous trading system includes emergency stop functionality accessible to multiple operators with automatic position liquidation procedures.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No manual override capabilities"
+      },
+      {
+        "level": 2,
+        "text": "Basic override functionality with limited accessibility"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive override capabilities with clear procedures and training"
+      },
+      {
+        "level": 4,
+        "text": "Intelligent override systems with context-aware intervention and automated safety protocols"
+      }
+    ],
+    "regulatoryAlignment": "IEC 61508 - Functional safety manual intervention (where applicable)"
+  },
+  {
+    "id": "AI-063",
+    "pillar": "Human Agency & Oversight",
+    "question": "Human Review Processes",
+    "example": "Content moderation AI outputs reviewed by human moderators using statistical sampling with 100% review for borderline cases and regular quality audits.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No systematic human review processes"
+      },
+      {
+        "level": 2,
+        "text": "Ad-hoc human review for selected cases"
+      },
+      {
+        "level": 3,
+        "text": "Regular scheduled human review with defined procedures"
+      },
+      {
+        "level": 4,
+        "text": "Continuous human oversight with AI-assisted review and quality assurance"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - Human oversight requirements"
+  },
+  {
+    "id": "AI-064",
+    "pillar": "Human Agency & Oversight",
+    "question": "Escalation to Human Decision-makers",
+    "example": "Customer service AI escalates complex queries to human agents based on sentiment analysis, topic complexity, and customer value with average 30-second handoff time.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No escalation procedures to human decision-makers"
+      },
+      {
+        "level": 2,
+        "text": "Manual escalation available but not systematically triggered"
+      },
+      {
+        "level": 3,
+        "text": "Defined escalation triggers with clear procedures and responsible parties"
+      },
+      {
+        "level": 4,
+        "text": "Automated escalation with intelligent routing and real-time human expert availability"
+      }
+    ],
+    "regulatoryAlignment": "Consumer protection regulations - Human recourse requirements"
+  },
+  {
+    "id": "AI-065",
+    "pillar": "Human Agency & Oversight",
+    "question": "User Control Mechanisms",
+    "example": "Personalization AI provides users with detailed control panel showing data usage, prediction explanations, and granular preference settings with immediate effect.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No user control over AI system behavior"
+      },
+      {
+        "level": 2,
+        "text": "Basic user preferences for obvious AI features"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive user controls with transparency about AI involvement"
+      },
+      {
+        "level": 4,
+        "text": "Granular user control with real-time customization and explanation capabilities"
+      }
+    ],
+    "regulatoryAlignment": "GDPR Article 22 - Right not to be subject to automated decision-making"
+  },
+  {
+    "id": "AI-066",
+    "pillar": "Human Agency & Oversight",
+    "question": "Agency Preservation Measures",
+    "example": "Financial advisory AI includes periodic 'human-only' decision sessions, skill maintenance training for advisors, and client education about AI limitations.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No consideration of human agency preservation"
+      },
+      {
+        "level": 2,
+        "text": "Basic warnings about AI limitations and need for human judgment"
+      },
+      {
+        "level": 3,
+        "text": "Systematic measures to maintain human skills and decision-making capabilities"
+      },
+      {
+        "level": 4,
+        "text": "Active agency preservation with skill development programs and decision-making rotation"
+      }
+    ],
+    "regulatoryAlignment": "Industry best practice - Professional licensing requirements"
+  },
+  {
+    "id": "AI-067",
+    "pillar": "Human Agency & Oversight",
+    "question": "Meaningful Human Control",
+    "example": "Loan approval AI provides loan officers with detailed risk analysis, alternative scenarios, and recommendation rationale while maintaining human final decision authority.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No meaningful human control over AI decisions"
+      },
+      {
+        "level": 2,
+        "text": "Human approval required but with limited understanding of AI reasoning"
+      },
+      {
+        "level": 3,
+        "text": "Informed human control with explanation of AI recommendations and alternatives"
+      },
+      {
+        "level": 4,
+        "text": "Collaborative human-AI control with transparent reasoning and human final authority"
+      }
+    ],
+    "regulatoryAlignment": "OECD AI Principles - Human-centered AI values"
+  },
+  {
+    "id": "AI-068",
+    "pillar": "Human Agency & Oversight",
+    "question": "Expert Review Systems",
+    "example": "Medical AI system reviewed monthly by board-certified specialists in relevant medical domains with formal validation of diagnostic accuracy and safety.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No expert review of AI systems"
+      },
+      {
+        "level": 2,
+        "text": "Occasional expert consultation on AI development"
+      },
+      {
+        "level": 3,
+        "text": "Regular expert review panels with structured evaluation processes"
+      },
+      {
+        "level": 4,
+        "text": "Continuous expert oversight with real-time consultation and adaptive expertise matching"
+      }
+    ],
+    "regulatoryAlignment": "Professional standards for AI validation in regulated industries"
+  },
+  {
+    "id": "AI-069",
+    "pillar": "Human Agency & Oversight",
+    "question": "Stakeholder Participation",
+    "example": "Smart city AI initiatives include citizen advisory panels, public comment periods, and community representation on AI governance boards.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No stakeholder participation in AI governance"
+      },
+      {
+        "level": 2,
+        "text": "Basic user feedback collection on AI system performance"
+      },
+      {
+        "level": 3,
+        "text": "Regular stakeholder consultation with structured input processes"
+      },
+      {
+        "level": 4,
+        "text": "Continuous participatory governance with stakeholder representation in decision-making"
+      }
+    ],
+    "regulatoryAlignment": "Democratic governance principles - Public participation requirements"
+  },
+  {
+    "id": "AI-070",
+    "pillar": "Human Agency & Oversight",
+    "question": "Human Rights Impact Assessment",
+    "example": "Facial recognition AI undergoes HRIA evaluating impacts on privacy, freedom of assembly, and non-discrimination with ongoing monitoring and mitigation measures.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No human rights impact assessment"
+      },
+      {
+        "level": 2,
+        "text": "Basic human rights checklist for high-risk systems"
+      },
+      {
+        "level": 3,
+        "text": "Comprehensive HRIAs integrated into AI development lifecycle"
+      },
+      {
+        "level": 4,
+        "text": "Continuous human rights monitoring with real-time impact assessment and mitigation"
+      }
+    ],
+    "regulatoryAlignment": "UN Guiding Principles on Business and Human Rights"
+  },
+  {
+    "id": "AI-071",
+    "pillar": "Human Agency & Oversight",
+    "question": "Autonomy Protection Measures",
+    "example": "Social media AI includes 'choice awareness' features showing users how algorithms influence content visibility with options to view chronological or alternative algorithm feeds.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No autonomy protection measures"
+      },
+      {
+        "level": 2,
+        "text": "Basic disclosure of AI influence on user choices"
+      },
+      {
+        "level": 3,
+        "text": "Systematic autonomy protection with choice architecture safeguards"
+      },
+      {
+        "level": 4,
+        "text": "Advanced autonomy protection with personalized choice support and manipulation detection"
+      }
+    ],
+    "regulatoryAlignment": "EU Digital Services Act - Algorithmic transparency requirements"
+  },
+  {
+    "id": "AI-072",
+    "pillar": "Human Agency & Oversight",
+    "question": "Democratic Oversight Integration",
+    "example": "Municipal AI systems subject to city council oversight with public hearings, citizen review boards, and mandatory impact reporting with community input processes.",
+    "choices": [
+      {
+        "level": 1,
+        "text": "No democratic oversight of AI systems"
+      },
+      {
+        "level": 2,
+        "text": "Basic transparency reporting to regulatory authorities"
+      },
+      {
+        "level": 3,
+        "text": "Regular public reporting and consultation on AI governance"
+      },
+      {
+        "level": 4,
+        "text": "Full democratic oversight with public participation in AI policy and continuous accountability"
+      }
+    ],
+    "regulatoryAlignment": "Democratic governance principles for public sector AI"
+  }
+]

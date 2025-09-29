@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZOKFORCE AI Maturity Assessment</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <!-- Welcome / Company Info -->
+  <section id="welcome" class="page active">
+    <div class="container">
+      <!-- Unified Welcome Container -->
+      <div class="unified-welcome-container">
+        <!-- ZOKFORCE Logo Section -->
+        <div class="zokforce-logo">
+          <h1>ZOKFORCE</h1>
+          <p class="logo-subtitle">LEAD IN TECH, DELIVER EXCELLENCE</p>
+        </div>
+        
+        <!-- AI Assessment Platform Description -->
+        <div class="welcome-content">
+          <h2>AI Maturity Assessment Platform</h2>
+          <p class="welcome-description">
+            Comprehensive evaluation framework to assess your organization's AI maturity across six critical pillars. 
+            This professional assessment will provide actionable insights and recommendations for improvement.
+          </p>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="welcome-main">
+          <div class="company-info-form">
+            <h3>Company Information</h3>
+            <form id="company-form" class="company-form">
+              <div class="form-group">
+                <label for="companyName" class="form-label">Company Name *</label>
+                <input type="text" id="companyName" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="contactName" class="form-label">Contact Person *</label>
+                <input type="text" id="contactName" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Email Address *</label>
+                <input type="email" id="contactEmail" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="industry" class="form-label">Industry</label>
+                <select id="industry" class="form-control">
+                  <option value="">Select Industry</option>
+                  <option value="Financial Services">Financial Services</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Education">Education</option>
+                  <option value="Government">Government</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          
+          <div class="assessment-overview">
+            <div class="overview-stats">
+              <div class="stat-item">
+                <span class="stat-number">72</span>
+                <span class="stat-label">Questions</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Pillars</span>
+              </div>
+            </div>
+            
+            <!-- Begin Assessment Button - Separate box below stats -->
+            <div class="begin-assessment-box">
+              <button type="submit" form="company-form" class="btn btn--primary btn--lg">
+                Begin Assessment
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Footer for Welcome Page -->
+        <footer class="welcome-footer">
+          <p>© 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </footer>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Assessment Questions -->
+  <section id="assessment" class="page hidden">
+    <div class="container">
+      <div class="assessment-header">
+        <div class="welcome-header-box">
+          <div class="zokforce-logo">
+            <h1>ZOKFORCE</h1>
+            <p class="logo-subtitle">LEAD IN TECH, DELIVER EXCELLENCE</p>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="progress-text" id="progressText">Question 1 of 72 (0%)</span>
+        </div>
+      </div>
+      <div id="question-container" class="question-block"></div>
+      <div class="navigation-buttons">
+        <button id="back-btn" class="btn btn--secondary btn--lg" style="display: none;">Previous Question</button>
+        <button id="next-btn" class="btn btn--primary btn--lg">Next Question</button>
+      </div>
+      
+      <!-- Footer for Assessment Page -->
+      <footer class="assessment-footer">
+        <p>© 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Dashboard / Results -->
+  <section id="dashboard" class="page hidden">
+    <div class="container">
+      <!-- ZOKFORCE Logo Section for Results -->
+      <div class="zokforce-logo results-logo">
+        <h1>ZOKFORCE</h1>
+        <p class="logo-subtitle">LEAD IN TECH, DELIVER EXCELLENCE</p>
+      </div>
+      
+      <div class="results-header">
+        <h2>AI Maturity Assessment Results</h2>
+      </div>
+      
+      <div class="results-summary">
+        <div class="overall-score-card">
+          <div class="score-display">
+            <span class="score-label">Overall Maturity Score</span>
+            <span id="overall-score" class="score-value">0.0</span>
+            <span id="maturity-level" class="maturity-badge">Foundation Required</span>
+          </div>
+          <div class="company-info-display">
+            <div class="company-detail">
+              <strong>Company:</strong> <span id="company-name-display"></span>
+            </div>
+            <div class="company-detail">
+              <strong>Contact Person:</strong> <span id="contact-name-display"></span>
+            </div>
+            <div class="company-detail">
+              <strong>Email:</strong> <span id="company-email-display"></span>
+            </div>
+            <div class="company-detail">
+              <strong>Industry:</strong> <span id="company-industry-display"></span>
+            </div>
+            <div class="company-detail">
+              <strong>Assessment Date:</strong> <span id="assessment-date"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="results-content">
+        <div class="chart-container">
+          <h3>Pillar Performance Analysis</h3>
+          <div class="charts-grid">
+            <div class="chart-wrapper" style="position: relative; height: 400px;">
+              <canvas id="radarChart"></canvas>
+            </div>
+            <div class="chart-wrapper" style="position: relative; height: 400px;">
+              <canvas id="barChart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="pillar-breakdown">
+          <h3>Detailed Pillar Analysis</h3>
+          <div id="pillar-cards" class="pillar-cards-grid">
+            <!-- Pillar cards will be generated dynamically -->
+          </div>
+        </div>
+        
+        <div class="recommendations">
+          <h3>Priority Recommendations</h3>
+          <div id="recommendations-list" class="recommendations-list">
+            <!-- Recommendations will be generated based on scores -->
+          </div>
+        </div>
+      </div>
+      
+      <div class="export-actions">
+        <button id="download-pdf" class="btn btn--primary btn--lg">
+          Download PDF Report
+        </button>
+        <button id="restart-assessment" class="btn btn--outline btn--lg">
+          Start New Assessment
+        </button>
+        <p> </p>
+      </div>
+      
+      <!-- Footer for Results Page -->
+      <footer class="results-footer">
+        <p>© 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
