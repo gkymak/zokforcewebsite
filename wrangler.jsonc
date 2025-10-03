@@ -11,6 +11,10 @@
   "vars": {
     "ENVIRONMENT": "production"
   },
+  "routes": [
+    "zokforce.com/*",
+    "www.zokforce.com/*"
+  ],
 
   "secrets": [
     "DIFY_API_URL",
