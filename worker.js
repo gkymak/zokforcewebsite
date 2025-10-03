@@ -17,14 +17,26 @@ export default {
     }
 
     const url = new URL(request.url);
-    
+
+    // Normalize path: collapse multiple spaces to a single space (e.g., "AI  Assessment" -> "AI Assessment")
+    if (/\s{2,}/.test(url.pathname)) {
+      const normalizedUrl = new URL(url);
+      normalizedUrl.pathname = url.pathname.replace(/\s{2,}/g, ' ');
+      return Response.redirect(normalizedUrl.toString(), 301);
+    }
+
     // Handle contact form submission
     if (url.pathname === '/api/contact' && request.method === 'POST') {
       return handleContactForm(request, env);
     }
 
     // Handle static file serving (fallback to default behavior)
-    return env.ASSETS.fetch(request);
+    try {
+      return env.ASSETS.fetch(request);
+    } catch (err) {
+      console.error('Static asset fetch error:', err);
+      return new Response('Internal Server Error', { status: 500 });
+    }
   },
 };
 
