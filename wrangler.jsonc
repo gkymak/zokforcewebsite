@@ -3,7 +3,8 @@
   "main": "worker.js",
   "compatibility_date": "2025-01-08",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "binding": "ASSETS"
   },
   "build": {
     "command": ""
@@ -16,9 +17,4 @@
     "www.zokforce.com/*"
   ],
 
-  "secrets": [
-    "DIFY_API_URL",
-    "DIFY_API_KEY",
-    "WEBHOOK_URL"
-  ]
 }

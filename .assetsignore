@@ -1,0 +1,21 @@
+# Exclude git and non-deployable files from Workers Assets
+# This file uses .gitignore syntax
+
+# Version control and hidden files
+.git/
+.gitignore
+.wrangler/
+.vscode/
+.DS_Store
+
+# Node and build artifacts
+node_modules/
+*.log
+*.cache
+
+# Local development files
+.env*
+.dev.vars*
+
+# Exported assets folder (not meant for public)
+exported-assets/
