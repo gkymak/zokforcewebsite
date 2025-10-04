@@ -3,6 +3,42 @@
 // DOM elements
 let mobileMenuToggle, nav, navLinks, header;
 
+// Runtime image error logger and graceful fallback for service icons (top-level)
+(function(){
+  const FALLBACK_SRC = '/exported-assets/Icon/ai-strategy-consulting.svg';
+  const logError = (img, e) => {
+    try {
+      console.warn('[IconLoadError]', {
+        src: img.currentSrc || img.src,
+        alt: img.alt,
+        className: img.className,
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+        error: e
+      });
+    } catch (_) {}
+  };
+  const handleError = (img) => {
+    if (img.dataset.__fallbackApplied) return;
+    logError(img, 'load error');
+    img.dataset.__fallbackApplied = '1';
+    img.src = FALLBACK_SRC;
+    img.removeAttribute('srcset');
+  };
+  const attach = (root=document) => {
+    const imgs = root.querySelectorAll('img.service-icon, img.service-detail-icon');
+    imgs.forEach(img => {
+      img.addEventListener('error', () => handleError(img), { once: false });
+      if (img.complete && img.naturalWidth === 0) handleError(img);
+    });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attach);
+  } else {
+    attach();
+  }
+})();
+
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
     // Get DOM elements
@@ -36,6 +72,8 @@ function initializeNavigation() {
                 // Update active state
                 updateActiveNavLink(this);
             }
+
+/* image fallback moved to top-level; see new IIFE below */
             
             // Close mobile menu if open
             closeMobileMenu();

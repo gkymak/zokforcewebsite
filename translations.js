@@ -806,9 +806,9 @@ const translations = {
             },
             features: {
                 assessment: {
-                    en: "AI Readiness Assessment",
-                    "zh-TW": "AI準備度評估",
-                    "zh-CN": "AI准备度评估"
+                    en: "AI Maturity Assessment",
+                    "zh-TW": "AI成熟度評估",
+                    "zh-CN": "AI成熟度评估"
                 },
                 roadmap: {
                     en: "Strategic Roadmap Development",

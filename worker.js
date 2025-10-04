@@ -167,8 +167,18 @@ async function handleContactForm(request, env) {
 async function sendToDifyAPI(message, env) {
   try {
     // Dify API configuration - use environment variables for security
-    const DIFY_API_URL = env.DIFY_API_URL || 'http://31172269os.zicp.vip:5301/v1/chat-messages';
-    const DIFY_API_KEY = env.DIFY_API_KEY || 'app-ALXmHrqK7sbUx0C6AEdTARl5';
+    const DIFY_API_URL = env.DIFY_API_URL;
+    const DIFY_API_KEY = env.DIFY_API_KEY;
+    
+    if (!DIFY_API_URL || !DIFY_API_KEY) {
+      console.error('Dify API is not configured: missing DIFY_API_URL or DIFY_API_KEY');
+      return {
+        success: false,
+        error: 'Dify API not configured',
+        fallback: true,
+        message: 'Your message has been received and will be processed manually.'
+      };
+    }
     
     console.log(`Attempting to connect to Dify API: ${DIFY_API_URL}`);
     

@@ -1460,6 +1460,9 @@ p {
   font-size: var(--font-size-5xl);
   margin-bottom: var(--space-16);
   display: block;
+  /* Ensure icons remain visible on light backgrounds */
+  background: rgba(79, 118, 246, 0.08);
+  border-radius: var(--radius-lg);
 }
 
 .service-card__title {
@@ -1586,13 +1589,15 @@ p {
 }
 
 .service-detail__icon {
-  font-size: var(--font-size-4xl);
-  width: 80px;
-  height: 80px;
+  font-size: 0;
+  line-height: 0;
+  width: clamp(96px, 16vw, 160px);
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(var(--brand-primary-rgb), 0.1);
+  /* Use a subtle accent background to ensure white/transparent icons are visible */
+  background: rgba(79, 118, 246, 0.08);
   border-radius: var(--radius-lg);
   flex-shrink: 0;
 }

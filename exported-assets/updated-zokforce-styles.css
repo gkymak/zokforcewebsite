@@ -1022,20 +1022,23 @@ body {
 }
 
 .service-card__icon {
-    width: 80px;
-    height: 80px;
+    /* Responsive container so icons auto-resize */
+    width: clamp(64px, 10vw, 96px);
+    height: auto;
     margin: 0 auto var(--space-16);
     border-radius: var(--radius-lg);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    /* Ensure white/transparent icons are visible on white cards */
+    background: rgba(79, 118, 246, 0.08);
 }
 
 .service-icon {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: auto;
     object-fit: contain;
     transition: transform var(--duration-normal) var(--ease-standard);
 }
