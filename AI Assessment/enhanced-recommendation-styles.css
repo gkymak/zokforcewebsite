@@ -1456,7 +1456,7 @@ body {
     padding: 2.5rem;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-light);
-    max-width: 600px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -1745,6 +1745,22 @@ body {
 }
 
 .nav-btn.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Submit variant: visually distinct from Next */
+/* Submit variant: visually distinct from Next */
+.nav-btn.submit,
+#next-btn.nav-btn.submit {
+    background: linear-gradient(135deg, var(--color-success), var(--success-color)) !important;
+    color: white !important;
+    box-shadow: var(--shadow-md);
+    margin-left: auto;
+}
+
+.nav-btn.submit:hover,
+#next-btn.nav-btn.submit:hover {
     transform: translateY(-1px);
     box-shadow: var(--shadow-lg);
 }
@@ -2524,6 +2540,12 @@ body {
 .nav-btn.primary:hover {
     transform: translateY(-1px);
     box-shadow: var(--shadow-lg);
+}
+
+/* High-specificity override to ensure Submit stays green even after duplicate blocks */
+#next-btn.nav-btn.submit {
+    background: linear-gradient(135deg, var(--color-success), var(--success-color)) !important;
+    color: white !important;
 }
 
 .nav-btn.secondary {

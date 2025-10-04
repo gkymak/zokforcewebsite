@@ -338,6 +338,15 @@ function showQuestion() {
     if (backBtn) {
         backBtn.style.display = currentIndex > 0 ? 'block' : 'none';
     }
+
+    // Update next button label: 'Submit' on last question, otherwise 'Next'
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn) {
+        const isLast = currentIndex === assessmentItems.length - 1;
+        nextBtn.textContent = isLast ? 'Submit' : 'Next';
+        nextBtn.classList.toggle('submit', isLast);
+        nextBtn.classList.toggle('primary', !isLast);
+    }
     
     updateProgress();
 }
