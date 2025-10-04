@@ -2286,7 +2286,7 @@ body {
   gap: var(--space-64);
   margin-bottom: var(--space-48);
 }
-.footer__brand { text-align: center; }
+.footer__brand { text-align: left; }
 .footer__brand .logo {
   font-size: 1.5rem;
   font-weight: 700;
