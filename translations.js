@@ -503,9 +503,9 @@ const translations = {
         posts: {
             transformation: {
                 title: {
-                    en: "The AI Transformation Revolution: How Generative AI is Reshaping Business Strategy",
-                    "zh-TW": "AI轉型革命：生成式AI如何重塑商業策略",
-                    "zh-CN": "AI转型革命：生成式AI如何重塑商业策略"
+                    en: "How Generative AI is Reshaping Business Strategy",
+                    "zh-TW": "生成式AI如何重塑商業策略",
+                    "zh-CN": "生成式AI如何重塑商业策略"
                 },
                 excerpt: {
                     en: "Discover how generative AI is fundamentally changing the way businesses operate, innovate, and compete in the digital age.",
@@ -519,9 +519,9 @@ const translations = {
                     "zh-CN": "8分钟阅读"
                 },
                 date: {
-                    en: "January 15, 2025",
-                    "zh-TW": "2025年1月15日",
-                    "zh-CN": "2025年1月15日"
+                    en: "7 October 2025",
+                    "zh-TW": "2025年10月7日",
+                    "zh-CN": "2025年10月7日"
                 }
             }
         },
