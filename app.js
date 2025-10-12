@@ -25,8 +25,8 @@ let mobileMenuToggle, nav, navLinks, header;
     img.src = FALLBACK_SRC;
     img.removeAttribute('srcset');
   };
-  const attach = (root=document) => {
-    const imgs = root.querySelectorAll('img.service-icon, img.service-detail-icon');
+  const attach = () => {
+    const imgs = document.querySelectorAll('img.service-icon, img.service-detail-icon');
     imgs.forEach(img => {
       img.addEventListener('error', () => handleError(img), { once: false });
       if (img.complete && img.naturalWidth === 0) handleError(img);
@@ -51,6 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeScrollEffects();
     initializeForms();
     initializeMobileMenu();
+
+    // Ensure blog cards are sorted by date (newest first)
+    sortBlogCardsByDateNewFirst();
+
     initializeAnimations();
     initializeFloatingChatbot();
 });
@@ -409,6 +413,34 @@ function removeFieldError(field) {
     const existingError = field.parentNode.querySelector('.field-error');
     if (existingError) {
         existingError.remove();
+    }
+}
+
+// Sort blog cards by date (newest first)
+function sortBlogCardsByDateNewFirst() {
+    try {
+        const grid = document.querySelector('.blog-grid');
+        if (!grid) return;
+        const cards = Array.from(grid.querySelectorAll('.blog-post'));
+        if (cards.length < 2) return;
+
+        const getDateValue = (card) => {
+            const timeEl = card.querySelector('.blog-post__date');
+            if (!timeEl) return 0;
+            const iso = timeEl.getAttribute('datetime');
+            if (iso) {
+                const d = new Date(iso);
+                return isNaN(d.getTime()) ? 0 : d.getTime();
+            }
+            const txt = (timeEl.textContent || '').trim();
+            const parsed = Date.parse(txt);
+            return isNaN(parsed) ? 0 : parsed;
+        };
+
+        const sorted = cards.slice().sort((a, b) => getDateValue(b) - getDateValue(a));
+        sorted.forEach(card => grid.appendChild(card));
+    } catch (e) {
+        console.warn('[BlogSort] Failed to sort blog cards by date:', e);
     }
 }
 

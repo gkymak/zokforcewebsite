@@ -525,6 +525,23 @@ const translations = {
                 }
             }
         },
+        llmMethodology: {
+            title: {
+                en: "Navigating AI Transformation: Five-Stage LLM Implementation Methodology",
+                "zh-TW": "引領AI轉型：五階段LLM實施方法論",
+                "zh-CN": "引领AI转型：LLM实施五阶段方法论"
+            },
+            excerpt: {
+                en: "Learn ZOKFORCE's proven five-stage methodology for successful enterprise LLM implementation. Address security, data governance, and deployment challenges with a practical framework based on real-world experience.",
+                "zh-TW": "了解 ZOKFORCE 經驗證的企業 LLM 成功實施五階段方法論。透過以實務經驗為基礎的實用框架，妥善應對安全、數據治理與部署挑戰。",
+                "zh-CN": "了解 ZOKFORCE 经验证的企业 LLM 成功实施五阶段方法论。通过以实践经验为基础的实用框架，妥善应对安全、数据治理与部署挑战。"
+            },
+            date: {
+                en: "October 11, 2025",
+                "zh-TW": "2025年10月11日",
+                "zh-CN": "2025年10月11日"
+            }
+        },
         strategic: {
             title: {
                 en: "AI Adoption or Organization Transformation?",
