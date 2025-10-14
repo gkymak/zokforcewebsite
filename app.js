@@ -5,7 +5,7 @@ let mobileMenuToggle, nav, navLinks, header;
 
 // Runtime image error logger and graceful fallback for service icons (top-level)
 (function(){
-  const FALLBACK_SRC = '/exported-assets/Icon/ai-strategy-consulting.svg';
+  const FALLBACK_SRC = '/exported-assets/Icon/AIStrategy.png';
   const logError = (img, e) => {
     try {
       console.warn('[IconLoadError]', {
