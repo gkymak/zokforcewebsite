@@ -105,7 +105,7 @@ const translations = {
                 "zh-CN": "AI策略与咨询"
             },
             description: {
-                en: "Comprehensive AI roadmaps and strategic guidance to transform your business operations.",
+                en: "Comprehensive AI roadmaps and strategic guidance to transform your business digital operations.",
                 "zh-TW": "全面的AI路線圖和戰略指導，轉型您的業務營運。",
                 "zh-CN": "全面的AI路线图和战略指导，转型您的业务运营。"
             }
@@ -817,7 +817,7 @@ const translations = {
                 "zh-CN": "AI策略与咨询"
             },
             description: {
-                en: "Comprehensive AI roadmaps and strategic guidance to transform your business operations and unlock new growth opportunities. We help you identify AI use cases, develop implementation strategies, and create sustainable competitive advantages.",
+                en: "Comprehensive AI roadmaps and strategic guidance to transform your business digital operations and unlock new growth opportunities. We help you identify AI use cases, develop implementation strategies, and create sustainable competitive advantages.",
                 "zh-TW": "全面的AI路線圖和戰略指導，轉型您的業務營運並釋放新的增長機會。我們幫助您識別AI用例，制定實施策略，並創造可持續的競爭優勢。",
                 "zh-CN": "全面的AI路线图和战略指导，转型您的业务运营并释放新的增长机会。我们帮助您识别AI用例，制定实施策略，并创造可持续的竞争优势。"
             },
