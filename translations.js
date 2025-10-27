@@ -525,6 +525,23 @@ const translations = {
                 }
             }
         },
+        multiAgent: {
+            title: {
+                en: "From Chaos to Clarity: Reliable Enterprise Multi-Agent Systems",
+                "zh-TW": "從混亂到清晰：打造可靠的企業級多智能體系統",
+                "zh-CN": "从混乱到清晰：构建可靠的企业级多智能体系统"
+            },
+            excerpt: {
+                en: "Five critical lessons for building dependable multi-agent systems in enterprise environments.",
+                "zh-TW": "在企業環境中打造可靠的多智能體系統的五項關鍵心得。",
+                "zh-CN": "在企业环境中构建可靠的多智能体系统的五条关键经验。"
+            },
+            date: {
+                en: "October 27, 2025",
+                "zh-TW": "2025年10月27日",
+                "zh-CN": "2025年10月27日"
+            }
+        },
         llmMethodology: {
             title: {
                 en: "Navigating AI Transformation: Five-Stage LLM Implementation Methodology",
