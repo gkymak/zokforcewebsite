@@ -121,7 +121,7 @@ You are **Zoe** — ZOKFORCE's virtual sales consultant. You are warm, genuine, 
 
 2. **Pain Point Identification** — Listen for pain points, then connect them to ZOKFORCE solutions. "That sounds like exactly the kind of challenge our AI automation has solved for other clients..."
 
-3. **Social Proof** — Naturally reference success stories with real metrics. "We helped an insurance company improve their SLA from 78% to 95% — similar situation to yours."
+3. **Social Proof** — Naturally reference success stories with real metrics. "We helped a real estate platform increase property matching efficiency by 85% — similar situation to yours."
 
 4. **Value Before Ask** — Give useful insights first, then guide to next step. Don't immediately ask for contact info — earn it.
 
@@ -153,7 +153,26 @@ You are **Zoe** — ZOKFORCE's virtual sales consultant. You are warm, genuine, 
 ## Opening Message
 When the conversation starts, greet warmly and ask a discovery question (don't just list services).`;
 
-
+/**
+ * Validates the Origin header against an allowlist.
+ * Uses strict hostname matching to prevent subdomain spoofing
+ * (e.g. zokforce.com.evil.tld would be rejected).
+ * Returns true if no Origin header is present (same-origin / server-to-server).
+ */
+function isAllowedOrigin(origin) {
+  if (!origin) return true; // same-origin requests have no Origin header
+  try {
+    const { hostname } = new URL(origin);
+    return (
+      hostname === "zokforce.com" ||
+      hostname.endsWith(".zokforce.com") ||
+      hostname === "localhost" ||
+      hostname === "127.0.0.1"
+    );
+  } catch {
+    return false; // malformed Origin → reject
+  }
+}
 
 export default {
   async fetch(request, env, ctx) {
@@ -198,13 +217,19 @@ export default {
       return handleChat(request, env);
     }
 
-    // Route: Contact form
+    // Route: Contact form (enforce CORS)
     if (url.pathname === "/api/contact" && request.method === "POST") {
+      if (!isAllowedOrigin(request.headers.get("Origin"))) {
+        return new Response("Unauthorized Origin", { status: 403 });
+      }
       return handleContactForm(request, env);
     }
 
-    // Route: Assessment report email
+    // Route: Assessment report email (enforce CORS)
     if (url.pathname === "/send-assessment-report" && request.method === "POST") {
+      if (!isAllowedOrigin(request.headers.get("Origin"))) {
+        return new Response("Unauthorized Origin", { status: 403 });
+      }
       return handleAssessmentReport(request, env);
     }
 
@@ -578,13 +603,13 @@ async function handleChat(request, env) {
     }
 
     // Sanitize conversation history — only allow valid roles, limit content length
-    const sanitizedHistory = conversationHistory
+    const sanitizedHistory = Array.isArray(conversationHistory) ? conversationHistory
       .slice(-20)
       .filter((msg) => msg && (msg.role === "user" || msg.role === "assistant") && typeof msg.content === "string")
       .map((msg) => ({
         role: msg.role,
         content: msg.content.slice(0, 2000),
-      }));
+      })) : [];
 
     // Build messages array with conversation history
     const messages = [
@@ -633,7 +658,7 @@ async function handleChat(request, env) {
         email: emailMatch[0],
         aiResponse: answer,
       };
-      ctx = undefined; // not available here, use waitUntil if needed
+      // Note: we just wait inline here for simplicity instead of waitUntil
       try {
         await env.CONTACT_FORMS.put(contactId, JSON.stringify(leadData));
       } catch (kvErr) {
@@ -892,21 +917,21 @@ async function sendAssessmentEmail(emailData, env) {
 
     // Fallback: mailto link
     const mailtoLink = generateMailtoUrl(emailData, `AI Assessment Report - ${emailData.companyName}`);
-    return {
+    return new Response(JSON.stringify({
       success: false,
       error: "Email service not configured",
       fallback: "mailto",
       mailtoUrl: mailtoLink,
-    };
+    }), { status: 500, headers: { "Content-Type": "application/json" } });
   } catch (error) {
     console.error("Email sending error:", error);
     const mailtoLink = generateMailtoUrl(emailData, `AI Assessment Report - ${emailData.companyName}`);
-    return {
+    return new Response(JSON.stringify({
       success: false,
       error: error.message,
       fallback: "mailto",
       mailtoUrl: mailtoLink,
-    };
+    }), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 }
 

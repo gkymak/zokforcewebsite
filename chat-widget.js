@@ -29,8 +29,11 @@
   try {
     const saved = sessionStorage.getItem(CONFIG.storageKey);
     if (saved) {
-      conversationHistory = JSON.parse(saved);
-      suggestionsShown = false;
+      const parsed = JSON.parse(saved);
+      conversationHistory = Array.isArray(parsed) ? parsed : [];
+      if (conversationHistory.length > 0) {
+        suggestionsShown = false;
+      }
     }
   } catch (e) {
     // Ignore storage errors
@@ -295,7 +298,11 @@
     // Links: [text](url)
     html = html.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" target="_blank" rel="noopener" style="color:var(--zok-primary-light)">$1</a>'
+      (match, text, url) => {
+        // Sanitize link target to prevent javascript: or other unsafe schemes
+        const safeUrl = /^(https?|mailto|tel):/i.test(url) ? url : "#";
+        return `<a href="${safeUrl}" target="_blank" rel="noopener" style="color:var(--zok-primary-light)">${text}</a>`;
+      }
     );
 
     // Unordered list items: • or - at start of line
