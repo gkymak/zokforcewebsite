@@ -208,9 +208,28 @@ export default {
       return handleAssessmentReport(request, env);
     }
 
-    // Static assets
+    // Static assets — with iframe auto-patching
     try {
-      return env.ASSETS.fetch(request);
+      const assetResponse = await env.ASSETS.fetch(request);
+
+      // If the response is HTML, patch Dify iframe URLs
+      const contentType = assetResponse.headers.get("Content-Type") || "";
+      if (contentType.includes("text/html")) {
+        let html = await assetResponse.text();
+
+        // Replace all Dify iframe src URLs with our /embed/chat
+        html = html.replace(
+          /https?:\/\/3ct1hk172269\.vicp\.fun\/embed\/chat[^"'\s]*/g,
+          "/embed/chat"
+        );
+
+        return new Response(html, {
+          status: assetResponse.status,
+          headers: assetResponse.headers,
+        });
+      }
+
+      return assetResponse;
     } catch (err) {
       console.error("Static asset fetch error:", err);
       return new Response("Internal Server Error", { status: 500 });
