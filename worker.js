@@ -188,7 +188,12 @@ export default {
       console.warn("Path decode failed, skipping normalization:", e);
     }
 
-    // Route: AI Chat
+    // Route: Embeddable chat page (replaces Dify iframe)
+    if (url.pathname === "/embed/chat") {
+      return serveChatEmbed();
+    }
+
+    // Route: AI Chat API
     if (url.pathname === "/api/chat" && request.method === "POST") {
       return handleChat(request, env);
     }
@@ -212,6 +217,218 @@ export default {
     }
   },
 };
+
+// ─── Embeddable Chat Page (replaces Dify iframe) ──────────────────────────────
+
+function serveChatEmbed() {
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZOKFORCE AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --zok-primary: #6c5ce7;
+  --zok-primary-dark: #5a4bd1;
+  --zok-primary-light: #a29bfe;
+  --zok-bg: #1a1a2e;
+  --zok-bg-panel: #16213e;
+  --zok-bg-msg: #0f3460;
+  --zok-bg-user: #6c5ce7;
+  --zok-text: #e4e4e4;
+  --zok-text-muted: #a0a0b8;
+  --zok-border: rgba(108, 92, 231, 0.3);
+}
+html, body { height: 100%; overflow: hidden; font-family: 'Inter', sans-serif; background: var(--zok-bg); color: var(--zok-text); }
+.chat-container { display: flex; flex-direction: column; height: 100%; }
+.chat-header {
+  background: linear-gradient(135deg, var(--zok-bg-panel), var(--zok-bg));
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--zok-border);
+  flex-shrink: 0;
+}
+.chat-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--zok-primary), var(--zok-primary-light));
+  display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+}
+.chat-header h3 { font-size: 14px; font-weight: 600; color: white; }
+.chat-header p { font-size: 11px; color: var(--zok-text-muted); margin-top: 1px; }
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #2ecc71;
+  display: inline-block; margin-right: 4px;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.5} }
+.messages {
+  flex: 1; overflow-y: auto; padding: 16px; display: flex;
+  flex-direction: column; gap: 10px; scroll-behavior: smooth;
+}
+.messages::-webkit-scrollbar { width: 4px; }
+.messages::-webkit-scrollbar-track { background: transparent; }
+.messages::-webkit-scrollbar-thumb { background: var(--zok-border); border-radius: 2px; }
+.msg {
+  max-width: 88%; padding: 10px 14px; border-radius: 14px;
+  font-size: 13.5px; line-height: 1.55; word-wrap: break-word;
+  animation: msgIn .3s ease;
+}
+@keyframes msgIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.msg.bot { background: var(--zok-bg-msg); align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg.user { background: var(--zok-bg-user); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+.msg p { margin: 0 0 6px; } .msg p:last-child { margin: 0; }
+.msg strong { color: var(--zok-primary-light); }
+.msg ul, .msg ol { margin: 4px 0; padding-left: 18px; }
+.msg li { margin-bottom: 2px; }
+.msg a { color: var(--zok-primary-light); }
+.typing { display:flex; gap:4px; padding:10px 14px; background:var(--zok-bg-msg); border-radius:14px; border-bottom-left-radius:4px; align-self:flex-start; animation:msgIn .3s ease; }
+.typing span { width:5px; height:5px; border-radius:50%; background:var(--zok-text-muted); animation:bounce 1.4s ease-in-out infinite; }
+.typing span:nth-child(2){animation-delay:.2s} .typing span:nth-child(3){animation-delay:.4s}
+@keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+.suggestions { display:flex; flex-direction:column; gap:5px; padding:0 16px 10px; flex-shrink:0; }
+.suggest-btn {
+  background: rgba(108,92,231,.15); border: 1px solid var(--zok-border);
+  color: var(--zok-primary-light); padding: 7px 11px; border-radius: 10px;
+  font-size: 12.5px; cursor: pointer; text-align: left; font-family: inherit;
+  transition: all .2s ease;
+}
+.suggest-btn:hover { background: rgba(108,92,231,.3); border-color: var(--zok-primary); transform: translateX(3px); }
+.input-area {
+  padding: 10px 14px; border-top: 1px solid var(--zok-border);
+  background: var(--zok-bg-panel); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0;
+}
+#chatInput {
+  flex: 1; background: var(--zok-bg); border: 1px solid var(--zok-border);
+  border-radius: 12px; padding: 9px 12px; color: var(--zok-text);
+  font-size: 13.5px; font-family: inherit; resize: none; max-height: 80px;
+  min-height: 18px; line-height: 1.4; outline: none; transition: border-color .2s;
+}
+#chatInput:focus { border-color: var(--zok-primary); }
+#chatInput::placeholder { color: var(--zok-text-muted); }
+#sendBtn {
+  width: 36px; height: 36px; border-radius: 10px; background: var(--zok-primary);
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .2s, transform .1s; flex-shrink: 0;
+}
+#sendBtn:hover { background: var(--zok-primary-dark); }
+#sendBtn:active { transform: scale(.95); }
+#sendBtn:disabled { background: var(--zok-bg-msg); cursor: not-allowed; }
+#sendBtn svg { width: 16px; height: 16px; fill: white; }
+.powered { text-align:center; padding:5px; font-size:9.5px; color:var(--zok-text-muted); background:var(--zok-bg-panel); }
+.powered a { color:var(--zok-primary-light); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div>
+      <h3>ZOKFORCE AI Assistant</h3>
+      <p><span class="status-dot"></span>Online</p>
+    </div>
+  </div>
+  <div class="messages" id="messages"></div>
+  <div class="suggestions" id="suggestions"></div>
+  <div class="input-area">
+    <textarea id="chatInput" placeholder="Type your message..." rows="1"></textarea>
+    <button id="sendBtn" aria-label="Send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="powered">Powered by <a href="https://www.zokforce.com" target="_blank">ZOKFORCE AI</a></div>
+</div>
+<script>
+(function(){
+  var API = "/api/chat";
+  var OPEN_MSG = "\\u{1F44B} Hi! I'm Zoe, ZOKFORCE's AI consultant. What brings you here today? Are you exploring AI solutions for your business?";
+  var SUGGEST = ["What AI services does ZOKFORCE offer?","Tell me about your success stories","I'd like to speak with a representative"];
+  var history = [];
+  var loading = false;
+  var KEY = "zok_embed_hist";
+
+  try { var s = sessionStorage.getItem(KEY); if(s) history = JSON.parse(s); } catch(e){}
+
+  var msgBox = document.getElementById("messages");
+  var sugBox = document.getElementById("suggestions");
+  var input = document.getElementById("chatInput");
+  var btn = document.getElementById("sendBtn");
+
+  function esc(t){ var d=document.createElement("div"); d.textContent=t; return d.innerHTML; }
+  function fmt(t){
+    var h=esc(t);
+    h=h.replace(/\\*\\*(.+?)\\*\\*/g,"<strong>$1</strong>");
+    h=h.replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g,'<a href="$2" target="_blank">$1</a>');
+    h=h.replace(/^[•\\-]\\s+(.+)$/gm,"<li>$1</li>");
+    h=h.replace(/\\n\\n/g,"</p><p>");
+    h=h.replace(/\\n/g,"<br>");
+    return "<p>"+h+"</p>";
+  }
+  function scroll(){ requestAnimationFrame(function(){ msgBox.scrollTop=msgBox.scrollHeight; }); }
+  function addMsg(cls,text){
+    var el=document.createElement("div"); el.className="msg "+cls;
+    el.innerHTML=(cls==="bot")?fmt(text):esc(text);
+    msgBox.appendChild(el); scroll();
+  }
+  function showTyping(){
+    var t=document.createElement("div"); t.className="typing"; t.id="typ";
+    t.innerHTML="<span></span><span></span><span></span>"; msgBox.appendChild(t); scroll();
+  }
+  function hideTyping(){ var t=document.getElementById("typ"); if(t)t.remove(); }
+  function showSuggestions(){
+    sugBox.innerHTML="";
+    SUGGEST.forEach(function(q){
+      var b=document.createElement("button"); b.className="suggest-btn"; b.textContent=q;
+      b.onclick=function(){ sugBox.innerHTML=""; input.value=q; send(); };
+      sugBox.appendChild(b);
+    });
+  }
+  function save(){ try{sessionStorage.setItem(KEY,JSON.stringify(history.slice(-20)));}catch(e){} }
+
+  async function send(){
+    if(loading) return;
+    var text=input.value.trim(); if(!text) return;
+    sugBox.innerHTML="";
+    input.value=""; input.style.height="auto";
+    addMsg("user",text);
+    loading=true; btn.disabled=true; showTyping();
+    try{
+      var r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({message:text,conversationHistory:history.slice(-20)})});
+      var d=await r.json(); hideTyping();
+      if(d.success&&d.answer){
+        addMsg("bot",d.answer);
+        history.push({role:"user",content:text},{role:"assistant",content:d.answer});
+        save();
+      } else { addMsg("bot",d.error||"Sorry, please try again."); }
+    }catch(e){ hideTyping(); addMsg("bot","Connection error. Please try again."); }
+    loading=false; btn.disabled=false; input.focus();
+  }
+
+  btn.onclick=send;
+  input.onkeydown=function(e){ if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send();} };
+  input.oninput=function(){ this.style.height="auto"; this.style.height=Math.min(this.scrollHeight,80)+"px"; };
+
+  // Init
+  addMsg("bot",OPEN_MSG);
+  if(history.length>0){
+    history.forEach(function(m){ addMsg(m.role==="user"?"user":"bot",m.content); });
+  } else { showSuggestions(); }
+})();
+</script>
+</body>
+</html>`;
+
+  return new Response(html, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/html;charset=UTF-8",
+      "Cache-Control": "no-cache",
+    },
+  });
+}
 
 // ─── Rate Limiter (per-isolate, IP-based) ─────────────────────────────────────
 
