@@ -1,0 +1,30 @@
+name = "zokforcewebsite"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Static assets directory — the frontend files
+# Point this to the directory containing your HTML/CSS/JS files
+[assets]
+directory = "./public"
+
+# KV Namespaces (optional — for storing contact form and chat lead data)
+# Uncomment and set IDs after creating via:
+#   npx wrangler kv namespace create CONTACT_FORMS
+#   npx wrangler kv namespace create ASSESSMENT_REPORTS
+#
+# [[kv_namespaces]]
+# binding = "CONTACT_FORMS"
+# id = "<your-kv-namespace-id>"
+#
+# [[kv_namespaces]]
+# binding = "ASSESSMENT_REPORTS"
+# id = "<your-kv-namespace-id>"
+
+# Environment Variables (non-secret)
+# [vars]
+# FROM_EMAIL = "noreply@zokforce.com"
+# FROM_NAME = "ZOKFORCE"
+
+# Secrets (set via `npx wrangler secret put <NAME>`):
+#   DEEPSEEK_API_KEY     — Required for chat functionality
+#   SENDGRID_API_KEY     — Optional for email delivery
