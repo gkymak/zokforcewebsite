@@ -39,6 +39,11 @@ export default {
       return handleContactForm(request, env);
     }
 
+    // Handle AI Assessment PDF email submission
+    if (url.pathname === '/send-assessment-report' && request.method === 'POST') {
+      return handleAssessmentReport(request, env);
+    }
+
     // Handle static file serving (fallback to default behavior)
     try {
       return env.ASSETS.fetch(request);
@@ -163,7 +168,296 @@ async function handleContactForm(request, env) {
   }
 }
 
-// Send message to Dify API
+// Handle AI Assessment PDF email submissions
+async function handleAssessmentReport(request, env) {
+  try {
+    const requestData = await request.json();
+    
+    // Validate required fields - support both 'email' and 'to' for compatibility
+    const { email, to, contactName, companyName, pdfData, subject, message } = requestData;
+    const recipientEmail = email || to; // Support both field names
+    
+    if (!recipientEmail || !contactName || !companyName || !pdfData) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Missing required fields: email, contactName, companyName, and pdfData are required.' 
+        }),
+        {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(recipientEmail)) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Invalid email format.' 
+        }),
+        {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      );
+    }
+
+    // Send email with PDF attachment
+    const emailResult = await sendAssessmentEmail({
+      to: recipientEmail,
+      contactName,
+      companyName,
+      pdfData,
+      subject: subject || `AI Assessment Report - ${companyName}`,
+      message: message || `Dear ${contactName},\n\nThank you for completing the ZOKFORCE AI Assessment. Please find your comprehensive report attached.\n\nIf you have any questions or would like to discuss the findings, please don't hesitate to contact us.\n\nBest regards,\nZOKFORCE Team`
+    }, env);
+
+    // If SMTP is not configured or email failed, return fallback details
+    if (!emailResult.success) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: emailResult.error || 'Failed to send email',
+          fallback: emailResult.fallback,
+          mailtoUrl: emailResult.mailtoUrl
+        }),
+        {
+          status: 200, // return 200 so frontend can handle fallback without throwing
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      );
+    }
+
+    // Optional: Store assessment submission in KV storage
+    if (env.ASSESSMENT_REPORTS) {
+      const reportId = `assessment_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const reportData = {
+        timestamp: new Date().toISOString(),
+        contactName,
+        email: recipientEmail,
+        companyName,
+        source: 'AI Assessment Tool',
+        emailSent: true,
+        emailResult: emailResult
+      };
+      await env.ASSESSMENT_REPORTS.put(reportId, JSON.stringify(reportData));
+    }
+
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: `AI Assessment report has been sent to ${recipientEmail}`,
+        id: `assessment_${Date.now()}`
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+
+  } catch (error) {
+    console.error('Assessment report email error:', error);
+    
+    return new Response(
+      JSON.stringify({ 
+        success: false, 
+        error: 'Sorry, there was an error sending the assessment report. Please try downloading the PDF instead.' 
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+  }
+}
+
+// Send assessment email with PDF attachment using SMTP
+async function sendAssessmentEmail(emailData, env) {
+  try {
+    const FROM_EMAIL = env.FROM_EMAIL || env.SMTP_USER;
+    const FROM_NAME = env.FROM_NAME || 'ZOKFORCE AI Assessment';
+    const filename = `AI-Assessment-Report-${emailData.companyName.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`;
+
+    // Prefer SendGrid when available (Cloudflare-native HTTP send, no SMTP relay needed)
+    if (env.SENDGRID_API_KEY) {
+      const htmlBody = `
+        <h2>AI Assessment Report</h2>
+        <p>Dear ${emailData.contactName},</p>
+        <p>Thank you for completing the AI Assessment. Please find your detailed report attached.</p>
+        <p><strong>Company:</strong> ${emailData.companyName}</p>
+        <p><strong>Assessment Date:</strong> ${new Date().toLocaleDateString()}</p>
+        <p>If you have any questions about your assessment results, please don't hesitate to contact us.</p>
+        <p>Best regards,<br>ZokForce Team</p>
+      `;
+
+      const textBody = `AI Assessment Report\n\nDear ${emailData.contactName},\n\nThank you for completing the AI Assessment. Please find your detailed report attached.\n\nCompany: ${emailData.companyName}\nAssessment Date: ${new Date().toLocaleDateString()}\n\nIf you have any questions about your assessment results, please don't hesitate to contact us.\n\nBest regards,\nZokForce Team`;
+
+      const sgPayload = {
+        personalizations: [
+          { to: [{ email: emailData.to }] }
+        ],
+        from: { email: FROM_EMAIL, name: FROM_NAME },
+        subject: emailData.subject,
+        content: [
+          { type: 'text/plain', value: textBody },
+          { type: 'text/html', value: htmlBody }
+        ],
+        attachments: [
+          {
+            content: emailData.pdfData, // base64
+            type: 'application/pdf',
+            filename: filename,
+            disposition: 'attachment'
+          }
+        ]
+      };
+
+      const resp = await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${env.SENDGRID_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sgPayload)
+      });
+
+      if (!resp.ok) {
+        const errText = await resp.text();
+        throw new Error(`SendGrid error: ${resp.status} ${errText}`);
+      }
+
+      return {
+        success: true,
+        method: 'sendgrid'
+      };
+    }
+
+    // Fallback to external SMTP relay service when SendGrid is not configured
+    if (!env.SMTP_RELAY_URL) {
+      const mailtoLink = generateMailtoUrl(emailData, `AI Assessment Report - ${emailData.companyName}`);
+      return {
+        success: false,
+        error: 'SMTP relay service not configured',
+        fallback: 'mailto',
+        mailtoUrl: mailtoLink
+      };
+    }
+
+    // SMTP configuration for relay
+    const SMTP_HOST = env.SMTP_HOST;
+    const SMTP_PORT = env.SMTP_PORT || 587;
+    const SMTP_USER = env.SMTP_USER;
+    const SMTP_PASS = env.SMTP_PASS;
+    const SMTP_SECURE = env.SMTP_SECURE === 'true';
+
+    if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+      const mailtoLink = generateMailtoUrl(emailData, `AI Assessment Report - ${emailData.companyName}`);
+      return {
+        success: false,
+        error: 'Incomplete SMTP configuration',
+        fallback: 'mailto',
+        mailtoUrl: mailtoLink
+      };
+    }
+
+    const messageData = {
+      from: FROM_EMAIL,
+      to: emailData.to,
+      subject: emailData.subject,
+      html: `
+        <h2>AI Assessment Report</h2>
+        <p>Dear ${emailData.contactName},</p>
+        <p>Thank you for completing the AI Assessment. Please find your detailed report attached.</p>
+        <p><strong>Company:</strong> ${emailData.companyName}</p>
+        <p><strong>Assessment Date:</strong> ${new Date().toLocaleDateString()}</p>
+        <p>If you have any questions about your assessment results, please don't hesitate to contact us.</p>
+        <p>Best regards,<br>ZokForce Team</p>
+      `,
+      text: `AI Assessment Report\n\nDear ${emailData.contactName},\n\nThank you for completing the AI Assessment. Please find your detailed report attached.\n\nCompany: ${emailData.companyName}\nAssessment Date: ${new Date().toLocaleDateString()}\n\nIf you have any questions about your assessment results, please don't hesitate to contact us.\n\nBest regards,\nZokForce Team`,
+      attachments: [{
+        filename: filename,
+        content: emailData.pdfData,
+        encoding: 'base64',
+        contentType: 'application/pdf'
+      }]
+    };
+
+    const response = await fetch(env.SMTP_RELAY_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': env.SMTP_RELAY_API_KEY ? `Bearer ${env.SMTP_RELAY_API_KEY}` : undefined
+      },
+      body: JSON.stringify({
+        smtp: {
+          host: SMTP_HOST,
+          port: SMTP_PORT,
+          secure: SMTP_SECURE,
+          auth: {
+            user: SMTP_USER,
+            pass: SMTP_PASS
+          }
+        },
+        message: messageData
+      })
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error || 'SMTP relay service error');
+    }
+
+    return {
+      success: true,
+      messageId: result.messageId,
+      method: 'smtp'
+    };
+
+  } catch (error) {
+    console.error('Email sending error:', error);
+    const mailtoLink = generateMailtoUrl(emailData, `AI Assessment Report - ${emailData.companyName}`);
+    return {
+      success: false,
+      error: error.message,
+      fallback: 'mailto',
+      mailtoUrl: mailtoLink
+    };
+  }
+}
+
+// Generate mailto URL as fallback
+function generateMailtoUrl(emailData, subject) {
+  const body = `Dear ZokForce Team,
+
+Please find attached the AI Assessment Report for ${emailData.companyName}.
+
+Company: ${emailData.companyName}
+Contact: ${emailData.contactName}
+Assessment Date: ${new Date().toLocaleDateString()}
+
+Best regards,
+${emailData.contactName}`;
+
+  return `mailto:${emailData.to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 async function sendToDifyAPI(message, env) {
   try {
     // Dify API configuration - use environment variables for security

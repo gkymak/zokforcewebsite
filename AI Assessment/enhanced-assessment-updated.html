@@ -262,7 +262,8 @@
 
             <!-- Action Buttons -->
             <div class="action-buttons">
-                <button id="generate-pdf" class="action-btn primary" onclick="generatePDF()">Generate PDF Report</button>
+                <button id="generate-pdf" class="action-btn primary" onclick="generatePDF()">Download PDF Report</button>
+
                 <button id="restart-assessment" class="action-btn secondary">Restart Assessment</button>
                 <button id="contact-consultant" class="action-btn accent" onclick="contactConsultant()">Contact ZOKFORCE Consultant</button>
             </div>
@@ -319,7 +320,7 @@
 
     <!-- Enhanced PDF Generation Function -->
     <script>
-        async function generatePDF() {
+        async function generatePDF(shouldDownload = true) {
             try {
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF('p', 'mm', 'a4');
@@ -451,11 +452,7 @@
                     doc.addImage(barImgData, 'PNG', 110, yPos + 10, 80, 60);
                 }
                 
-                // SELECTED QUESTIONS & ANSWERS moved to end of generatePDF
-                
-
-                
-                // PAGE 4+: PRIORITY ACTION PLAN UI (HTML Snapshot)
+                // PAGE 3+: PRIORITY ACTION PLAN UI (HTML Snapshot)
                 const priorityContainer = document.getElementById('top-priorities');
                 if (priorityContainer) {
                     const sections = priorityContainer.querySelectorAll('.priority-section');
@@ -592,14 +589,24 @@
                 
                 pdfDrawFooter(doc, colors);
 
-                // Save the PDF
+                // Return base64 or save the PDF based on parameter
                 const safeCompany = companyName.replace(/[^a-z0-9]/gi, '_');
                 const fileName = `ZOKFORCE_AI_Assessment_${safeCompany}_${new Date().toISOString().split('T')[0]}.pdf`;
-                doc.save(fileName);
+                
+                if (shouldDownload) {
+                    doc.save(fileName);
+                    return true; // Success indicator for download
+                } else {
+                    // Return base64 data for email
+                    return doc.output('datauristring').split(',')[1]; // Remove data:application/pdf;base64, prefix
+                }
                 
             } catch (error) {
                 console.error('Error generating PDF:', error);
-                alert('There was an error generating the PDF. Please try again.');
+                if (shouldDownload) {
+                    alert('There was an error generating the PDF. Please try again.');
+                }
+                return null; // Return null on error
             }
         }
 
@@ -659,6 +666,82 @@
                 `Strongest pillar: ${highest[0]} (${highest[1].toFixed(1)}/4.0)`,
                 `Priority improvement area: ${lowest[0]} (${lowest[1].toFixed(1)}/4.0)`
             ];
+        }
+
+        async function emailPDF() {
+            try {
+                // Get contact information from localStorage
+                const companyName = localStorage.getItem('companyName') || 'Your Organization';
+                const contactName = localStorage.getItem('contactName') || 'Contact Person';
+                const contactEmail = localStorage.getItem('contactEmail') || '';
+                
+                if (!contactEmail) {
+                    alert('Please provide your email address in the contact information section first.');
+                    return;
+                }
+                
+                // Generate PDF
+                const pdfBase64 = await generatePDF(false); // false = don't download, just return base64
+                
+                if (!pdfBase64) {
+                    alert('Failed to generate PDF. Please try again.');
+                    return;
+                }
+                
+                // Prepare email data
+                const emailData = {
+                    companyName: companyName,
+                    contactName: contactName,
+                    email: contactEmail,
+                    pdfData: pdfBase64
+                };
+                
+                // Send to backend endpoint
+                const response = await fetch('https://zokforce.com/send-assessment-report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(emailData)
+                });
+                
+                // Check if response is ok before parsing JSON
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Server error response:', errorText);
+                    throw new Error(`Server error: ${response.status} - ${errorText}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Email sent successfully! Please check your inbox.');
+                } else if (result.fallback === 'mailto') {
+                    // Fallback to mailto link
+                    const confirmFallback = confirm('Email service is temporarily unavailable. Would you like to open your email client to send manually?');
+                    if (confirmFallback && result.mailtoUrl) {
+                        window.open(result.mailtoUrl);
+                    }
+                } else {
+                    alert(`Failed to send email: ${result.error || 'Unknown error'}`);
+                }
+                
+            } catch (error) {
+                console.error('Email PDF error:', error);
+                // Local fallback: offer mailto if server not reachable
+                const companyName = localStorage.getItem('companyName') || 'Your Organization';
+                const contactName = localStorage.getItem('contactName') || 'Contact Person';
+                const contactEmail = localStorage.getItem('contactEmail') || '';
+                const subject = `AI Assessment Report - ${companyName}`;
+                const body = `Dear ZokForce Team,\n\nPlease find attached the AI Assessment Report for ${companyName}.\n\nCompany: ${companyName}\nContact: ${contactName}\nAssessment Date: ${new Date().toLocaleDateString()}\n\nBest regards,\n${contactName}`;
+                const confirmFallback = confirm('Email service is temporarily unavailable. Would you like to open your email client to send manually?');
+                if (confirmFallback && contactEmail) {
+                    const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.location.href = mailtoUrl; // use location to avoid popup blockers
+                } else {
+                    alert('Failed to send email. Please try downloading the PDF instead.');
+                }
+            }
         }
 
         function contactConsultant() {
