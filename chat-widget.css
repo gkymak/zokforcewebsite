@@ -1,16 +1,16 @@
 /* ─── ZOKFORCE Chat Widget Styles ───────────────────────────────────────────── */
 
 :root {
-  --zok-primary: #6c5ce7;
-  --zok-primary-dark: #5a4bd1;
-  --zok-primary-light: #a29bfe;
-  --zok-bg-dark: #1a1a2e;
-  --zok-bg-panel: #16213e;
-  --zok-bg-message: #0f3460;
-  --zok-bg-user: #6c5ce7;
+  --zok-primary: #4F76F6;
+  --zok-primary-dark: #3D63E8;
+  --zok-primary-light: #8BA3F9;
+  --zok-bg-dark: #13191F;
+  --zok-bg-panel: #1A2332;
+  --zok-bg-message: #1E2D42;
+  --zok-bg-user: #4F76F6;
   --zok-text: #e4e4e4;
-  --zok-text-muted: #a0a0b8;
-  --zok-border: rgba(108, 92, 231, 0.3);
+  --zok-text-muted: #8B95A5;
+  --zok-border: rgba(79, 118, 246, 0.3);
   --zok-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   --zok-radius: 16px;
 }
@@ -26,7 +26,7 @@
   background: linear-gradient(135deg, var(--zok-primary), var(--zok-primary-dark));
   border: none;
   cursor: pointer;
-  box-shadow: var(--zok-shadow), 0 0 20px rgba(108, 92, 231, 0.4);
+  box-shadow: var(--zok-shadow), 0 0 20px rgba(79, 118, 246, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +37,7 @@
 
 #zok-chat-bubble:hover {
   transform: scale(1.1);
-  box-shadow: var(--zok-shadow), 0 0 30px rgba(108, 92, 231, 0.6);
+  box-shadow: var(--zok-shadow), 0 0 30px rgba(79, 118, 246, 0.6);
 }
 
 #zok-chat-bubble svg {
@@ -52,8 +52,8 @@
 }
 
 @keyframes zok-pulse {
-  0%, 100% { box-shadow: var(--zok-shadow), 0 0 20px rgba(108, 92, 231, 0.4); }
-  50% { box-shadow: var(--zok-shadow), 0 0 30px rgba(108, 92, 231, 0.6); }
+  0%, 100% { box-shadow: var(--zok-shadow), 0 0 20px rgba(79, 118, 246, 0.4); }
+  50% { box-shadow: var(--zok-shadow), 0 0 30px rgba(79, 118, 246, 0.6); }
 }
 
 /* Chat panel */
@@ -197,7 +197,7 @@
 .zok-msg.bot li { margin-bottom: 2px; }
 .zok-msg.bot strong { color: var(--zok-primary-light); }
 .zok-msg.bot code {
-  background: rgba(108, 92, 231, 0.2);
+  background: rgba(79, 118, 246, 0.2);
   padding: 1px 4px;
   border-radius: 3px;
   font-size: 13px;
@@ -241,7 +241,7 @@
 }
 
 .zok-suggestion-btn {
-  background: rgba(108, 92, 231, 0.15);
+  background: rgba(79, 118, 246, 0.15);
   border: 1px solid var(--zok-border);
   color: var(--zok-primary-light);
   padding: 8px 12px;
@@ -254,7 +254,7 @@
 }
 
 .zok-suggestion-btn:hover {
-  background: rgba(108, 92, 231, 0.3);
+  background: rgba(79, 118, 246, 0.3);
   border-color: var(--zok-primary);
   transform: translateX(4px);
 }
@@ -335,7 +335,7 @@
   font-size: 10px;
   color: var(--zok-text-muted);
   background: var(--zok-bg-panel);
-  border-top: 1px solid rgba(108, 92, 231, 0.1);
+  border-top: 1px solid rgba(79, 118, 246, 0.1);
 }
 
 .zok-powered a {
