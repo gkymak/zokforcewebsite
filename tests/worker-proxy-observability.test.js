@@ -49,7 +49,7 @@ test("user sends chat while proxy is configured without key -> worker fails clos
 
     assert.equal(response.status, 503);
     assert.equal(body.success, false);
-    assert.match(body.error, /observability is not configured/i);
+    assert.match(body.error, /assistant is temporarily unavailable/i);
     assert.equal(directFetchCalled, false);
   } finally {
     globalThis.fetch = originalFetch;
@@ -129,7 +129,7 @@ test("user sends chat while BYOK is required without provider secret -> service 
 
   assert.equal(response.status, 503);
   assert.equal(body.success, false);
-  assert.match(body.error, /observability is not configured/i);
+  assert.match(body.error, /assistant is temporarily unavailable/i);
   assert.equal(serviceCalled, false);
 });
 
@@ -157,7 +157,7 @@ test("legacy direct provider key does not satisfy explicit BYOK proxy mode", asy
 
   assert.equal(response.status, 503);
   assert.equal(body.success, false);
-  assert.match(body.error, /observability is not configured/i);
+  assert.match(body.error, /assistant is temporarily unavailable/i);
   assert.equal(serviceCalled, false);
   assert.equal(serialized.includes("legacy-provider-secret"), false);
 });

@@ -624,7 +624,7 @@ async function handleChat(request, env) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: "Chat observability is not configured. Please try again shortly.",
+          error: "The assistant is temporarily unavailable. Please try again shortly.",
         }),
         { status: 503, headers: corsHeaders }
       );
@@ -635,7 +635,7 @@ async function handleChat(request, env) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: "Chat observability is not configured. Please try again shortly.",
+          error: "The assistant is temporarily unavailable. Please try again shortly.",
         }),
         { status: 503, headers: corsHeaders }
       );
@@ -651,7 +651,7 @@ async function handleChat(request, env) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: "Chat observability is not configured. Please try again shortly.",
+          error: "The assistant is temporarily unavailable. Please try again shortly.",
         }),
         { status: 503, headers: corsHeaders }
       );
@@ -713,7 +713,7 @@ async function handleChat(request, env) {
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error(`LLM API error: ${response.status} ${errText}`);
+      console.error(`LLM API error: ${response.status}`);
       let upstreamError = null;
       try {
         const parsedError = JSON.parse(errText);
@@ -760,7 +760,7 @@ async function handleChat(request, env) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: "Chat observability could not be verified. Please try again shortly.",
+          error: "The assistant is temporarily unavailable. Please try again shortly.",
           zoklens_proxy_mode: "proxy",
           zoklens_proxy_configured: true,
           zoklens_proxy_transport: proxyTransport,
