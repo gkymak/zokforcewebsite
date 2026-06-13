@@ -41,7 +41,7 @@ test("user sends chat while proxy is configured without key -> worker fails clos
 
   try {
     const response = await worker.fetch(chatRequest("hello", "203.0.113.11"), {
-      ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1",
+      ZOKLENS_PROXY_BASE_URL: "https://zoklens-api-staging.zokforce.com/v1",
       ZOKLENS_PROXY_REQUIRED: "true",
       DEEPSEEK_API_KEY: "provider-secret",
     });
@@ -60,7 +60,7 @@ test("user sends chat in BYOK proxy mode -> service binding receives combined au
   const worker = await loadWorker();
   const serviceCalls = [];
   const env = {
-    ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1/",
+    ZOKLENS_PROXY_BASE_URL: "https://zoklens-api-staging.zokforce.com/v1/",
     ZOKLENS_PROXY_API_KEY: "zok_test_proxy",
     ZOKLENS_PROXY_PROVIDER_API_KEY: "provider-secret",
     ZOKLENS_PROXY_REQUIRED: "true",
@@ -102,7 +102,7 @@ test("user sends chat in BYOK proxy mode -> service binding receives combined au
   assert.equal(body.zoklens_trace_id, "trace-proxy-123");
   assert.equal(response.headers.get("X-ZOK-Trace-ID"), "trace-proxy-123");
   assert.equal(serviceCalls.length, 1);
-  assert.equal(serviceCalls[0].url, "https://proxy.zokforce.com/v1/chat/completions");
+  assert.equal(serviceCalls[0].url, "https://zoklens-api-staging.zokforce.com/v1/chat/completions");
   assert.equal(serviceCalls[0].authorization, "Bearer zok_test_proxy:provider-secret");
   assert.equal(serviceCalls[0].body.model, "deepseek-v4-flash");
 });
@@ -111,7 +111,7 @@ test("user sends chat in managed proxy mode -> provider secret is not required",
   const worker = await loadWorker();
   const serviceCalls = [];
   const env = {
-    ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1/",
+    ZOKLENS_PROXY_BASE_URL: "https://zoklens-api-staging.zokforce.com/v1/",
     ZOKLENS_PROXY_API_KEY: "zok_test_proxy",
     ZOKLENS_PROXY_REQUIRED: "true",
     ZOKLENS_PROXY_BYOK_REQUIRED: "false",
@@ -152,7 +152,7 @@ test("user sends chat in managed proxy mode -> provider secret is not required",
   assert.equal(body.zoklens_trace_id, "trace-managed-123");
   assert.equal(response.headers.get("X-ZOK-Trace-ID"), "trace-managed-123");
   assert.equal(serviceCalls.length, 1);
-  assert.equal(serviceCalls[0].url, "https://proxy.zokforce.com/v1/chat/completions");
+  assert.equal(serviceCalls[0].url, "https://zoklens-api-staging.zokforce.com/v1/chat/completions");
   assert.equal(serviceCalls[0].authorization, "Bearer zok_test_proxy");
   assert.equal(serviceCalls[0].body.model, "deepseek-v4-flash");
 });
@@ -163,7 +163,7 @@ test("user sends chat while BYOK is required without provider secret -> service 
   const response = await worker.fetch(
     chatRequest("hello", "203.0.113.13"),
     {
-      ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1",
+      ZOKLENS_PROXY_BASE_URL: "https://zoklens-api-staging.zokforce.com/v1",
       ZOKLENS_PROXY_API_KEY: "zok_test_proxy",
       ZOKLENS_PROXY_REQUIRED: "true",
       ZOKLENS_PROXY_BYOK_REQUIRED: "true",
@@ -189,7 +189,7 @@ test("legacy direct provider key does not satisfy explicit BYOK proxy mode", asy
   const response = await worker.fetch(
     chatRequest("hello", "203.0.113.15"),
     {
-      ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1",
+      ZOKLENS_PROXY_BASE_URL: "https://zoklens-api-staging.zokforce.com/v1",
       ZOKLENS_PROXY_API_KEY: "zok_test_proxy",
       ZOKLENS_PROXY_REQUIRED: "true",
       ZOKLENS_PROXY_BYOK_REQUIRED: "true",
@@ -217,7 +217,7 @@ test("proxy success without trace id fails closed for observability verification
   const response = await worker.fetch(
     chatRequest("hello", "203.0.113.16"),
     {
-      ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1",
+      ZOKLENS_PROXY_BASE_URL: "https://zoklens-api-staging.zokforce.com/v1",
       ZOKLENS_PROXY_API_KEY: "zok_test_proxy",
       ZOKLENS_PROXY_PROVIDER_API_KEY: "provider-secret",
       ZOKLENS_PROXY_REQUIRED: "true",
@@ -249,7 +249,7 @@ test("proxy upstream failure exposes non-secret diagnostics", async () => {
   const response = await worker.fetch(
     chatRequest("hello", "203.0.113.14"),
     {
-      ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1",
+      ZOKLENS_PROXY_BASE_URL: "https://zoklens-api-staging.zokforce.com/v1",
       ZOKLENS_PROXY_API_KEY: "zok_test_proxy",
       ZOKLENS_PROXY_PROVIDER_API_KEY: "provider-secret",
       ZOKLENS_PROXY_REQUIRED: "true",

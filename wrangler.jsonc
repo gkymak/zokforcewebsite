@@ -11,7 +11,7 @@
   },
   "vars": {
     "ENVIRONMENT": "production",
-    "ZOKLENS_PROXY_BASE_URL": "https://zoklens-api-staging-668165939356.northamerica-northeast1.run.app/v1",
+    "ZOKLENS_PROXY_BASE_URL": "https://zoklens-api-staging.zokforce.com/v1",
     "ZOKLENS_PROXY_REQUIRED": "true",
     "ZOKLENS_PROXY_BYOK_REQUIRED": "false",
     "LLM_MODEL": "deepseek-chat"
