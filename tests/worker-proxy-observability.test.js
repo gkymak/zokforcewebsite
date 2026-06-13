@@ -107,6 +107,56 @@ test("user sends chat in BYOK proxy mode -> service binding receives combined au
   assert.equal(serviceCalls[0].body.model, "deepseek-v4-flash");
 });
 
+test("user sends chat in managed proxy mode -> provider secret is not required", async () => {
+  const worker = await loadWorker();
+  const serviceCalls = [];
+  const env = {
+    ZOKLENS_PROXY_BASE_URL: "https://proxy.zokforce.com/v1/",
+    ZOKLENS_PROXY_API_KEY: "zok_test_proxy",
+    ZOKLENS_PROXY_REQUIRED: "true",
+    ZOKLENS_PROXY_BYOK_REQUIRED: "false",
+    LLM_MODEL: "deepseek-v4-flash",
+    ZOKLENS_PROXY_SERVICE: {
+      async fetch(request) {
+        serviceCalls.push({
+          url: request.url,
+          authorization: request.headers.get("Authorization"),
+          body: await request.json(),
+        });
+        return new Response(
+          JSON.stringify({
+            choices: [{ message: { content: "pong" } }],
+            usage: { prompt_tokens: 12, completion_tokens: 3, total_tokens: 15 },
+          }),
+          {
+            status: 200,
+            headers: {
+              "Content-Type": "application/json",
+              "X-ZOK-Trace-ID": "trace-managed-123",
+            },
+          },
+        );
+      },
+    },
+  };
+
+  const response = await worker.fetch(chatRequest("Reply with pong", "203.0.113.17"), env);
+  const body = await response.json();
+
+  assert.equal(response.status, 200);
+  assert.equal(body.success, true);
+  assert.equal(body.answer, "pong");
+  assert.equal(body.zoklens_proxy_mode, "proxy");
+  assert.equal(body.zoklens_proxy_transport, "service-binding");
+  assert.equal(body.zoklens_proxy_auth_mode, "managed");
+  assert.equal(body.zoklens_trace_id, "trace-managed-123");
+  assert.equal(response.headers.get("X-ZOK-Trace-ID"), "trace-managed-123");
+  assert.equal(serviceCalls.length, 1);
+  assert.equal(serviceCalls[0].url, "https://proxy.zokforce.com/v1/chat/completions");
+  assert.equal(serviceCalls[0].authorization, "Bearer zok_test_proxy");
+  assert.equal(serviceCalls[0].body.model, "deepseek-v4-flash");
+});
+
 test("user sends chat while BYOK is required without provider secret -> service binding is not called", async () => {
   const worker = await loadWorker();
   let serviceCalled = false;

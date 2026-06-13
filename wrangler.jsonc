@@ -13,7 +13,7 @@
     "ENVIRONMENT": "production",
     "ZOKLENS_PROXY_BASE_URL": "https://proxy.zokforce.com/v1",
     "ZOKLENS_PROXY_REQUIRED": "true",
-    "ZOKLENS_PROXY_BYOK_REQUIRED": "true",
+    "ZOKLENS_PROXY_BYOK_REQUIRED": "false",
     "LLM_MODEL": "deepseek-chat"
   },
   "routes": [

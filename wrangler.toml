@@ -23,10 +23,10 @@ binding = "ASSETS"
 ENVIRONMENT = "production"
 ZOKLENS_PROXY_BASE_URL = "https://proxy.zokforce.com/v1"
 ZOKLENS_PROXY_REQUIRED = "true"
-ZOKLENS_PROXY_BYOK_REQUIRED = "true"
+ZOKLENS_PROXY_BYOK_REQUIRED = "false"
 LLM_MODEL = "deepseek-chat"
 
 # Secrets (set via `npx wrangler secret put <NAME>`):
 #   ZOKLENS_PROXY_API_KEY           — Required for proxy chat functionality
-#   ZOKLENS_PROXY_PROVIDER_API_KEY  — Required when ZOKLENS_PROXY_BYOK_REQUIRED=true
+#   ZOKLENS_PROXY_PROVIDER_API_KEY  — Optional only when ZOKLENS_PROXY_BYOK_REQUIRED=true
 #   SENDGRID_API_KEY                — Optional for email delivery
