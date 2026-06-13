@@ -659,7 +659,7 @@ async function handleChat(request, env) {
 
     const llmEndpoint = useProxy
       ? `${proxyBaseUrl}/chat/completions`
-      : "https://api.deepseek.com/chat/completions";
+      : "https://api.deepseek.com/v1/chat/completions";
     const llmApiKey = useProxy
       ? (proxyProviderApiKey ? `${proxyApiKey}:${proxyProviderApiKey}` : proxyApiKey)
       : env.DEEPSEEK_API_KEY;
