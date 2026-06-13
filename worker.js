@@ -176,7 +176,7 @@ function isAllowedOrigin(origin) {
 
 export default {
   async fetch(request, env, ctx) {
-    // CORS preflight
+    // CORS preflight — skip tracing for OPTIONS
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 200,
@@ -189,75 +189,93 @@ export default {
       });
     }
 
-    const url = new URL(request.url);
-
-    // Normalize double-encoded paths
-    try {
-      const decodedPath = decodeURIComponent(url.pathname);
-      const normalizedDecoded = decodedPath.replace(/\s{2,}/g, " ");
-      if (normalizedDecoded !== decodedPath) {
-        const normalizedUrl = new URL(url);
-        normalizedUrl.pathname = normalizedDecoded
-          .split("/")
-          .map((segment) => encodeURIComponent(segment))
-          .join("/");
-        return Response.redirect(normalizedUrl.toString(), 301);
-      }
-    } catch (e) {
-      console.warn("Path decode failed, skipping normalization:", e);
+    // Health check
+    const healthUrl = new URL(request.url);
+    if (healthUrl.pathname === "/health") {
+      return new Response(
+        JSON.stringify({
+          status: "ok",
+          service: "zokforce-website",
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     }
 
-    // Route: Embeddable chat page (replaces Dify iframe)
-    if (url.pathname === "/embed/chat") {
-      return serveChatEmbed();
-    }
+    // Route handling
+    {
+      const url = new URL(request.url);
 
-    // Route: AI Chat API
-    if (url.pathname === "/api/chat" && request.method === "POST") {
-      return handleChat(request, env);
-    }
-
-    // Route: Contact form (enforce CORS)
-    if (url.pathname === "/api/contact" && request.method === "POST") {
-      if (!isAllowedOrigin(request.headers.get("Origin"))) {
-        return new Response("Unauthorized Origin", { status: 403 });
-      }
-      return handleContactForm(request, env);
-    }
-
-    // Route: Assessment report email (enforce CORS)
-    if (url.pathname === "/send-assessment-report" && request.method === "POST") {
-      if (!isAllowedOrigin(request.headers.get("Origin"))) {
-        return new Response("Unauthorized Origin", { status: 403 });
-      }
-      return handleAssessmentReport(request, env);
-    }
-
-    // Static assets — with iframe auto-patching
-    try {
-      const assetResponse = await env.ASSETS.fetch(request);
-
-      // If the response is HTML, patch Dify iframe URLs
-      const contentType = assetResponse.headers.get("Content-Type") || "";
-      if (contentType.includes("text/html")) {
-        let html = await assetResponse.text();
-
-        // Replace all Dify iframe src URLs with our /embed/chat
-        html = html.replace(
-          /https?:\/\/3ct1hk172269\.vicp\.fun\/embed\/chat[^"'\s]*/g,
-          "/embed/chat"
-        );
-
-        return new Response(html, {
-          status: assetResponse.status,
-          headers: assetResponse.headers,
-        });
+      // Normalize double-encoded paths
+      try {
+        const decodedPath = decodeURIComponent(url.pathname);
+        const normalizedDecoded = decodedPath.replace(/\s{2,}/g, " ");
+        if (normalizedDecoded !== decodedPath) {
+          const normalizedUrl = new URL(url);
+          normalizedUrl.pathname = normalizedDecoded
+            .split("/")
+            .map((segment) => encodeURIComponent(segment))
+            .join("/");
+          return Response.redirect(normalizedUrl.toString(), 301);
+        }
+      } catch (e) {
+        console.warn("Path decode failed, skipping normalization:", e);
       }
 
-      return assetResponse;
-    } catch (err) {
-      console.error("Static asset fetch error:", err);
-      return new Response("Internal Server Error", { status: 500 });
+      // Route: Embeddable chat page (replaces Dify iframe)
+      if (url.pathname === "/embed/chat") {
+        return serveChatEmbed();
+      }
+
+      // Route: AI Chat API
+      if (url.pathname === "/api/chat" && request.method === "POST") {
+        return handleChat(request, env);
+      }
+
+      // Route: Contact form (enforce CORS)
+      if (url.pathname === "/api/contact" && request.method === "POST") {
+        if (!isAllowedOrigin(request.headers.get("Origin"))) {
+          return new Response("Unauthorized Origin", { status: 403 });
+        }
+        return handleContactForm(request, env);
+      }
+
+      // Route: Assessment report email (enforce CORS)
+      if (url.pathname === "/send-assessment-report" && request.method === "POST") {
+        if (!isAllowedOrigin(request.headers.get("Origin"))) {
+          return new Response("Unauthorized Origin", { status: 403 });
+        }
+        return handleAssessmentReport(request, env);
+      }
+
+      // Static assets — with iframe auto-patching
+      try {
+        const assetResponse = await env.ASSETS.fetch(request);
+
+        // If the response is HTML, patch Dify iframe URLs
+        const contentType = assetResponse.headers.get("Content-Type") || "";
+        if (contentType.includes("text/html")) {
+          let html = await assetResponse.text();
+
+          // Replace all Dify iframe src URLs with our /embed/chat
+          html = html.replace(
+            /https?:\/\/3ct1hk172269\.vicp\.fun\/embed\/chat[^"'\s]*/g,
+            "/embed/chat"
+          );
+
+          return new Response(html, {
+            status: assetResponse.status,
+            headers: assetResponse.headers,
+          });
+        }
+
+        return assetResponse;
+      } catch (err) {
+        console.error("Static asset fetch error:", err);
+        return new Response("Internal Server Error", { status: 500 });
+      }
     }
   },
 };
@@ -543,6 +561,8 @@ async function handleChat(request, env) {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
   };
+  let diagnosticProxyMode = "unknown";
+  let diagnosticProxyConfigured = false;
 
   try {
     // Rate limiting
@@ -590,9 +610,63 @@ async function handleChat(request, env) {
       );
     }
 
-    const DEEPSEEK_API_KEY = env.DEEPSEEK_API_KEY;
-    if (!DEEPSEEK_API_KEY) {
-      console.error("DEEPSEEK_API_KEY not configured");
+    // Resolve LLM endpoint. In production, a configured ZokLens proxy base URL
+    // means observability is required; do not silently bypass it.
+    const proxyBaseUrl = (env.ZOKLENS_PROXY_BASE_URL || "").replace(/\/+$/, "");
+    const proxyApiKey = env.ZOKLENS_PROXY_API_KEY;
+    const proxyProviderApiKey = env.ZOKLENS_PROXY_PROVIDER_API_KEY;
+    const proxyConfigured = Boolean(proxyBaseUrl);
+    const proxyRequired = String(env.ZOKLENS_PROXY_REQUIRED || "").toLowerCase() === "true";
+    const proxyByokRequired = String(env.ZOKLENS_PROXY_BYOK_REQUIRED || "").toLowerCase() === "true";
+
+    if ((proxyConfigured || proxyRequired) && !proxyApiKey) {
+      console.error("ZOKLENS_PROXY_API_KEY missing while ZOKLENS_PROXY_BASE_URL is configured");
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Chat observability is not configured. Please try again shortly.",
+        }),
+        { status: 503, headers: corsHeaders }
+      );
+    }
+
+    if (proxyRequired && !proxyConfigured) {
+      console.error("ZOKLENS_PROXY_BASE_URL missing while ZOKLENS_PROXY_REQUIRED is true");
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Chat observability is not configured. Please try again shortly.",
+        }),
+        { status: 503, headers: corsHeaders }
+      );
+    }
+
+    const useProxy = proxyConfigured && proxyApiKey;
+    const proxyAuthMode = useProxy && proxyProviderApiKey ? "byok" : "managed";
+    diagnosticProxyMode = useProxy ? "proxy" : "direct";
+    diagnosticProxyConfigured = proxyConfigured;
+
+    if (useProxy && proxyByokRequired && !proxyProviderApiKey) {
+      console.error("ZOKLENS_PROXY_BYOK_REQUIRED is true but no provider API key secret is configured");
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Chat observability is not configured. Please try again shortly.",
+        }),
+        { status: 503, headers: corsHeaders }
+      );
+    }
+
+    const llmEndpoint = useProxy
+      ? `${proxyBaseUrl}/chat/completions`
+      : "https://api.deepseek.com/chat/completions";
+    const llmApiKey = useProxy
+      ? (proxyProviderApiKey ? `${proxyApiKey}:${proxyProviderApiKey}` : proxyApiKey)
+      : env.DEEPSEEK_API_KEY;
+    const llmModel = env.LLM_MODEL || "deepseek-chat";
+
+    if (!llmApiKey) {
+      console.error("No LLM API key configured (ZOKLENS_PROXY_API_KEY or DEEPSEEK_API_KEY)");
       return new Response(
         JSON.stringify({
           success: false,
@@ -618,28 +692,94 @@ async function handleChat(request, env) {
       { role: "user", content: message },
     ];
 
-    const response = await fetch("https://api.deepseek.com/chat/completions", {
+    const proxyTransport = useProxy && env.ZOKLENS_PROXY_SERVICE ? "service-binding" : "public-fetch";
+    const llmRequest = new Request(llmEndpoint, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
+        Authorization: `Bearer ${llmApiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "deepseek-chat",
+        model: llmModel,
         messages,
         max_tokens: 1024,
         temperature: 0.7,
         stream: false,
       }),
     });
+    const response = proxyTransport === "service-binding"
+      ? await env.ZOKLENS_PROXY_SERVICE.fetch(llmRequest)
+      : await fetch(llmRequest);
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error(`DeepSeek API error: ${response.status} ${errText}`);
-      throw new Error(`AI service error: ${response.status}`);
+      console.error(`LLM API error: ${response.status} ${errText}`);
+      let upstreamError = null;
+      try {
+        const parsedError = JSON.parse(errText);
+        const errorObject = parsedError && typeof parsedError === "object" ? parsedError.error : null;
+        if (errorObject && typeof errorObject === "object") {
+          upstreamError = {
+            type: typeof errorObject.type === "string" ? errorObject.type : undefined,
+            code: typeof errorObject.code === "string" ? errorObject.code : undefined,
+            message: typeof errorObject.message === "string" ? errorObject.message.slice(0, 180) : undefined,
+          };
+        }
+      } catch (parseErr) {
+        upstreamError = null;
+      }
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Chat service is temporarily unavailable. Please visit www.zokforce.com for assistance.",
+          zoklens_proxy_mode: diagnosticProxyMode,
+          zoklens_proxy_configured: diagnosticProxyConfigured,
+          zoklens_proxy_transport: proxyTransport,
+          zoklens_proxy_auth_mode: proxyAuthMode,
+          zoklens_proxy_upstream_status: response.status,
+          ...(upstreamError ? { zoklens_proxy_upstream_error: upstreamError } : {}),
+        }),
+        {
+          status: 502,
+          headers: {
+            ...corsHeaders,
+            "X-ZOK-Proxy-Mode": diagnosticProxyMode,
+            "X-ZOK-Proxy-Configured": diagnosticProxyConfigured ? "true" : "false",
+            "X-ZOK-Proxy-Transport": proxyTransport,
+            "X-ZOK-Proxy-Auth-Mode": proxyAuthMode,
+            "X-ZOK-Proxy-Upstream-Status": String(response.status),
+          },
+        }
+      );
     }
 
     const result = await response.json();
+    const zoklensTraceId = response.headers.get("X-ZOK-Trace-ID") || response.headers.get("x-zok-trace-id");
+    if (useProxy && !zoklensTraceId) {
+      console.error("ZokLens proxy response succeeded without X-ZOK-Trace-ID");
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Chat observability could not be verified. Please try again shortly.",
+          zoklens_proxy_mode: "proxy",
+          zoklens_proxy_configured: true,
+          zoklens_proxy_transport: proxyTransport,
+          zoklens_proxy_auth_mode: proxyAuthMode,
+          zoklens_proxy_missing_trace_id: true,
+        }),
+        {
+          status: 502,
+          headers: {
+            ...corsHeaders,
+            "X-ZOK-Proxy-Mode": "proxy",
+            "X-ZOK-Proxy-Configured": "true",
+            "X-ZOK-Proxy-Transport": proxyTransport,
+            "X-ZOK-Proxy-Auth-Mode": proxyAuthMode,
+            "X-ZOK-Proxy-Missing-Trace-ID": "true",
+          },
+        }
+      );
+    }
     let answer = result.choices?.[0]?.message?.content || "Sorry, I could not generate a response.";
 
     // Strip <think>...</think> tags (DeepSeek reasoning tokens)
@@ -666,22 +806,46 @@ async function handleChat(request, env) {
       }
     }
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        answer,
-        usage: result.usage,
-      }),
-      { status: 200, headers: corsHeaders }
-    );
+    const responseBody = {
+      success: true,
+      answer,
+      usage: result.usage,
+      zoklens_proxy_mode: useProxy ? "proxy" : "direct",
+      zoklens_proxy_configured: proxyConfigured,
+      zoklens_proxy_transport: proxyTransport,
+      zoklens_proxy_auth_mode: proxyAuthMode,
+      ...(zoklensTraceId ? { zoklens_trace_id: zoklensTraceId } : {}),
+    };
+    const responseHeaders = {
+      ...corsHeaders,
+      "X-ZOK-Proxy-Mode": useProxy ? "proxy" : "direct",
+      "X-ZOK-Proxy-Configured": proxyConfigured ? "true" : "false",
+      "X-ZOK-Proxy-Transport": proxyTransport,
+      "X-ZOK-Proxy-Auth-Mode": proxyAuthMode,
+      ...(zoklensTraceId ? { "X-ZOK-Trace-ID": zoklensTraceId } : {}),
+    };
+
+    return new Response(JSON.stringify(responseBody), {
+      status: 200,
+      headers: responseHeaders,
+    });
   } catch (error) {
     console.error("Chat error:", error);
     return new Response(
       JSON.stringify({
         success: false,
         error: "Sorry, I'm having trouble responding right now. Please try again or visit www.zokforce.com.",
+        zoklens_proxy_mode: diagnosticProxyMode,
+        zoklens_proxy_configured: diagnosticProxyConfigured,
       }),
-      { status: 500, headers: corsHeaders }
+      {
+        status: 500,
+        headers: {
+          ...corsHeaders,
+          "X-ZOK-Proxy-Mode": diagnosticProxyMode,
+          "X-ZOK-Proxy-Configured": diagnosticProxyConfigured ? "true" : "false",
+        },
+      }
     );
   }
 }
