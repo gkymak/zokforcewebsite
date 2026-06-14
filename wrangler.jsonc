@@ -16,6 +16,12 @@
     "ZOKLENS_PROXY_BYOK_REQUIRED": "false",
     "LLM_MODEL": "deepseek-chat"
   },
+  "services": [
+    {
+      "binding": "ZOKLENS_PROXY_SERVICE",
+      "service": "zoklens-api-staging-proxy"
+    }
+  ],
   "routes": [
     "zokforce.com/*",
     "www.zokforce.com/*"
