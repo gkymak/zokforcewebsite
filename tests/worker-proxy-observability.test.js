@@ -65,7 +65,7 @@ test("user sends chat in BYOK proxy mode -> service binding receives combined au
     ZOKLENS_PROXY_PROVIDER_API_KEY: "provider-secret",
     ZOKLENS_PROXY_REQUIRED: "true",
     ZOKLENS_PROXY_BYOK_REQUIRED: "true",
-    LLM_MODEL: "deepseek-v4-flash",
+    BYOK_LLM_MODEL: "deepseek-v4-flash",
     ZOKLENS_PROXY_SERVICE: {
       async fetch(request) {
         serviceCalls.push({
@@ -154,7 +154,7 @@ test("user sends chat in managed proxy mode -> provider secret is not required",
   assert.equal(serviceCalls.length, 1);
   assert.equal(serviceCalls[0].url, "https://zoklens-api-staging.zokforce.com/v1/chat/completions");
   assert.equal(serviceCalls[0].authorization, "Bearer zok_test_proxy");
-  assert.equal(serviceCalls[0].body.model, "deepseek-v4-flash");
+  assert.equal(serviceCalls[0].body.model, "zoklens-primary");
 });
 
 test("user sends chat while BYOK is required without provider secret -> service binding is not called", async () => {

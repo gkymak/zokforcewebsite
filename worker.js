@@ -663,7 +663,9 @@ async function handleChat(request, env) {
     const llmApiKey = useProxy
       ? (proxyProviderApiKey ? `${proxyApiKey}:${proxyProviderApiKey}` : proxyApiKey)
       : env.DEEPSEEK_API_KEY;
-    const llmModel = env.LLM_MODEL || "deepseek-chat";
+    const llmModel = useProxy && proxyAuthMode === "managed"
+      ? (env.ZOKLENS_PROXY_MODEL || "zoklens-primary")
+      : (env.BYOK_LLM_MODEL || env.LLM_MODEL || "deepseek-chat");
 
     if (!llmApiKey) {
       console.error("No LLM API key configured (ZOKLENS_PROXY_API_KEY or DEEPSEEK_API_KEY)");
