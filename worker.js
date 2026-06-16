@@ -664,7 +664,7 @@ async function handleChat(request, env) {
       ? (proxyProviderApiKey ? `${proxyApiKey}:${proxyProviderApiKey}` : proxyApiKey)
       : env.DEEPSEEK_API_KEY;
     const llmModel = useProxy && proxyAuthMode === "managed"
-      ? (env.ZOKLENS_PROXY_MODEL || "zoklens-primary")
+      ? (env.ZOKLENS_PROXY_MODEL || "zoklens-default")
       : (env.BYOK_LLM_MODEL || env.LLM_MODEL || "deepseek-chat");
 
     if (!llmApiKey) {
@@ -694,7 +694,7 @@ async function handleChat(request, env) {
       { role: "user", content: message },
     ];
 
-    const proxyTransport = useProxy && env.ZOKLENS_PROXY_SERVICE ? "service-binding" : "public-fetch";
+    const proxyTransport = "public-fetch";
     const llmRequest = new Request(llmEndpoint, {
       method: "POST",
       headers: {
@@ -709,9 +709,7 @@ async function handleChat(request, env) {
         stream: false,
       }),
     });
-    const response = proxyTransport === "service-binding"
-      ? await env.ZOKLENS_PROXY_SERVICE.fetch(llmRequest)
-      : await fetch(llmRequest);
+    const response = await fetch(llmRequest);
 
     if (!response.ok) {
       const errText = await response.text();

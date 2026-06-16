@@ -3,19 +3,30 @@
 
 # Version control and hidden files
 .git/
+.agent/
+.codegraph/
 .gitignore
+.assetsignore
 .wrangler/
 .vscode/
 .DS_Store
 
 # Node and build artifacts
 node_modules/
+package.json
+package-lock.json
 *.log
 *.cache
 
 # Local development files
 .env*
 .dev.vars*
+README.md
+DEPLOYMENT.md
+tests/
+worker.js
+wrangler.toml
+wrangler.jsonc
 
 # Exported assets folder (not meant for public)
 exported-assets/old/

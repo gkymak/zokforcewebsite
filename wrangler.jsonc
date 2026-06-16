@@ -14,14 +14,8 @@
     "ZOKLENS_PROXY_BASE_URL": "https://zoklens-api-staging.zokforce.com/v1",
     "ZOKLENS_PROXY_REQUIRED": "true",
     "ZOKLENS_PROXY_BYOK_REQUIRED": "false",
-    "ZOKLENS_PROXY_MODEL": "zoklens-primary"
+    "ZOKLENS_PROXY_MODEL": "zoklens-default"
   },
-  "services": [
-    {
-      "binding": "ZOKLENS_PROXY_SERVICE",
-      "service": "zoklens-api-staging-proxy"
-    }
-  ],
   "routes": [
     "zokforce.com/*",
     "www.zokforce.com/*"

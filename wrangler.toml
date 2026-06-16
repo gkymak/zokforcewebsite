@@ -24,11 +24,7 @@ ENVIRONMENT = "production"
 ZOKLENS_PROXY_BASE_URL = "https://zoklens-api-staging.zokforce.com/v1"
 ZOKLENS_PROXY_REQUIRED = "true"
 ZOKLENS_PROXY_BYOK_REQUIRED = "false"
-ZOKLENS_PROXY_MODEL = "zoklens-primary"
-
-[[services]]
-binding = "ZOKLENS_PROXY_SERVICE"
-service = "zoklens-api-staging-proxy"
+ZOKLENS_PROXY_MODEL = "zoklens-default"
 
 # Secrets (set via `npx wrangler secret put <NAME>`):
 #   ZOKLENS_PROXY_API_KEY           — Required for proxy chat functionality

@@ -11,6 +11,7 @@ test-*.html
 # Development files
 .vscode/
 .wrangler/
+.codegraph/
 .dev.vars
 
 # Temporary files
