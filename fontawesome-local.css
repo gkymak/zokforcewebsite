@@ -1,0 +1,42 @@
+.fa,
+.fas,
+.far,
+.fab {
+  display: inline-block;
+  min-width: 1em;
+  font-style: normal;
+  font-variant: normal;
+  text-align: center;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.fa-user::before { content: "👤"; }
+.fa-users::before { content: "👥"; }
+.fa-calendar::before { content: "📅"; }
+.fa-clock::before { content: "⏱"; }
+.fa-database::before { content: "▣"; }
+.fa-shield-alt::before { content: "🛡"; }
+.fa-lightbulb::before { content: "💡"; }
+.fa-industry::before { content: "🏭"; }
+.fa-project-diagram::before { content: "⌘"; }
+.fa-check-circle::before { content: "✓"; }
+.fa-tools::before { content: "🛠"; }
+.fa-bullseye::before { content: "◎"; }
+.fa-tachometer-alt::before { content: "↯"; }
+.fa-gavel::before { content: "⚖"; }
+.fa-eye::before { content: "◉"; }
+.fa-eye-slash::before { content: "◌"; }
+.fa-puzzle-piece::before { content: "▧"; }
+.fa-link::before { content: "🔗"; }
+.fa-balance-scale::before { content: "⚖"; }
+.fa-rocket::before { content: "🚀"; }
+.fa-aws::before { content: "AWS"; font-size: 0.75em; font-weight: 700; }
+.fa-cloud::before { content: "☁"; }
+.fa-exclamation-triangle::before { content: "⚠"; }
+.fa-cogs::before { content: "⚙"; }
+.fa-magic::before { content: "✦"; }
+.fa-comments::before { content: "💬"; }
+.fa-chart-line::before { content: "↗"; }
+.fa-heart::before { content: "♥"; }
+.fa-user-secret::before { content: "◈"; }

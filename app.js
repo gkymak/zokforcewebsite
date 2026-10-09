@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
     sortBlogCardsByDateNewFirst();
 
     initializeAnimations();
-    initializeFloatingChatbot();
 });
 
 // Navigation functionality
@@ -603,27 +602,6 @@ function showNotification(message, type = 'info') {
             }, 300);
         }
     }, 5000);
-}
-
-// Floating Chatbot functionality
-function initializeFloatingChatbot() {
-    const chatbotToggle = document.getElementById('chatbot-toggle');
-    const floatingChatbot = document.getElementById('floating-chatbot');
-    
-    if (chatbotToggle && floatingChatbot) {
-        chatbotToggle.addEventListener('click', function() {
-            floatingChatbot.classList.toggle('open');
-        });
-    }
-    
-    // Close chatbot when clicking outside
-    document.addEventListener('click', function(e) {
-        if (floatingChatbot && floatingChatbot.classList.contains('open')) {
-            if (!floatingChatbot.contains(e.target)) {
-                floatingChatbot.classList.remove('open');
-            }
-        }
-    });
 }
 
 // Global CTA functions (called from HTML)

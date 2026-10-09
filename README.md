@@ -8,7 +8,6 @@ This is the website codebase for ZOKFORCE - AI Consulting & LLM Integration serv
 - Smart Chatbots & Digital Humans
 - Process Automation
 - Data Analytics & Insights
-- Digital Twin Solutions
 
 ## Deployment
 Deployed on Cloudflare Pages with static site configuration.

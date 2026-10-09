@@ -73,10 +73,10 @@ const translations = {
             "zh-CN": "探索服务"
         },
         stats: {
-            yearsLabel: {
-                en: "Years of Excellence",
-                "zh-TW": "卓越年數",
-                "zh-CN": "卓越年数"
+            transformationLabel: {
+                en: "AI Transformation",
+                "zh-TW": "AI 轉型",
+                "zh-CN": "AI 转型"
             },
             projectsLabel: {
                 en: "Projects Delivered",
@@ -460,9 +460,9 @@ const translations = {
             }
         },
         copyright: {
-            en: "© 2025 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service",
-            "zh-TW": "© 2025 ZOKFORCE. 版權所有。| 隱私政策 | 服務條款",
-            "zh-CN": "© 2025 ZOKFORCE. 版权所有。| 隐私政策 | 服务条款"
+            en: "© 2026 ZOKFORCE. All rights reserved. | Privacy Policy | Terms of Service",
+            "zh-TW": "© 2026 ZOKFORCE. 版權所有。| 隱私政策 | 服務條款",
+            "zh-CN": "© 2026 ZOKFORCE. 版权所有。| 隐私政策 | 服务条款"
         }
     },
 

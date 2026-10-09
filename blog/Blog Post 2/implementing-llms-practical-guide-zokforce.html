@@ -6,21 +6,10 @@
     <title>Implementing Large Language Models: A Practical Guide | ZOKFORCE Blog</title>
     <meta name="description" content="Step-by-step approach to successfully integrating LLMs into business processes for maximum impact and sustainable competitive advantage. Expert guidance on implementation, risks, and best practices.">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKPWWSN9VT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-XKPWWSN9VT');
-    </script>
-    
     <script src="../../translations.js"></script>
     <!-- Language switching functionality updated - deployment trigger -->
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/fontawesome-local.css">
     <link rel="stylesheet" href="../../style.css">
     <style>
         /* Ensure hamburger menu is visible on white background */
@@ -557,6 +546,7 @@
             }
         }
     </style>
+    <script src="/analytics-loader.js" defer></script>
 </head>
 <body>
     <!-- Header -->
@@ -1073,7 +1063,6 @@
                             <li><a href="../../index.html#services" data-translate="footer.services.chatbots">Intelligent Chatbots</a></li>
                             <li><a href="../../index.html#services" data-translate="footer.services.automation">Process Automation</a></li>
                             <li><a href="../../index.html#services" data-translate="footer.services.analytics">Data Analytics</a></li>
-                            <li><a href="../../index.html#services" data-translate="footer.services.digitalTwin">Digital Twin Solutions</a></li>
                         </ul>
                     </div>
                     <div class="footer__section">
@@ -1160,23 +1149,9 @@
         });
     </script>
 
-    <!-- Floating Chatbot Widget -->
-    <div id="floating-chatbot" class="floating-chatbot">
-        <div class="chatbot-toggle" id="chatbot-toggle">
-            <span class="chatbot-icon">💬</span>
-            <span class="chatbot-close">×</span>
-        </div>
-        <div class="chatbot-window" id="chatbot-window">
-            <div class="chatbot-content">
-                <iframe 
-                    src="https://3ct1hk172269.vicp.fun/embed/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRJZCI6ImNtZXdzMTc5aDAwMDFzN3U1cGxqa25sODYiLCJhZ2VudElkIjoiY21mNHRxdnhmMDAwOTI2ZndqZDU5cGFsaCIsInR5cGUiOiJlbWJlZCIsImV4cCI6MTc4ODk2MTIwMSwiaWF0IjoxNzU3NDI1MjAxfQ.xDosPKO3WuNK8x77QeiK5KhMTnDnNMKvcQ5ob2ZOKfs" 
-                    style="width: 100%; height: 100%; border: none;" 
-                    allow="microphone"> 
-                </iframe>
-            </div>
-        </div>
-    </div>
 
-    <script src="../../app.js"></script>
+<script src="../../app.js"></script>
+    <script src="/chat-widget.js" defer></script>
+
 </body>
 </html>
