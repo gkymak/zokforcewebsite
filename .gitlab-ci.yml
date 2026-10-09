@@ -1,0 +1,28 @@
+stages:
+  - test
+  - deploy
+
+default:
+  interruptible: true
+
+test:
+  stage: test
+  tags:
+    - zokforce
+  before_script:
+    - export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/bin:/usr/bin:$PATH"
+  script:
+    - node --version
+    - npm --version
+    - npm test
+
+deploy:
+  stage: deploy
+  tags:
+    - zokforce
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  before_script:
+    - export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/bin:/usr/bin:$PATH"
+  script:
+    - npx wrangler deploy

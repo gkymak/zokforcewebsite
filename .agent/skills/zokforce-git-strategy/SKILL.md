@@ -11,8 +11,7 @@ Follow these rules for ALL interactions involving Git, repository management, or
 | Aspect | Details |
 |--------|---------|
 | **Primary remote (origin)** | `https://zokforce.synology.me:30443/zokforce/zokforce-website.git` (Private GitLab) |
-| **Mirror remote (github)** | `https://github.com/gkymak/zokforcewebsite.git` (Public GitHub) |
-| **Local clone** | `/Users/gkymakyahoo.ca/zokforceweb1/zokforcewebsite` |
+| **Local clone** | `/Volumes/PortableSSD/Dev/zokforceweb1` |
 | **Deployment** | Cloudflare Workers via `wrangler deploy` |
 
 ## 2. Branching Strategy
