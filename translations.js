@@ -185,9 +185,9 @@ const translations = {
             "zh-CN": "数字卓越，AI驱动全民"
         },
         description: {
-            en: "Founded in 2019, ZOKFORCE is a tech-driven company dedicated to AI applications research and development. We specialize in transforming businesses through cutting-edge artificial intelligence solutions.",
-            "zh-TW": "成立於2019年，ZOKFORCE是一家專注於AI應用研發的科技驅動公司。我們專精於透過尖端人工智能解決方案轉型企業。",
-            "zh-CN": "成立于2019年，ZOKFORCE是一家专注于AI应用研发的科技驱动公司。我们专精于通过尖端人工智能解决方案转型企业。"
+            en: "Incorporated in 2025 in Canada, ZOKFORCE is a tech-driven company dedicated to AI applications research and development. We specialize in transforming businesses through cutting-edge artificial intelligence solutions.",
+            "zh-TW": "2025年在加拿大成立，ZOKFORCE是一家專注於AI應用研發的科技驅動公司。我們專精於透過尖端人工智能解決方案轉型企業。",
+            "zh-CN": "2025年在加拿大成立，ZOKFORCE是一家专注于AI应用研发的科技驱动公司。我们专精于通过尖端人工智能解决方案转型企业。"
         },
         mission: {
             title: {
