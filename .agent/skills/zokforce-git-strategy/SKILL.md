@@ -12,13 +12,13 @@ Follow these rules for ALL interactions involving Git, repository management, or
 |--------|---------|
 | **Primary remote (origin)** | `https://zokforce.synology.me:30443/zokforce/zokforce-website.git` (Private GitLab) |
 | **Local clone** | `/Volumes/PortableSSD/Dev/zokforceweb1` |
-| **Deployment** | Cloudflare Workers via `wrangler deploy` |
+| **Deployment** | Automated CI/CD via Git (`main`) |
 
 ## 2. Branching Strategy
 
 Our flow is: **`main` ← `feature/*` / `fix/*` / `chore/*`**
 
-- **`main`**: The production branch. Deployed to `zokforce.com` via Cloudflare.
+- **`main`**: The production branch. Pushing to `main` deploys the website automatically.
 - **`feature/*`**, **`fix/*`**, **`chore/*`**: Short-lived branches for dev work.
 
 **To start new work:**
@@ -53,13 +53,15 @@ Keep commits granular and logically separated.
 2. **Handover to human:** Request a **Merge Request (MR)** on GitLab from `<branch-name>` into `main`.
 3. **After merge:** Squash merge into `main`.
 
-## 6. Deployment to Cloudflare
+## 6. Deployment via Git
 
-After merging to `main`:
+Deployments are strictly managed via Git. Never deploy to Cloudflare directly via local CLI commands like `wrangler deploy`. All production releases happen automatically by pushing or merging into `main`:
+
 ```bash
 git checkout main
 git pull origin main
-wrangler deploy
+git push origin main
+git push github main
 ```
 
 ## 7. Syncing with the Team
