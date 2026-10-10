@@ -14,6 +14,9 @@ test-*.html
 .wrangler/
 .codegraph/
 .dev.vars
+.dev.vars.*
+.env*
+.reticle/
 
 # Temporary files
 *.log

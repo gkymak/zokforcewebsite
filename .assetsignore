@@ -5,6 +5,7 @@
 .git/
 .agent/
 .codegraph/
+.reticle/
 .gitignore
 .assetsignore
 .wrangler/
