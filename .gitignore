@@ -8,6 +8,7 @@
 debug-*.html
 test-*.html
 *.backup
+_backup_old_files/
 
 # Development files
 .vscode/

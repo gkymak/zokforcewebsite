@@ -31,3 +31,4 @@ wrangler.jsonc
 
 # Exported assets folder (not meant for public)
 exported-assets/old/
+_backup_old_files/
